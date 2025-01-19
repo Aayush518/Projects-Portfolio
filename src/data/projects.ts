@@ -23,7 +23,7 @@ export const projects: Project[] = [
     id: 'Nepali Arpabet Converter',
     title: 'Nepali Arpabet Converter',
     description: 'A tool for converting Nepali text to Arpabet phonemes',
-    thumbnail: 'assets/images/Nepali_Arpabet.webp',
+    thumbnail: '/images/Nepali_Arpabet.webp',
     category: 'Speech Technology',
     technologies: ['Python', 'NLP', 'TTS', 'ASR'],
     links: {
@@ -35,14 +35,14 @@ export const projects: Project[] = [
       impact: 'Simplified the process of converting Nepali text to Arpabet phonemes'
     },
     images: [
-      'assets/images/Nepali_Arpabet.webp',    ],
+      '/images/Nepali_Arpabet.webp',    ],
     featured: true
   },
   {
     id: 'Resume Maker',
     title: 'Resume Maker',
     description: 'A tool for creating professional resumes in minutes',
-    thumbnail: 'assets/images/Resume_maker.webp',
+    thumbnail: '/images/Resume_maker.webp',
     category: 'Web Development',
     technologies: ['React', 'Typescript', 'Vite'],
     links: {
@@ -54,7 +54,7 @@ export const projects: Project[] = [
       impact: 'Simplified the process of creating professional resumes in minutes'
     },
     images: [
-      'assets/images/Resume_maker.webp'
+      '/images/Resume_maker.webp'
     ],
     featured: true
   },
@@ -62,7 +62,7 @@ export const projects: Project[] = [
     id: 'Immersive-MusicBrowser',
     title: 'Immersive-MusicBrowser',
     description: 'A music browser for immersive listening experience',
-    thumbnail: 'assets/images/music-1.webp',
+    thumbnail: '/images/music-1.webp',
     category: 'Web Development',
     technologies: ['Typescript', 'CSS'],
     links: {
@@ -74,9 +74,9 @@ export const projects: Project[] = [
       impact: 'Simplified the process of listening to music'
     },
     images: [
-      'assets/images/music-1.webp',
-      'assets/images/music2.webp',
-      'assets/images/music-3.webp'
+      '/images/music-1.webp',
+      '/images/music2.webp',
+      '/images/music-3.webp'
     ],
     featured: true
   },
@@ -84,7 +84,7 @@ export const projects: Project[] = [
     id: 'Transcription-Studio',
     title: 'Audio Transcription Studio',
     description: 'Professional Audio Transcription & Verification Tool',
-    thumbnail: 'assets/images/audtrans3.webp',
+    thumbnail: '/images/audtrans3.webp',
     category: 'Web Development, Speech Technology',
     technologies: ['Typescript', 'JS', 'CSS'],
     links: {
@@ -96,9 +96,9 @@ export const projects: Project[] = [
       impact: "Streamlined the transcription verification workflow by combining audio playback, text editing, and verification status tracking in one interface"
     },
     images: [
-      'assets/images/audtrans1.webp',
-      'assets/images/audtrans2.webp',
-      'assets/images/audtrans3.webp'
+      '/images/audtrans1.webp',
+      '/images/audtrans2.webp',
+      '/images/audtrans3.webp'
     ],
     featured: true
   },
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     id: 'StoryVerse',
     title: 'StoryVerse: Decentralized Story Universe Platform',
     description: 'A platform revolutionizing storytelling with blockchain-based story NFTs, collaborative universe building, and decentralized governance.',
-    thumbnail: 'assets/images/storyverse8.webp', 
+    thumbnail: '/images/storyverse8.webp', 
     category: 'Web Development, Blockchain, Storytelling',
     technologies: ['React', 'TypeScript', 'TailwindCSS', 'IPFS', 'Ethereum'],
     links: {
@@ -119,25 +119,25 @@ export const projects: Project[] = [
         impact: 'Empowered authors with true ownership of their work, introduced innovative revenue-sharing models, and created a community-driven storytelling ecosystem.'
     },
     images: [
-        'assets/images/storyverse1.webp', 
-        'assets/images/storyverse2.webp',
-        'assets/images/storyverse3.webp',
-        'assets/images/storyverse4.webp',
-        'assets/images/storyverse5.webp', 
-        'assets/images/storyverse6.webp',
-        'assets/images/storyverse7.webp',
-        'assets/images/storyverse8.webp',
-        'assets/images/storyverse9.webp',
-        'assets/images/storyverse10.webp',
-        'assets/images/storyverse11.webp',
-        'assets/images/storyverse12.webp',
-        'assets/images/storyverse13.webp',
-        'assets/images/storyverse14.webp',
-        'assets/images/storyverse16.webp',
-        'assets/images/storyverse17.webp',
-        'assets/images/storyverse18.webp',
-        'assets/images/storyverse19.webp',
-        'assets/images/storyverse20.webp'
+        '/images/storyverse1.webp', 
+        '/images/storyverse2.webp',
+        '/images/storyverse3.webp',
+        '/images/storyverse4.webp',
+        '/images/storyverse5.webp', 
+        '/images/storyverse6.webp',
+        '/images/storyverse7.webp',
+        '/images/storyverse8.webp',
+        '/images/storyverse9.webp',
+        '/images/storyverse10.webp',
+        '/images/storyverse11.webp',
+        '/images/storyverse12.webp',
+        '/images/storyverse13.webp',
+        '/images/storyverse14.webp',
+        '/images/storyverse16.webp',
+        '/images/storyverse17.webp',
+        '/images/storyverse18.webp',
+        '/images/storyverse19.webp',
+        '/images/storyverse20.webp'
        
     ],
     featured: true
@@ -146,7 +146,7 @@ export const projects: Project[] = [
   id: 'Immersive-3D-Portfolio template',
   title: 'Immersive 3D Portfolio template',
   description: 'Interactive 3D portfolio template built with Three.js and React, featuring custom shaders and animations',
-  thumbnail: 'assets/images/portfolio1.webp',
+  thumbnail: '/images/portfolio1.webp',
   category: 'Web Development, 3D Graphics',
   technologies: ['Three.js', 'React', 'WebGL', 'TypeScript'],
   links: {
@@ -158,17 +158,17 @@ export const projects: Project[] = [
     impact: 'Demonstrated the potential of modern web technologies for creating visually stunning and interactive experiences'
   },
   images: [
-    'assets/images/portfolio1.webp',
-    'assets/images/portfolio2.webp',
-    'assets/images/portfolio3.webp',
-    'assets/images/portfolio4.webp',
-    'assets/images/portfolio5.webp',
-    'assets/images/portfolio6.webp',
-    'assets/images/portfolio7.webp',
-    'assets/images/portfolio8.webp',
-    'assets/images/portfolio9.webp',
-    'assets/images/portfolio10.webp',
-    'assets/images/portfolio11.webp'
+    '/images/portfolio1.webp',
+    '/images/portfolio2.webp',
+    '/images/portfolio3.webp',
+    '/images/portfolio4.webp',
+    '/images/portfolio5.webp',
+    '/images/portfolio6.webp',
+    '/images/portfolio7.webp',
+    '/images/portfolio8.webp',
+    '/images/portfolio9.webp',
+    '/images/portfolio10.webp',
+    '/images/portfolio11.webp'
 
   ],
   featured: true
@@ -177,7 +177,7 @@ export const projects: Project[] = [
   "id": "coderunner",
   "title": "Python Code Runner",
   "description": "A web-based Python code execution environment with time and space complexity analysis, featuring real-time execution and input handling",
-  "thumbnail": "assets/images/coderun1.webp",
+  "thumbnail": "/images/coderun1.webp",
   "category": "Web Development, Programming Tools",
   "technologies": ["Flask", "Python", "JavaScript", "HTML", "CSS"],
   "links": {
@@ -189,11 +189,11 @@ export const projects: Project[] = [
     "impact": "Provides developers with a tool for testing Python code snippets with complexity analysis and input handling"
   },
   "images": [
-    "assets/images/coderun1.webp",
-    "assets/images/coderun2.webp",
-    "assets/images/coderun3.webp",
-    "assets/images/coderun4.webp",
-    "assets/images/coderun5.webp"
+    "/images/coderun1.webp",
+    "/images/coderun2.webp",
+    "/images/coderun3.webp",
+    "/images/coderun4.webp",
+    "/images/coderun5.webp"
   ],
   "featured": true
 },
@@ -201,7 +201,7 @@ export const projects: Project[] = [
   "id": "audio-dataset-handler",
   "title": "Audio Dataset Handler",
   "description": "A web-based tool for managing and transcribing audio datasets, featuring audio recording, transcription management, and file handling capabilities",
-  "thumbnail": "assets/images/flaskaudiorecord.webp",
+  "thumbnail": "/images/flaskaudiorecord.webp",
   "category": "Web Development, Audio Processing",
   "technologies": ["Flask", "Python", "JavaScript", "HTML", "CSS", "TailwindCSS"],
   "links": {
@@ -213,7 +213,7 @@ export const projects: Project[] = [
     "impact": "Provides researchers and developers with a tool for efficiently managing and transcribing audio datasets, suitable for machine learning and data processing tasks"
   },
   "images": [
-    "assets/images/flaskaudiorecord.webp",
+    "/images/flaskaudiorecord.webp",
   ],
   "featured": true
 },
@@ -221,7 +221,7 @@ export const projects: Project[] = [
   "id": "tclient",
   "title": "BitTorrent Client",
   "description": "A sleek, modern BitTorrent client with a dark-inspired interface built using React and Node.js, featuring real-time download progress, peer connection information, and detailed file statistics. This project was developed with complete reference to Kim's implementation of the BitTorrent protocol, which served as the foundation for our protocol implementation",
-  "thumbnail": "assets/images/tclient.webp",
+  "thumbnail": "/images/Tclient.webp",
   "category": "Web Development, Networking",
   "technologies": ["React", "Node.js", "Express", "JavaScript", "CSS"],
   "links": {
@@ -233,7 +233,7 @@ export const projects: Project[] = [
     "impact": "Provides an educational and practical tool for understanding and working with the BitTorrent protocol, suitable for both learning and personal use",
   },
   "images": [
-    "assets/images/tclient.webp"
+    "/images/Tclient.webp"
   ],
   "featured": true
 },
@@ -241,7 +241,7 @@ export const projects: Project[] = [
   "id": "MithoMitho",
   "title": "MithoMitho/Se-Trails",
   "description": "A comprehensive foodie companion web application designed for Pokhara Valley, featuring robust user authentication with email OTP verification and password reset capabilities. The platform enables users to discover restaurants through an intuitive search system, access detailed establishment information, and maintain a personalized dining history with interactive map integration. Users can create their own culinary trails by adding visited restaurants to their personal map, complete with visit details and interactive indicators. The application includes social features allowing users to connect with friends, view their dining activities, and share experiences. Built with Flask and modern front-end technologies, MithoMitho ensures real-time data accuracy through automated scraping from various sources, all wrapped in a responsive design that works seamlessly across all devices.",
-  "thumbnail": "assets/images/mithomitho.webp",
+  "thumbnail": "/images/mithomitho.webp",
   "category": "Web Development, Full Stack",
   "technologies": ["Python", "Flask", "PostgreSQL", "SQLAlchemy", "HTML5", "CSS", "Bootstrap", "JavaScript", "jQuery"],
   "links": {
@@ -253,7 +253,7 @@ export const projects: Project[] = [
     "impact": "Provides food enthusiasts in Pokhara Valley with a complete platform to discover, track, and share their dining experiences while building a community of food lovers"
   },
   "images": [
-    "assets/images/mithomitho.webp"
+    "/images/mithomitho.webp"
   ],
   "featured": true
 },
@@ -261,7 +261,7 @@ export const projects: Project[] = [
   "id": "CryptArithmeticSolver",
   "title": "CryptArithmeticSolver",
   "description": "A web-based cryptarithmetic puzzle solver application built with Flask and Google OR-Tools. The platform allows users to input cryptarithmetic equations and solves them using constraint programming techniques. It provides a user-friendly interface to quickly solve puzzles like SEND + MORE = MONEY or extended puzzles with multiple terms, displaying all possible solutions along with solving statistics. The application is designed for puzzle enthusiasts and educators, offering a seamless experience for exploring and understanding cryptarithmetic problems.",
-  "thumbnail": "assets/images/crypt1.webp",
+  "thumbnail": "/images/crypt1.webp",
   "category": "Web Development, Mathematical Puzzles",
   "technologies": ["Python", "Flask", "Google OR-Tools", "HTML5", "CSS", "Bootstrap", "JavaScript"],
   "links": {
@@ -273,8 +273,8 @@ export const projects: Project[] = [
     "impact": "Provides a powerful tool for solving and learning cryptarithmetic puzzles, making it accessible to students, educators, and puzzle enthusiasts worldwide."
   },
   "images": [
-    "assets/images/crypt1.webp",
-    "assets/images/crypt2.webp"
+    "/images/crypt1.webp",
+    "/images/crypt2.webp"
   ],
   "featured": true
 },
@@ -282,7 +282,7 @@ export const projects: Project[] = [
   "id": "NepaliTTS",
   "title": "Nepali Text-to-Speech Synthesis",
   "description": "A Nepali text-to-speech synthesis system using Tacotron2 for melspectrogram generation and HiFi-GAN as the vocoder. The system generates high-quality synthesized Nepali speech from input text, leveraging deep learning techniques to produce natural-sounding output. It includes text preprocessing, model fine-tuning on Nepali datasets, and post-processing techniques to enhance naturalness.",
-  "thumbnail": "assets/images/tts.jpg",
+  "thumbnail": "/images/tts.jpg",
   "category": "Speech Synthesis, Natural Language Processing",
   "technologies": ["Python", "Tacotron2", "HiFi-GAN", "TensorFlow", "PyTorch", "NLP"],
   "links": {
@@ -294,7 +294,7 @@ export const projects: Project[] = [
     "impact": "Achieved a Mean Opinion Score of 4.03 for naturalness, the highest among all previous Nepali Text-to-Speech tasks, providing a valuable tool for Nepali language technology and accessibility."
   },
   "images": [
-    "assets/images/tts.jpg",
+    "/images/tts.jpg",
   ],
   "featured": true
 },
@@ -302,7 +302,7 @@ export const projects: Project[] = [
   "id": "ResumeRanker",
   "title": "AI-Powered Resume Ranking System",
   "description": "An intelligent resume analysis and ranking system that uses natural language processing and machine learning techniques to evaluate and score resumes based on job requirements. The system extracts key information from resumes, matches them against job descriptions, and provides a ranked list of candidates, streamlining the recruitment process.",
-  "thumbnail": "assets/images/resumea1.webp",
+  "thumbnail": "/images/resumea1.webp",
   "category": "Artificial Intelligence, Human Resources",
   "technologies": ["Python", "NLP", "Machine Learning", "TensorFlow", "spaCy", "Flask", "React"],
   "links": {
@@ -314,12 +314,12 @@ export const projects: Project[] = [
     "impact": "Significantly reduced time spent on resume screening, improved candidate-job matching accuracy, and provided data-driven insights for hiring decisions, enhancing overall recruitment efficiency."
   },
   "images": [
-    "assets/images/resumea1.webp",
-    "assets/images/resumea2.webp",
-    "assets/images/resumea3.webp",
-    "assets/images/resumea4.webp",
-    "assets/images/resumea5.webp",
-    "assets/images/resumea6.webp"
+    "/images/resumea1.webp",
+    "/images/resumea2.webp",
+    "/images/resumea3.webp",
+    "/images/resumea4.webp",
+    "/images/resumea5.webp",
+    "/images/resumea6.webp"
   ],
   "featured": true
 }
