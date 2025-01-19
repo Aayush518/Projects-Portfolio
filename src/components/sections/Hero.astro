@@ -1,0 +1,89 @@
+---
+---
+<section class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden" data-scroll-section>
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,51,102,0.1)_0%,transparent_70%)]"></div>
+    <div class="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-[0.03]"></div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col items-start">
+        <div class="inline-block mb-4 px-4 py-2 bg-accent/10 rounded-full">
+          <span class="text-accent">Full Stack Developer | Project Lead | NLP Explorer</span>
+        </div>
+        
+        <h1 class="text-7xl md:text-9xl font-bold mb-8 leading-none">
+          <span class="block text-2xl md:text-3xl text-gray-400 mb-4">Hi, I'm</span>
+          <span class="text-accent relative inline-block">
+            Aayush
+            <span class="absolute -bottom-2 left-0 w-full h-1 bg-accent/30"></span>
+          </span>
+          <span class="block mt-4 gradient-text text-5xl md:text-7xl">
+            Building Digital Excellence
+          </span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mb-12 leading-relaxed">
+          A versatile software engineer with expertise in Web Development, NLP, and Project Management. 
+          Passionate about leading teams and delivering innovative solutions that drive business success.
+        </p>
+
+        <div class="flex flex-wrap gap-6">
+          <a 
+            href="#projects" 
+            class="group relative px-8 py-4 bg-accent overflow-hidden rounded-lg"
+            data-scroll-to
+          >
+            <span class="relative z-10">View Projects</span>
+            <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform"></div>
+          </a>
+          <a 
+            href="#contact" 
+            class="group relative px-8 py-4 border-2 border-accent text-accent rounded-lg overflow-hidden"
+            data-scroll-to
+          >
+            <span class="relative z-10 group-hover:text-white transition-colors">Let's Connect</span>
+            <div class="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform"></div>
+          </a>
+        </div>
+
+        <div class="mt-16 flex flex-wrap gap-4">
+          {[
+            'Python', 'React', 'Node.js', 'NLP', 
+            'Project Management', 'Team Leadership',
+            'Machine Learning', 'Full Stack Development'
+          ].map((tech) => (
+            <div class="px-4 py-2 bg-white/5 rounded-full text-sm hover:bg-white/10 transition-colors">
+              {tech}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" data-scroll data-scroll-speed="2">
+    <span class="text-sm text-gray-400">Scroll to explore</span>
+    <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex items-start p-1">
+      <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bg-grid-pattern {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  @keyframes waveform {
+    0%, 100% {
+      transform: scaleY(0.5);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+  }
+</style>

@@ -1,0 +1,109 @@
+---
+---
+<section id="about" class="py-32 relative">
+  <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
+  
+  <div class="container mx-auto px-4 relative">
+    <h2 class="text-5xl font-bold mb-16 gradient-text">About Me</h2>
+    
+    <div class="grid md:grid-cols-2 gap-16">
+      <div class="space-y-8">
+        <p class="text-xl text-gray-300 leading-relaxed">
+          I'm a passionate Software Developer specializing in Natural Language Processing and Speech Technologies. 
+          My work focuses on developing innovative solutions that push the boundaries of human-computer interaction 
+          through advanced speech recognition and processing systems.
+        </p>
+        
+        <div class="grid grid-cols-2 gap-8">
+          <div class="space-y-6">
+            <h3 class="text-2xl font-bold text-accent">Core Skills</h3>
+            <ul class="space-y-4">
+              {[
+                'Speech Recognition',
+                'NLP Systems',
+                'Machine Learning',
+                'Signal Processing'
+              ].map(skill => (
+                <li class="flex items-center gap-3">
+                  <span class="w-2 h-2 bg-accent rounded-full"></span>
+                  <span>{skill}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div class="space-y-6">
+            <h3 class="text-2xl font-bold text-accent">Technologies</h3>
+            <ul class="space-y-4">
+              {[
+                'Python/PyTorch',
+                'TensorFlow',
+                'Kaldi',
+                'Wav2Vec'
+              ].map(tech => (
+                <li class="flex items-center gap-3">
+                  <span class="w-2 h-2 bg-accent rounded-full"></span>
+                  <span>{tech}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Research Interests -->
+        <div class="mt-12">
+          <h3 class="text-2xl font-bold text-accent mb-6">Research Interests</h3>
+          <div class="grid grid-cols-2 gap-4">
+            {[
+              {
+                title: 'Speech Recognition',
+                description: 'End-to-end ASR systems and acoustic modeling'
+              },
+              {
+                title: 'Language Models',
+                description: 'Transformer-based architectures for NLP'
+              },
+              {
+                title: 'Signal Processing',
+                description: 'Advanced audio processing techniques'
+              },
+              {
+                title: 'Voice Synthesis',
+                description: 'Neural text-to-speech systems'
+              }
+            ].map(interest => (
+              <div class="bg-white/5 p-4 rounded-lg hover:bg-white/10 transition-colors">
+                <h4 class="font-bold mb-2">{interest.title}</h4>
+                <p class="text-sm text-gray-400">{interest.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      <div class="relative">
+        <div class="absolute -inset-4 bg-gradient-to-r from-accent to-blue-500 rounded-lg opacity-50 blur-lg group-hover:opacity-75 transition-opacity"></div>
+        <div class="relative rounded-lg overflow-hidden">
+          <img 
+            src="https://avatars.githubusercontent.com/Aayush518" 
+            alt="Aayush518"
+            class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <!-- Overlay with achievements -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-6 flex flex-col justify-end">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-accent">5+</div>
+                <div class="text-sm text-gray-300">Years Experience</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-accent">15+</div>
+                <div class="text-sm text-gray-300">Projects Completed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

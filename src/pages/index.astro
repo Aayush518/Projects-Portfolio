@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Projects from '../components/sections/Projects.tsx';
+import Writings from '../components/sections/Writings.tsx';
+import Contact from '../components/sections/Contact.astro';
+---
+
+<Layout title="Aayush518 - Full Stack Developer">
+  <main class="bg-dark">
+    <section id="home">
+      <Hero />
+    </section>
+    <section id="about">
+      <About />
+    </section>
+    <section id="projects">
+      <Projects client:visible />
+    </section>
+    <!-- <section id="writings">
+      <Writings client:visible />
+    </section> -->
+    <section id="contact">
+      <Contact />
+    </section>
+  </main>
+</Layout>

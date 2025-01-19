@@ -1,0 +1,33 @@
+---
+import Navigation from '../components/Navigation';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Aayush518's Portfolio - Full Stack Developer & Project Lead" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-dark text-light">
+    <Navigation client:load />
+    <slot />
+    <script>
+      import 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import { gsap } from 'gsap';
+
+      gsap.registerPlugin(ScrollTrigger);
+    </script>
+  </body>
+</html>

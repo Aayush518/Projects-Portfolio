@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #FF3366;
+  --accent-gradient: linear-gradient(45deg, var(--accent), #9f2fff 30%, white 60%);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #0A0A0A;
+  color: #F5F5F5;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Smooth scrolling for Safari */
+@supports (-webkit-overflow-scrolling: touch) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff1f4d;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(to right, var(--accent), #9f2fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  @apply w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin;
+}
+
+/* Card hover effects */
+.hover-card {
+  @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
+}
+
+/* Glass morphism */
+.glass {
+  @apply bg-white/10 backdrop-blur-lg;
+}
+
+/* Custom animations */
+.slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
