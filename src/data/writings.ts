@@ -16,7 +16,7 @@ export const writings: Writing[] = [
     id: 'The Labrynth of dreams',
     title: 'The Labrynth of dreams',
     description: 'This story is a psychological drama with elements of magical realism, exploring themes of reality, dreams, trauma, and identity.',
-    pdfUrl: 'src/data/pdfs/The_Labrynth_of_dreams.pdf', // Replace with actual PDF URL
+    pdfUrl: '/images/pdfs/The_Labrynth_of_dreams.pdf', // Replace with actual PDF URL
     date: '2024-01-15',
     category: 'Story',
     tags: ['psychology', 'dreams', 'fiction'],
