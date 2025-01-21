@@ -110,7 +110,7 @@ export const projects: Project[] = [
     category: 'Web Development, Blockchain, Storytelling',
     technologies: ['React', 'TypeScript', 'TailwindCSS', 'IPFS', 'Ethereum'],
     links: {
-        github: 'https://github.com/Aayush518/StoryVerse',
+        github: 'https://drive.google.com/file/d/1PC4UtJJo6Pa__Oe_HQMWOMkpuP-YRWdK/view?usp=sharing',
         live: 'https://story-verse-woad.vercel.app/' 
     },
     details: {
