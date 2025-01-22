@@ -110,8 +110,8 @@ export const projects: Project[] = [
     category: 'Web Development, Blockchain, Storytelling',
     technologies: ['React', 'TypeScript', 'TailwindCSS', 'IPFS', 'Ethereum'],
     links: {
-        github: 'https://drive.google.com/file/d/1PC4UtJJo6Pa__Oe_HQMWOMkpuP-YRWdK/view?usp=sharing',
-        live: 'https://story-verse-woad.vercel.app/' 
+        github: 'https://github.com/Aayush518/StoryVerse',
+        live: 'https://drive.google.com/file/d/1PC4UtJJo6Pa__Oe_HQMWOMkpuP-YRWdK/view?usp=sharing' 
     },
     details: {
         challenge: 'Facilitating decentralized storytelling with collaborative tools, NFTs, and blockchain technology.',
@@ -322,10 +322,36 @@ export const projects: Project[] = [
     "/images/resumea6.webp"
   ],
   "featured": true
+},
+{
+  "id": "Hive-Hostel",
+  "title": "HostelHive - Student Budget Tracker",
+  "description": "A comprehensive budget tracking and management application designed specifically for hostel and college students. HostelHive helps students manage their expenses, track budgets, and gain financial insights through an intuitive and user-friendly interface. The platform offers features like expense categorization, budget planning, and visual analytics to help students maintain financial discipline and make informed spending decisions.",
+  "thumbnail": "/images/hive1.webp",
+  "category": "Web Development, Financial Management",
+  "technologies": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma", "Next-Auth", "Zod", "PostgreSQL"],
+  "links": {
+    "github": "https://github.com/Aayush518/Hive-Hostel"
+  },
+  "details": {
+    "challenge": "Creating a secure and scalable budget tracking solution tailored for students, with features like authentication, expense tracking, and interactive dashboards while ensuring a seamless user experience.",
+    "solution": "Developed a full-stack application using Next.js for the frontend and backend, Prisma for database management, and Next-Auth for secure authentication. Implemented robust form validation with Zod and provided a responsive UI with Tailwind CSS. The dashboard features interactive charts and visualizations powered by Recharts.",
+    "impact": "Empowers students to take control of their finances by providing a centralized platform for budget management, leading to better financial habits and reduced overspending."
+  },
+  "images": [
+    "/images/hive1.webp",
+    "/images/hive2.webp",
+    "/images/hive3.webp",
+    "/images/hive4.webp",
+    "/images/hive5.webp",
+    "/images/hive6.webp",
+    "/images/hive7.webp",
+    "/images/hive8.webp",
+    "/images/hive9.webp",
+    "/images/hive10.webp",
+  ],
+  "featured": true
 }
-
-
-
 ];
 
 
