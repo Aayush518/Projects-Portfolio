@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMediaQuery } from '../hooks/useMediaQuery';
+import { FiMenu, FiX } from 'react-icons/fi'; // Import Icons
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -125,20 +126,29 @@ export default function Navigation() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10"
             >
-              <div className="relative w-6 h-5">
-                <motion.span
-                  animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-                  className="absolute w-full h-0.5 bg-white transform transition-transform"
-                />
-                <motion.span
-                  animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                  className="absolute w-full h-0.5 bg-white top-2"
-                />
-                <motion.span
-                  animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 16 }}
-                  className="absolute w-full h-0.5 bg-white top-4 transform transition-transform"
-                />
-              </div>
+                {isMobileMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ opacity: 0, rotate: -180 }}
+                      animate={{ opacity: 1, rotate: 0 }}
+                      exit={{ opacity: 0, rotate: 180 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-white text-2xl"
+                    >
+                      <FiX />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                        key="open"
+                        initial={{ opacity: 0, rotate: 180 }}
+                        animate={{ opacity: 1, rotate: 0 }}
+                        exit={{ opacity: 0, rotate: -180 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-white text-2xl"
+                    >
+                        <FiMenu />
+                    </motion.div>
+                  )}
             </motion.button>
           </div>
         </div>
