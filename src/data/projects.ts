@@ -351,8 +351,31 @@ export const projects: Project[] = [
     "/images/hive10.webp",
   ],
   "featured": true
+},
+{
+  "id": "NepaliNumeraNormalizer",
+  "title": "Nepali Number Normalizer",
+  "description": "A tool for normalizing and converting Nepali numbers in text to standard numeric form, enabling accurate processing and analysis of numerical data in Nepali text.",
+  "thumbnail": "/images/numeral1.webp",
+  "category": "Natural Language Processing",
+  "technologies": ["Python", "NLP", "Regex"],
+  "links": {
+    "live": "https://normalizenepalinumerals.vercel.app/"
+  },
+  "details": {
+    "challenge": "Developing a tool for normalizing and converting Nepali numbers in text to standard numeric form, enabling accurate processing and analysis of numerical data in Nepali text.",
+    "solution": "Implemented a regex-based solution for normalizing Nepali numbers, ensuring accurate and consistent processing of numerical data in Nepali text.",
+    "impact": "Significantly improved the accuracy and consistency of numerical data processing in Nepali text, enabling more accurate analysis and insights from the data."
+  },
+  "images": [
+    "/images/numeral1.webp",
+    "/images/numeral2.webp",
+    "/images/numeral3.webp",
+    "/images/numeral4.webp",
+  ],
+  "featured": true
 }
-];
+];  
 
 
 
