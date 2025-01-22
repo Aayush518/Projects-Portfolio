@@ -353,25 +353,23 @@ export const projects: Project[] = [
   "featured": true
 },
 {
-  "id": "NepaliNumeraNormalizer",
-  "title": "Nepali Number Normalizer",
-  "description": "A tool for normalizing and converting Nepali numbers in text to standard numeric form, enabling accurate processing and analysis of numerical data in Nepali text.",
-  "thumbnail": "/images/numeral1.webp",
-  "category": "Natural Language Processing",
-  "technologies": ["Python", "NLP", "Regex"],
+  "id": "NepaliSpeechAPC",
+  "title": "Nepali Speech Recognition APC",
+  "description": "A deep learning system using Autoregressive Predictive Coding for recognizing and processing Nepali speech keywords, enabling accurate speech recognition and analysis in the Nepali language.",
+  "thumbnail": "/images/tts.jpg",
+  "category": "Speech Processing",
+  "technologies": ["Python", "PyTorch", "Deep Learning", "Signal Processing", "Wandb"],
   "links": {
-    "live": "https://normalizenepalinumerals.vercel.app/"
+    "live": "https://nepaliapc.vercel.app/"
   },
   "details": {
-    "challenge": "Developing a tool for normalizing and converting Nepali numbers in text to standard numeric form, enabling accurate processing and analysis of numerical data in Nepali text.",
-    "solution": "Implemented a regex-based solution for normalizing Nepali numbers, ensuring accurate and consistent processing of numerical data in Nepali text.",
-    "impact": "Significantly improved the accuracy and consistency of numerical data processing in Nepali text, enabling more accurate analysis and insights from the data."
+    "challenge": "Developing an accurate speech recognition system for Nepali language keywords with limited data availability, requiring robust feature extraction and handling of diverse acoustic conditions.",
+    "solution": "Implemented an Autoregressive Predictive Coding model with comprehensive data augmentation, MFCC feature extraction, and multi-stage evaluation framework for accurate keyword recognition in Nepali speech.",
+    "impact": "Successfully recognized over 65 Nepali keywords with high accuracy, expanded the training dataset 30x through augmentation, and enabled robust speech processing capabilities for the Nepali language."
   },
   "images": [
-    "/images/numeral1.webp",
-    "/images/numeral2.webp",
-    "/images/numeral3.webp",
-    "/images/numeral4.webp",
+    "/images/tts.jpg",
+
   ],
   "featured": true
 }
