@@ -1,4 +1,7 @@
 export const selectedRepos = [
 'Resume-Maker',
-'Ecommerce-React'
+'Ecommerce-React',
+'VidPlayer',
+'VidPlayer-Backend',
+'VidPlayer-frontend',
 ];
