@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiCalendar, FiClock, FiTag, FiArrowRight } from 'react-icons/fi';
+import { FiCalendar, FiClock, FiTag, FiArrowRight, FiBook } from 'react-icons/fi';
 import { writings } from '../data/writings';
 
 export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [hoveredPost, setHoveredPost] = useState<string | null>(null);
 
-  const categories = Array.from(new Set(writings.map(post => post.category)));
+  // Filter only blog posts
+  const blogPosts = writings.filter(post => post.type === 'blog');
+  const categories = Array.from(new Set(blogPosts.map(post => post.category)));
   const filteredPosts = selectedCategory
-    ? writings.filter(post => post.category === selectedCategory)
-    : writings;
+    ? blogPosts.filter(post => post.category === selectedCategory)
+    : blogPosts;
 
   const container = {
     hidden: { opacity: 0 },
@@ -37,7 +39,7 @@ export default function Blog() {
         >
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-accent via-purple-500 to-blue-500 text-transparent bg-clip-text">
-              Latest Writings
+              Blog Posts
             </span>
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
@@ -104,13 +106,13 @@ export default function Blog() {
                     transition={{ duration: 0.3 }}
                   />
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-60"
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"
                     animate={{
                       opacity: hoveredPost === post.id ? 0.8 : 0.6
                     }}
                   />
                   <motion.div
-                    className="absolute bottom-4 left-4 right-4"
+                    className="absolute bottom-4 left-4"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{
                       opacity: hoveredPost === post.id ? 1 : 0,
@@ -118,7 +120,7 @@ export default function Blog() {
                     }}
                   >
                     <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/20 text-accent text-sm">
-                      <FiTag className="w-4 h-4" />
+                      <FiBook className="w-4 h-4" />
                       {post.category}
                     </span>
                   </motion.div>

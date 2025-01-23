@@ -20,13 +20,17 @@ export default function Navigation() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
       
-      // Update active section based on scroll position
+      // Improved active section detection
       const sections = menuItems.map(item => item.id);
+      const viewportHeight = window.innerHeight;
+      
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+          // Consider an element in view if it's within the middle 60% of the viewport
+          const buffer = viewportHeight * 0.2;
+          return rect.top <= viewportHeight - buffer && rect.bottom >= buffer;
         }
         return false;
       });
@@ -35,32 +39,34 @@ export default function Navigation() {
         setActiveSection(currentSection);
       }
     };
-
+  
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+  }, [menuItems]);
+  
   const handleNavigation = (item: typeof menuItems[0]) => {
     setIsMobileMenuOpen(false);
     
     if (item.path.startsWith('/#')) {
       const element = document.getElementById(item.id);
       if (element) {
-        const offset = 80;
+        const headerOffset = 80;
         const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
         window.scrollTo({
           top: offsetPosition,
           behavior: 'smooth'
         });
+        
+        // Update active section after scrolling
+        setTimeout(() => setActiveSection(item.id), 100);
       }
     } else {
       window.location.href = item.path;
-    }
-    setActiveSection(item.id);
-  };
+  }
+};
 
   return (
     <>
