@@ -372,6 +372,30 @@ export const projects: Project[] = [
 
   ],
   "featured": true
+},{
+  "id": "Blogs",
+  "title": "Blogs",
+  "description": "A collection of my blog posts on various topics and technologies.",
+  "thumbnail": "/images/blogs2.webp",
+  "category": "Writing",
+  "technologies": [],
+  "links": {
+    "live": "https://blogs-five-phi.vercel.app/"
+  },
+"details": {
+  "challenge": "Creating engaging and informative blog posts on a wide range of topics and technologies.",
+  "solution": "Developed and published blog posts on a diverse range of topics, including web development, machine learning, and personal growth.", 
+  "impact": "Provided valuable insights and knowledge to readers, fostering a deeper understanding of various topics and technologies." 
+},  
+"images": [
+  "/images/blogs1.webp",
+  "/images/blogs2.webp",
+  "/images/blogs3.webp",
+  "/images/blogs4.webp",
+  "/images/blogs5.webp",
+  "/images/blogs6.webp",
+],
+"featured": true
 }
 ];  
 
