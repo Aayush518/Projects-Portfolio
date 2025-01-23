@@ -13,7 +13,6 @@ export default function Navigation() {
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
-    { id: 'writings', label: 'Writings' },
     { id: 'contact', label: 'Contact' }
   ];
 
