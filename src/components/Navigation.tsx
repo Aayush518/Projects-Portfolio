@@ -27,7 +27,7 @@ export default function Navigation() {
             setActiveSection(entry.target.id);
           }
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.1 });
 
       menuItems.forEach(item => {
         const element = document.getElementById(item.id);
