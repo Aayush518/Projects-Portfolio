@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPost from '../../components/BlogPost';
+import { writings } from '../../data/writings';
+
+export function getStaticPaths() {
+  return writings.map(post => ({
+    params: { id: post.id },
+  }));
+}
+
+const { id } = Astro.params;
+---
+
+<Layout title={`Blog | ${id}`}>
+  <BlogPost id={id} client:load />
+</Layout>
