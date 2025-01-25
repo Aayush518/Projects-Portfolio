@@ -20,8 +20,8 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 'Nepali Arpabet Converter',
-    title: 'Nepali Arpabet Converter',
+    id: 'Rule-based Nepali Arpabet Converter',
+    title: 'Rule-based Nepali Arpabet Converter',
     description: 'A tool for converting Nepali text to Arpabet phonemes',
     thumbnail: '/images/Nepali_Arpabet.webp',
     category: 'Speech Technology',
@@ -396,6 +396,47 @@ export const projects: Project[] = [
   "/images/blogs6.webp",
 ],
 "featured": true
+},
+{
+  id: 'Harmony Hub',
+  title: 'Harmony Hub',
+  description: 'A music playlist for my personal sanctuary of sound',
+  thumbnail: '/images/music1.webp',
+  category: 'Music',
+  technologies: ['Typescript'],
+  links: {
+    live: 'https://crispy-rotary-phone-psi.vercel.app/'
+  },
+  details: {
+    challenge: 'Creating a music playlist for relaxation and focus',
+    solution: 'Curated a collection of calming and inspiring music tracks for relaxation and focus',
+    impact: 'Provides a soothing and immersive listening experience for personal reflection and creativity'
+  },
+  images: [    '/images/music1.webp',
+    '/images/music2 copy.webp',
+  ],
+  featured: true
+},
+{
+  id: 'neural-g2p-nepali',
+  title: 'Neural Grapheme-to-Phoneme Conversion for Nepali',
+  description: 'A deep learning-based solution for converting Nepali text to ARPABET phonemes using sequence-to-sequence models.',
+  thumbnail: '/images/Nepali_Arpabet.webp',
+  category: 'Speech Technology',
+  technologies: ['Python', 'Deep Learning', 'LSTM', 'Seq2Seq', 'NLP'],
+  links: {
+    live: 'https://neural-g2p-nepali.vercel.app'
+  },
+  details: {
+    challenge: 'Creating a robust and accurate grapheme-to-phoneme conversion model for an under-resourced language like Nepali.',
+    solution: 'Developed an LSTM-based encoder-decoder sequence-to-sequence model trained on 10,000 Nepali transcriptions, achieving a Word Error Rate (WER) of 0.0184.',
+    impact: 'Demonstrated the potential of deep learning in addressing linguistic challenges for low-resource languages, aiding advancements in TTS and ASR systems for Nepali.'
+  },
+  images: [
+    '/images/neural-g2p-nepali-model-architecture.png',
+    '/images/neural-g2p-training-loss.png'
+  ],
+  featured: true
 }
 ];  
 
