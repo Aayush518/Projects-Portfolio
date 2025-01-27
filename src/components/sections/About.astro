@@ -1,108 +1,130 @@
----
----
-<section id="about" class="py-32 relative">
+<section id="about" class="py-24 md:py-32 relative">
   <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
-  
-  <div class="container mx-auto px-4 relative">
-    <h2 class="text-5xl font-bold mb-16 gradient-text">About Me</h2>
-    
-    <div class="grid md:grid-cols-2 gap-16">
-      <div class="space-y-8">
-        <p class="text-xl text-gray-300 leading-relaxed">
-          I'm a passionate Software Developer specializing in Natural Language Processing and Speech Technologies. 
-          My work focuses on developing innovative solutions that push the boundaries of human-computer interaction 
-          through advanced speech recognition and processing systems.
+
+  <div class="container mx-auto px-4 md:px-8 relative">
+    <h2 class="text-4xl md:text-5xl font-bold mb-12 md:mb-16 gradient-text text-center md:text-left">
+      About Me
+    </h2>
+
+    <div class="flex flex-col-reverse md:grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+      <!-- Left Content -->
+      <div class="space-y-6 md:space-y-8">
+        <p class="text-lg md:text-xl text-gray-300 leading-relaxed md:leading-loose">
+          I'm a passionate Software Developer specializing in Natural Language
+          Processing and Speech Technologies. My work focuses on developing
+          innovative solutions that push the boundaries of human-computer
+          interaction through advanced speech recognition and processing
+          systems.
         </p>
-        
-        <div class="grid grid-cols-2 gap-8">
-          <div class="space-y-6">
-            <h3 class="text-2xl font-bold text-accent">Core Skills</h3>
-            <ul class="space-y-4">
-              {[
-                'Speech Recognition',
-                'NLP Systems',
-                'Machine Learning',
-                'Signal Processing'
-              ].map(skill => (
-                <li class="flex items-center gap-3">
-                  <span class="w-2 h-2 bg-accent rounded-full"></span>
-                  <span>{skill}</span>
-                </li>
-              ))}
+
+        <!-- Skills & Technologies Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div class="space-y-4 md:space-y-6">
+            <h3 class="text-xl md:text-2xl font-bold text-accent">
+              Core Skills
+            </h3>
+            <ul class="space-y-3 md:space-y-4">
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
+                <span class="text-base md:text-lg">Speech Recognition</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
+                <span class="text-base md:text-lg">NLP Systems</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
+                <span class="text-base md:text-lg">Machine Learning</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
+                <span class="text-base md:text-lg">Signal Processing</span>
+              </li>
             </ul>
           </div>
-          
-          <div class="space-y-6">
-            <h3 class="text-2xl font-bold text-accent">Technologies</h3>
-            <ul class="space-y-4">
-              {[
-                'Python/PyTorch',
-                'TensorFlow',
-                'Kaldi',
-                'Wav2Vec'
-              ].map(tech => (
-                <li class="flex items-center gap-3">
-                  <span class="w-2 h-2 bg-accent rounded-full"></span>
-                  <span>{tech}</span>
-                </li>
-              ))}
+
+          <div class="space-y-4 md:space-y-6">
+            <h3 class="text-xl md:text-2xl font-bold text-accent">
+              Technologies
+            </h3>
+            <ul class="space-y-3 md:space-y-4">
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
+                <span class="text-base md:text-lg">Python/PyTorch</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
+                <span class="text-base md:text-lg">TensorFlow</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
+                <span class="text-base md:text-lg">Kaldi</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 bg-accent rounded-full flex-shrink-0"></span>
+                <span class="text-base md:text-lg">Wav2Vec</span>
+              </li>
             </ul>
           </div>
         </div>
 
         <!-- Research Interests -->
-        <div class="mt-12">
-          <h3 class="text-2xl font-bold text-accent mb-6">Research Interests</h3>
-          <div class="grid grid-cols-2 gap-4">
-            {[
-              {
-                title: 'Speech Recognition',
-                description: 'End-to-end ASR systems and acoustic modeling'
-              },
-              {
-                title: 'Language Models',
-                description: 'Transformer-based architectures for NLP'
-              },
-              {
-                title: 'Signal Processing',
-                description: 'Advanced audio processing techniques'
-              },
-              {
-                title: 'Voice Synthesis',
-                description: 'Neural text-to-speech systems'
-              }
-            ].map(interest => (
-              <div class="bg-white/5 p-4 rounded-lg hover:bg-white/10 transition-colors">
-                <h4 class="font-bold mb-2">{interest.title}</h4>
-                <p class="text-sm text-gray-400">{interest.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      
-      <div class="relative">
-        <div class="absolute -inset-2 bg-gradient-to-r from-accent to-blue-500 rounded-lg opacity-50 blur-lg group-hover:opacity-75 transition-opacity"></div>
-        <div class="relative rounded-lg overflow-hidden">
-          <img 
-            src="images/mypic.jpg" 
-            alt="Aayush518"
-            class="w-full aspect-fit object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          <!-- Overlay with achievements -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-6 flex flex-col justify-end">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="text-center">
-                <div class="text-3xl font-bold text-accent">5+</div>
-                <div class="text-sm text-gray-300">Years Experience</div>
-              </div>
-              <div class="text-center">
-                <div class="text-3xl font-bold text-accent">20+</div>
-                <div class="text-sm text-gray-300">Projects Completed</div>
-              </div>
+        <div class="mt-8 md:mt-12">
+          <h3 class="text-xl md:text-2xl font-bold text-accent mb-4 md:mb-6">
+            Research Interests
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+            <div class="bg-white/5 p-3 md:p-4 rounded-lg hover:bg-white/10 transition-colors duration-300">
+              <h4 class="font-bold text-base md:text-lg mb-1 md:mb-2">
+                Speech Recognition
+              </h4>
+              <p class="text-xs md:text-sm text-gray-400 leading-snug">
+                End-to-end ASR systems and acoustic modeling
+              </p>
+            </div>
+            <div class="bg-white/5 p-3 md:p-4 rounded-lg hover:bg-white/10 transition-colors duration-300">
+              <h4 class="font-bold text-base md:text-lg mb-1 md:mb-2">
+                Language Models
+              </h4>
+              <p class="text-xs md:text-sm text-gray-400 leading-snug">
+                Transformer-based architectures for NLP
+              </p>
+            </div>
+            <div class="bg-white/5 p-3 md:p-4 rounded-lg hover:bg-white/10 transition-colors duration-300">
+              <h4 class="font-bold text-base md:text-lg mb-1 md:mb-2">
+                Signal Processing
+              </h4>
+              <p class="text-xs md:text-sm text-gray-400 leading-snug">
+                Advanced audio processing techniques
+              </p>
+            </div>
+            <div class="bg-white/5 p-3 md:p-4 rounded-lg hover:bg-white/10 transition-colors duration-300">
+              <h4 class="font-bold text-base md:text-lg mb-1 md:mb-2">
+                Voice Synthesis
+              </h4>
+              <p class="text-xs md:text-sm text-gray-400 leading-snug">
+                Neural text-to-speech systems
+              </p>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Image Section -->
+      <div class="group relative w-full max-w-xl mx-auto">
+        <div class="absolute -inset-2 bg-gradient-to-r from-accent to-blue-500 rounded-xl opacity-50 blur-lg group-hover:opacity-75 transition-all duration-300"></div>
+        
+        <div class="relative rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300">
+          <img
+            src="images/mypic.jpeg"
+            alt="Aayush518"
+            class="w-full h-auto object-cover object-center transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+        
+        <!-- Subtle border interaction -->
+        <div class="absolute inset-0 rounded-xl pointer-events-none border-2 border-white/10 group-hover:border-white/30 transition-all duration-300"></div>
       </div>
     </div>
   </div>
