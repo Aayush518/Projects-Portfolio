@@ -2,6 +2,7 @@ export const selectedRepos = [
 'Resume-Maker',
 'Ecommerce-React',
 'VidPlayer',
-'VidPlayer-Backend',
-'VidPlayer-frontend',
+'vvikingsThemedPortTemplate',
+'hod-themed-portTemplate',
+'normalizenepalinumerals'
 ];

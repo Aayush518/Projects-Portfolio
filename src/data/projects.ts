@@ -20,6 +20,26 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 'ai-content-creator-pro',
+    title: 'AI Content Creator Pro',
+    description: 'A powerful, modern AI-powered content creation platform built with React, TypeScript, and Google\'s Gemini AI for generating diverse content types including memes, stories, recipes, poems, speeches, and more.',
+    thumbnail: 'https://images.unsplash.com/photo-1677442136019-21780ecad995',
+    category: 'Content Generation',
+    technologies: ['React', 'TypeScript', 'Google Gemini AI', 'Tailwind CSS', 'Framer Motion'],
+    links: {
+      live: 'https://ai-content-creator-pro.vercel.app'
+    },
+    details: {
+      challenge: 'Building a versatile content generation platform that can create multiple types of content with emotional intelligence while maintaining a modern, user-friendly interface.',
+      solution: 'Implemented a modular architecture using React and TypeScript, integrating Google\'s Gemini AI for content generation across 10 different content types with 5 distinct emotional tones. Created a glass-morphic UI design with fluid animations for an enhanced user experience.',
+      impact: 'Streamlined the content creation process by enabling users to generate high-quality, emotionally-intelligent content across various formats with just a few clicks, making content creation accessible to everyone.'
+    },
+    images: [
+      'https://images.unsplash.com/photo-1677442136019-21780ecad995'
+    ],
+    featured: true
+  },
+  {
     id: 'Rule-based Nepali Arpabet Converter',
     title: 'Rule-based Nepali Arpabet Converter',
     description: 'A tool for converting Nepali text to Arpabet phonemes',
@@ -240,12 +260,13 @@ export const projects: Project[] = [
 {
   "id": "MithoMitho",
   "title": "MithoMitho/Se-Trails",
-  "description": "A comprehensive foodie companion web application designed for Pokhara Valley, featuring robust user authentication with email OTP verification and password reset capabilities. The platform enables users to discover restaurants through an intuitive search system, access detailed establishment information, and maintain a personalized dining history with interactive map integration. Users can create their own culinary trails by adding visited restaurants to their personal map, complete with visit details and interactive indicators. The application includes social features allowing users to connect with friends, view their dining activities, and share experiences. Built with Flask and modern front-end technologies, MithoMitho ensures real-time data accuracy through automated scraping from various sources, all wrapped in a responsive design that works seamlessly across all devices.",
+  "description": "A comprehensive foodie companion web application designed for Pokhara Valley, featuring robust user authentication with email OTP verification and password reset capabilities. The platform enables users to discover restaurants through an intuitive search system, access detailed establishment information, and maintain a personalized dining history with interactive map integration. Users can create their own culinary trails by adding visited restaurants to their personal map, complete with visit details and interactive indicators. The application includes social features allowing users to connect with friends, view their dining activities, and share experiences. Built with Flask and modern front-end technologies, MithoMitho ensures real-time data accuracy through automated scraping from various sources, all wrapped in a responsive design that works seamlessly across all devices. A sample prototype for the concept is available in the link : https://setrails.netlify.app and the github link is : https://github.com/Aayush518/Se-trails-Your-food-companion/tree/main",
   "thumbnail": "/images/mithomitho.webp",
   "category": "Web Development, Full Stack",
   "technologies": ["Python", "Flask", "PostgreSQL", "SQLAlchemy", "HTML5", "CSS", "Bootstrap", "JavaScript", "jQuery"],
   "links": {
-    "github": "https://drive.google.com/file/d/1H019Kxr00dNqQV0XxcU1MQygOJEtolWV/view?usp=sharing"
+    "github": "https://drive.google.com/file/d/1H019Kxr00dNqQV0XxcU1MQygOJEtolWV/view?usp=sharing",
+    "live": "https://drive.google.com/file/d/1H019Kxr00dNqQV0XxcU1MQygOJEtolWV/view?usp=sharing"
   },
   "details": {
     "challenge": "Creating a comprehensive platform that combines restaurant discovery, personal dining history tracking, and social connectivity while ensuring real-time data accuracy and user engagement",
@@ -437,7 +458,7 @@ export const projects: Project[] = [
     '/images/neural-g2p-training-loss.png'
   ],
   featured: true
-}
+},
 ];  
 
 
