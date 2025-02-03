@@ -20,6 +20,27 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 'research-gpt',
+    title: 'ResearchGPT',
+    description: 'An advanced AI-powered research paper generation platform built with React, TypeScript, and Tailwind CSS, enabling users to create high-quality academic papers with customizable configurations.',
+    thumbnail: '/images/researchgpt.webp', // Replace with an appropriate image URL
+    category: 'Research and Education',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Lucide Icons', 'jsPDF', 'html2canvas'],
+    links: {
+      live: 'https://gemini-research.vercel.app', // Replace with the actual live URL if available
+      github: 'https://github.com/Aayush518/GeminiResearch/' // Replace with the actual GitHub repo URL
+    },
+    details: {
+      challenge: 'Creating a platform for generating structured, high-quality academic research papers with advanced AI models, customizable configurations, and support for multiple citation styles.',
+      solution: 'Developed a user-friendly React-based interface with TypeScript, integrating advanced AI models such as DeepSeek R1 and Gemini 2.0 for generating research content. Implemented features like real-time progress updates, multi-page previews, PDF export, and customizable academic configurations (word count, references, citation styles, etc.).',
+      impact: 'Empowered students, researchers, and professionals to efficiently generate well-structured academic papers, reducing the time and effort required for content creation and academic formatting.'
+    },
+    images: [
+      '/images/researchgpt.webp' 
+    ],
+    featured: true
+  },
+  {
     id: 'ai-content-creator-pro',
     title: 'AI Content Creator Pro',
     description: 'A powerful, modern AI-powered content creation platform built with React, TypeScript, and Google\'s Gemini AI for generating diverse content types including memes, stories, recipes, poems, speeches, and more.',
