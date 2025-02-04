@@ -1,4 +1,5 @@
 ---
+import '../styles/globals.css';
 import Navigation from '../components/Navigation';
 
 interface Props {
@@ -13,21 +14,76 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Aayush518's Portfolio - Full Stack Developer & Project Lead" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-dark text-light">
+  <body class="bg-dark text-light overflow-x-hidden">
+    {/* Dynamic Background */}
+    <div class="fixed inset-0 -z-10 will-change-transform">
+      <div class="absolute inset-0 bg-[#0A0B1E]"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-accent/5"></div>
+      <div class="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
+      
+      {/* Animated Orbs - Optimized */}
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl will-change-transform animate-float-optimized"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl will-change-transform animate-float-delayed-optimized"></div>
+      
+      {/* Static Background Elements */}
+      <div class="absolute inset-0">
+        <div class="absolute top-20 right-32 w-64 h-64 bg-blue-500/10 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-40 left-20 w-72 h-72 bg-purple-500/10 rounded-full blur-2xl"></div>
+      </div>
+    </div>
+
     <Navigation client:load />
     <slot />
+
     <script>
       import 'gsap';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
       import { gsap } from 'gsap';
 
       gsap.registerPlugin(ScrollTrigger);
+
+      // Optimized scroll animations with debouncing
+      const sections = gsap.utils.toArray('.fade-in-section');
+      let timeout;
+
+      sections.forEach((section: any) => {
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 80%',
+          onEnter: () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+              gsap.to(section, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'power2.out'
+              });
+            }, 50);
+          }
+        });
+      });
+
+      // Prevent transitions on page load
+      document.documentElement.classList.add('preload');
+      window.addEventListener('load', () => {
+        document.documentElement.classList.remove('preload');
+      });
     </script>
   </body>
 </html>
+
+<style>
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+</style>

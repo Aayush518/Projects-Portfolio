@@ -195,10 +195,13 @@
   </div>
 
   {/* Scroll Indicator */}
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-    <svg class="w-6 h-6 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-    </svg>
+  <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 
+              opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
+       onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">
+    <span class="text-white/50 text-sm font-mono tracking-wide">Scroll to Explore</span>
+    <div class="w-6 h-10 border-2 border-white/20 rounded-full p-1">
+      <div class="w-1.5 h-1.5 bg-white/50 rounded-full mx-auto animate-scroll-down"></div>
+    </div>
   </div>
 </section>
 
@@ -209,12 +212,22 @@
     background-size: 20px 20px;
   }
 
-  @keyframes waveform {
-    0%, 100% {
-      transform: scaleY(0.5);
+  @keyframes scroll-down {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
     }
-    50% {
-      transform: scaleY(1);
+    75% {
+      transform: translateY(20px);
+      opacity: 0;
     }
+    76%, 100% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+  }
+
+  .animate-scroll-down {
+    animation: scroll-down 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
   }
 </style>
