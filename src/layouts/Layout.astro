@@ -1,6 +1,8 @@
 ---
 import '../styles/globals.css';
 import Navigation from '../components/Navigation';
+import CursorEffect from '../components/effects/CursorEffect';
+import { default as ParticlesBackground } from '../components/effects/ParticlesBackground.jsx';
 
 interface Props {
   title: string;
@@ -16,56 +18,58 @@ const { title } = Astro.props;
     <meta name="description" content="Aayush518's Portfolio - Full Stack Developer & Project Lead" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-dark text-light overflow-x-hidden">
-    {/* Dynamic Background */}
+  <body class="bg-dark text-light overflow-x-hidden cursor-none">
+    {/* Dynamic Background with Enhanced Effects */}
     <div class="fixed inset-0 -z-10 will-change-transform">
       <div class="absolute inset-0 bg-[#0A0B1E]"></div>
+      <ParticlesBackground client:load />
       <div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-accent/5"></div>
       <div class="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
       
-      {/* Animated Orbs - Optimized */}
-      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl will-change-transform animate-float-optimized"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl will-change-transform animate-float-delayed-optimized"></div>
+      {/* Enhanced Animated Orbs */}
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-primary/20 to-accent/20 
+                  rounded-full blur-3xl will-change-transform animate-float-optimized mix-blend-screen"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-accent/20 to-primary/20 
+                  rounded-full blur-3xl will-change-transform animate-float-delayed-optimized mix-blend-screen"></div>
       
-      {/* Static Background Elements */}
-      <div class="absolute inset-0">
-        <div class="absolute top-20 right-32 w-64 h-64 bg-blue-500/10 rounded-full blur-2xl"></div>
-        <div class="absolute bottom-40 left-20 w-72 h-72 bg-purple-500/10 rounded-full blur-2xl"></div>
+      {/* Dynamic Glow Effects */}
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute top-20 right-32 w-64 h-64 bg-gradient-conic from-primary via-accent to-primary 
+                    rounded-full blur-3xl animate-spin-slow"></div>
+        <div class="absolute bottom-40 left-20 w-72 h-72 bg-gradient-conic from-accent via-primary to-accent 
+                    rounded-full blur-3xl animate-spin-slow-reverse"></div>
       </div>
     </div>
 
+    {/* Custom Cursor */}
+    <CursorEffect client:load />
+    
     <Navigation client:load />
     <slot />
 
     <script>
-      import 'gsap';
-      import { ScrollTrigger } from 'gsap/ScrollTrigger';
-      import { gsap } from 'gsap';
+      import gsap from 'gsap';
+      import ScrollTrigger from 'gsap/ScrollTrigger';
 
       gsap.registerPlugin(ScrollTrigger);
 
-      // Optimized scroll animations with debouncing
+      // Enhanced scroll animations
       const sections = gsap.utils.toArray('.fade-in-section');
-      let timeout;
-
-      sections.forEach((section: any) => {
-        ScrollTrigger.create({
-          trigger: section,
-          start: 'top 80%',
-          onEnter: () => {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => {
-              gsap.to(section, {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: 'power2.out'
-              });
-            }, 50);
+      sections.forEach((section) => {
+        gsap.from(section, {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            end: "top 20%",
+            scrub: 1,
           }
         });
       });
@@ -76,14 +80,48 @@ const { title } = Astro.props;
         document.documentElement.classList.remove('preload');
       });
     </script>
+
+    <!-- Add smooth scroll behavior using CSS instead -->
+    <style is:global>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
   </body>
 </html>
 
 <style>
+  /* Enhanced grid pattern */
   .bg-grid-pattern {
     background-image: 
       linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
     background-size: 40px 40px;
+    animation: gridFloat 20s linear infinite;
+  }
+
+  @keyframes gridFloat {
+    0% { background-position: 0px 0px; }
+    100% { background-position: 40px 40px; }
+  }
+
+  /* Add more animations */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+
+  .animate-spin-slow-reverse {
+    animation: spin-slow 25s linear infinite reverse;
   }
 </style>

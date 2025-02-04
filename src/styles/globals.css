@@ -4,6 +4,7 @@
 
 :root {
   --accent: #FF3366;
+  --primary: #4F46E5;
   --accent-gradient: linear-gradient(45deg, var(--accent), #9f2fff 30%, white 60%);
 }
 
@@ -50,7 +51,7 @@ body {
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(to right, var(--accent), #9f2fff);
+  background: linear-gradient(to right, var(--primary), var(--accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -279,4 +280,72 @@ body {
 
 .scrollbar-thin:hover::-webkit-scrollbar-thumb {
   background-color: rgba(79, 70, 229, 0.4);
+}
+
+/* Cursor styles */
+.cursor-none * {
+  cursor: none !important;
+}
+
+/* Hide cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-none {
+    cursor: auto !important;
+  }
+  .cursor-none * {
+    cursor: auto !important;
+  }
+}
+
+/* Enhanced hover states */
+a, button, [role="button"], input, select, [data-cursor="pointer"], .clickable {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0px);
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, input, select, .interactive {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-none {
+    cursor: auto !important;
+  }
+  .cursor-none * {
+    cursor: auto !important;
+  }
+  
+  /* Optimize touch interactions */
+  a, button, [role="button"], input, select {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hardware-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
