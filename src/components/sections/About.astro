@@ -1,74 +1,142 @@
-<section id="about" class="py-32 bg-dark-100 relative">
+<section id="about" class="py-32 bg-dark-100 relative overflow-hidden">
+  {/* Background Elements */}
+  <div class="absolute inset-0 bg-grid opacity-[0.05]"></div>
+  <div class="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent"></div>
+  <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+
   <div class="container mx-auto px-4">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl md:text-5xl font-display font-bold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-        About Me
-      </h2>
+      {/* Section Header */}
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-transparent bg-clip-text 
+                   bg-gradient-to-r from-primary to-accent">
+          About Me
+        </h2>
+        <p class="text-lg text-white/70 max-w-2xl mx-auto">
+          A problem solver who transforms ideas into impactful solutions
+        </p>
+      </div>
 
-      <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div class="space-y-8">
-          <div class="prose prose-invert">
-            <p class="text-lg text-white/70 leading-relaxed">
-              As a problem solver at heart, I bring a unique blend of technical expertise and strategic thinking 
-              to every project. My approach combines full-stack development skills with NLP research insights, 
-              all guided by strong project management principles.
-            </p>
-            <p class="text-lg text-white/70 leading-relaxed">
-              I believe in delivering results that matter, focusing on solutions that create real impact. 
-              My long-term vision is to bridge the gap between innovative technology and practical business needs, 
-              always maintaining a disciplined approach to execution.
+      <div class="grid md:grid-cols-12 gap-12 items-center">
+        {/* Left Column - Content */}
+        <div class="md:col-span-7 space-y-10">
+          {/* Bio Sections */}
+          <div class="space-y-6">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <span class="text-primary/90 text-sm">Problem Solver & Developer</span>
+            </div>
+            
+            <div class="space-y-4">
+              <p class="text-lg text-white/80 leading-relaxed">
+                I'm not just another coding enthusiast – I'm a dedicated problem solver who believes in the power 
+                of technology to create meaningful impact. My journey combines full-stack development expertise 
+                with a deep interest in NLP research, all guided by strong project management principles.
+              </p>
+              <p class="text-lg text-white/80 leading-relaxed">
+                What sets me apart is my disciplined approach to execution and unwavering focus on delivering 
+                tangible results. I don't just start projects; I complete them with excellence, always keeping 
+                the end goal in sight.
+              </p>
+            </div>
+          </div>
+
+          {/* Expertise Areas */}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <h3 class="text-sm font-mono text-white/50 uppercase tracking-wider flex items-center gap-2">
+                <span class="w-8 h-[1px] bg-primary/40"></span>
+                Core Focus Areas
+              </h3>
+              <ul class="space-y-3">
+                {[
+                  'Full Stack Development',
+                  'NLP Research & Applications',
+                  'Project Management',
+                  'System Architecture'
+                ].map(skill => (
+                  <li class="flex items-center gap-3 group">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary/60 group-hover:bg-primary 
+                               transition-colors"></span>
+                    <span class="text-white/70 group-hover:text-white/90 transition-colors">{skill}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="space-y-4">
+              <h3 class="text-sm font-mono text-white/50 uppercase tracking-wider flex items-center gap-2">
+                <span class="w-8 h-[1px] bg-primary/40"></span>
+                Tech Arsenal
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {[
+                  'React/Next.js', 'Node.js', 'Python',
+                  'NLP', 'TypeScript', 'PostgreSQL',
+                  'AWS', 'Docker', 'Git'
+                ].map(tech => (
+                  <span class="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary/90 
+                             border border-primary/20 hover:bg-primary/20 transition-colors">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Vision */}
+          <div class="space-y-4 p-6 rounded-xl bg-dark-200/50 border border-primary/10 backdrop-blur-sm">
+            <h3 class="text-sm font-mono text-white/50 uppercase tracking-wider flex items-center gap-2">
+              <span class="w-8 h-[1px] bg-primary/40"></span>
+              Long-term Vision
+            </h3>
+            <p class="text-white/70 leading-relaxed">
+              To bridge the gap between innovative technology and practical business needs through disciplined 
+              execution and result-oriented solutions, while continuously pushing the boundaries of what's possible 
+              in full-stack development and NLP research.
             </p>
           </div>
 
-          <!-- Core Strengths -->
-          <div class="grid grid-cols-2 gap-8">
-            <div>
-              <h3 class="text-xl font-display font-bold text-primary-light mb-4">Technical Skills</h3>
-              <ul class="space-y-3">
-                <li class="flex items-center gap-3">
-                  <span class="w-1.5 h-1.5 bg-accent rounded-full"></span>
-                  <span class="text-white/70">Full Stack Development</span>
-                </li>
-                <li class="flex items-center gap-3">
-                  <span class="w-1.5 h-1.5 bg-accent rounded-full"></span>
-                  <span class="text-white/70">NLP & ML Systems</span>
-                </li>
-                <li class="flex items-center gap-3">
-                  <span class="w-1.5 h-1.5 bg-accent rounded-full"></span>
-                  <span class="text-white/70">System Architecture</span>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 class="text-xl font-display font-bold text-primary-light mb-4">Core Strengths</h3>
-              <ul class="space-y-3">
-                <li class="flex items-center gap-3">
-                  <span class="w-1.5 h-1.5 bg-accent rounded-full"></span>
-                  <span class="text-white/70">Problem Solving</span>
-                </li>
-                <li class="flex items-center gap-3">
-                  <span class="w-1.5 h-1.5 bg-accent rounded-full"></span>
-                  <span class="text-white/70">Project Leadership</span>
-                </li>
-                <li class="flex items-center gap-3">
-                  <span class="w-1.5 h-1.5 bg-accent rounded-full"></span>
-                  <span class="text-white/70">Strategic Thinking</span>
-                </li>
-              </ul>
-            </div>
+          {/* CTA */}
+          <div class="pt-4">
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-accent 
+                     text-white rounded-lg transition-all duration-300 hover:-translate-y-1 
+                     hover:shadow-lg hover:shadow-primary/20 group"
+              onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })"
+            >
+              Let's Build Something Amazing
+              <svg 
+                class="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
           </div>
         </div>
 
-        <!-- Image Section -->
-        <div class="relative group">
-          <div class="absolute -inset-2 bg-gradient-to-r from-primary to-accent rounded-2xl opacity-75 blur-lg 
-                      group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div class="relative rounded-xl overflow-hidden">
+        {/* Right Column - Image */}
+        <div class="md:col-span-5 relative order-first md:order-last">
+          <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-dark-200">
             <img
-              src="images/mypic.jpeg"
+              src="/images/mypic.jpeg"
               alt="Aayush518"
-              class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+              class="w-full h-full object-cover object-center"
+              style="object-position: 50% 20%;"
             />
+            {/* Gradient Overlays */}
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-100 via-transparent to-transparent opacity-90"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent mix-blend-overlay"></div>
+            
+            {/* Decorative Elements */}
+            <div class="absolute -top-4 -right-4 w-32 h-32 bg-accent/10 rounded-full blur-2xl"></div>
+            <div class="absolute -bottom-4 -left-4 w-40 h-40 bg-primary/10 rounded-full blur-2xl"></div>
           </div>
         </div>
       </div>
