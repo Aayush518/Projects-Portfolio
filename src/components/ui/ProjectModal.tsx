@@ -110,48 +110,96 @@ export default function ProjectModal({ project, onClose, isGitHub }: ProjectModa
               </h2>
             </div>
 
-            {/* Description */}
-            <div className="prose prose-invert max-w-none">
-              <p className="text-lg text-white/70 leading-relaxed">
-                {project.description}
-              </p>
+            {/* About Section */}
+            <div className="space-y-6">
+              <h3 className="text-sm font-mono text-white/50 uppercase tracking-wider">About</h3>
+              
+              {/* Overview */}
+              <div className="prose prose-invert max-w-none">
+                <p className="text-lg text-white/80 leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+
+              {/* Project Stats */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                <div className="space-y-2">
+                  <h4 className="text-xs font-mono text-white/40 uppercase">Project Type</h4>
+                  <p className="text-white/90">{project.category}</p>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-xs font-mono text-white/40 uppercase">Timeline</h4>
+                  <p className="text-white/90">{project.details.timeline || 'Ongoing'}</p>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-xs font-mono text-white/40 uppercase">Role</h4>
+                  <p className="text-white/90">{project.details.role || 'Lead Developer'}</p>
+                </div>
+              </div>
+
+              {/* Technologies */}
+              <div className="pt-4">
+                <h4 className="text-xs font-mono text-white/40 uppercase mb-3">Tech Stack</h4>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies?.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary/90 
+                               border border-primary/20 hover:bg-primary/20 transition-colors"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Challenges & Solutions */}
+            {/* Challenge & Solution Section */}
             {project.details && (
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <h3 className="text-sm font-mono text-white/50 uppercase tracking-wider">Challenge</h3>
-                  <p className="text-white/70">{project.details.challenge}</p>
-                </div>
-                <div className="space-y-4">
-                  <h3 className="text-sm font-mono text-white/50 uppercase tracking-wider">Solution</h3>
-                  <p className="text-white/70">{project.details.solution}</p>
+              <div className="space-y-6 pt-4">
+                <h3 className="text-sm font-mono text-white/50 uppercase tracking-wider">Development Journey</h3>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <span className="p-1.5 rounded-full bg-primary/20">
+                        <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                      </span>
+                      <h4 className="text-white font-medium">The Challenge</h4>
+                    </div>
+                    <p className="text-white/70 leading-relaxed">{project.details.challenge}</p>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <span className="p-1.5 rounded-full bg-accent/20">
+                        <svg className="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </span>
+                      <h4 className="text-white font-medium">The Solution</h4>
+                    </div>
+                    <p className="text-white/70 leading-relaxed">{project.details.solution}</p>
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* Technologies */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-mono text-white/50 uppercase tracking-wider">Technologies</h3>
-              <div className="flex flex-wrap gap-2">
-                {project.technologies?.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary/90 
-                             border border-primary/20 hover:bg-primary/20 transition-colors"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Impact */}
+            {/* Impact Section */}
             {project.details?.impact && (
-              <div className="space-y-4">
-                <h3 className="text-sm font-mono text-white/50 uppercase tracking-wider">Impact</h3>
-                <p className="text-white/70">{project.details.impact}</p>
+              <div className="space-y-4 pt-4">
+                <div className="flex items-center gap-2">
+                  <span className="p-1.5 rounded-full bg-green-500/20">
+                    <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                  </span>
+                  <h3 className="text-sm font-mono text-white/50 uppercase tracking-wider">Impact & Results</h3>
+                </div>
+                <p className="text-white/70 leading-relaxed">{project.details.impact}</p>
               </div>
             )}
 

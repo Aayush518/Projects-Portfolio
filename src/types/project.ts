@@ -13,6 +13,8 @@ export interface Project {
     challenge: string;
     solution: string;
     impact: string;
+    timeline?: string;
+    role?: string;
   };
   images?: string[];
   featured: boolean;
