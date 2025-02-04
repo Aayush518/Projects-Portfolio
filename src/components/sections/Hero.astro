@@ -1,63 +1,67 @@
 ---
 ---
-<section class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden" data-scroll-section>
+<section class="min-h-screen relative overflow-hidden bg-dark" data-scroll-section>
+  <!-- Background Effects -->
   <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,51,102,0.1)_0%,transparent_70%)]"></div>
-    <div class="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-[0.03]"></div>
+    <div class="absolute inset-0 bg-gradient-radial from-primary-light/10 via-transparent to-transparent"></div>
+    <div class="absolute inset-0 bg-grid opacity-[0.05] bg-[size:50px_50px]"></div>
   </div>
 
-  <div class="container mx-auto px-4 relative z-10">
-    <div class="max-w-5xl mx-auto">
-      <div class="flex flex-col items-start">
-        <div class="inline-block mb-4 px-4 py-2 bg-accent/10 rounded-full">
-          <span class="text-accent">Full Stack Developer | Project Lead | NLP Explorer</span>
+  <div class="container mx-auto px-4 pt-32 relative z-10">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col items-start space-y-8">
+        <!-- Title Badge -->
+        <div class="inline-flex items-center px-4 py-2 bg-dark-200/50 backdrop-blur-sm rounded-full border border-primary/20">
+          <span class="text-primary-light font-mono text-sm">Problem Solver & Innovation Driver</span>
         </div>
         
-        <h1 class="text-7xl md:text-9xl font-bold mb-8 leading-none">
-          <span class="block text-2xl md:text-3xl text-gray-400 mb-4">Hi, I'm</span>
-          <span class="text-accent relative inline-block">
-            Aayush
-            <span class="absolute -bottom-2 left-0 w-full h-1 bg-accent/30"></span>
-          </span>
-          <span class="block mt-4 gradient-text text-5xl md:text-7xl">
-            Building Digital Excellence
-          </span>
-        </h1>
+        <!-- Main Heading -->
+        <div class="space-y-4">
+          <h1 class="text-4xl md:text-7xl font-display font-bold tracking-tight">
+            <span class="text-white">Hi, I'm</span>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-highlight"> Aayush</span>
+          </h1>
+          <p class="text-2xl md:text-4xl font-display text-white/80">
+            Turning Complex Challenges into
+            <span class="text-accent">Elegant Solutions</span>
+          </p>
+        </div>
 
-        <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mb-12 leading-relaxed">
-          A versatile software engineer with expertise in Web Development, NLP, and Project Management. 
-          Passionate about leading teams and delivering innovative solutions that drive business success.
+        <!-- Description -->
+        <p class="text-lg md:text-xl text-white/70 max-w-3xl leading-relaxed">
+          A disciplined problem solver with expertise in Full Stack Development, NLP Research, 
+          and Project Management. Focused on delivering impactful results through innovative 
+          solutions and strategic thinking.
         </p>
 
+        <!-- CTA Buttons -->
         <div class="flex flex-wrap gap-6">
-          <a 
-            href="#projects" 
-            class="group relative px-8 py-4 bg-accent overflow-hidden rounded-lg"
-            data-scroll-to
-          >
-            <span class="relative z-10">View Projects</span>
-            <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform"></div>
+          <a href="#projects" 
+             class="group px-8 py-4 bg-primary hover:bg-primary-dark rounded-lg transition-all duration-300 relative overflow-hidden">
+            <span class="relative z-10 text-white font-medium">View My Work</span>
+            <div class="absolute inset-0 bg-white/20 translate-y-[200%] group-hover:translate-y-0 transition-transform duration-500"></div>
           </a>
-          <a 
-            href="#contact" 
-            class="group relative px-8 py-4 border-2 border-accent text-accent rounded-lg overflow-hidden"
-            data-scroll-to
-          >
-            <span class="relative z-10 group-hover:text-white transition-colors">Let's Connect</span>
-            <div class="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform"></div>
+          <a href="#contact" 
+             class="group px-8 py-4 border-2 border-primary text-primary hover:text-white rounded-lg transition-all duration-300 relative overflow-hidden">
+            <span class="relative z-10">Let's Connect</span>
+            <div class="absolute inset-0 bg-primary translate-y-[200%] group-hover:translate-y-0 transition-transform duration-500"></div>
           </a>
         </div>
 
-        <div class="mt-16 flex flex-wrap gap-4">
-          {[
-            'Python', 'React', 'Node.js', 'NLP', 
-            'Project Management', 'Team Leadership',
-            'Machine Learning', 'Full Stack Development'
-          ].map((tech) => (
-            <div class="px-4 py-2 bg-white/5 rounded-full text-sm hover:bg-white/10 transition-colors">
-              {tech}
-            </div>
-          ))}
+        <!-- Tech Stack -->
+        <div class="pt-12 w-full">
+          <h3 class="text-white/50 font-mono text-sm mb-6">TECH EXPERTISE</h3>
+          <div class="flex flex-wrap gap-4">
+            {[
+              'Full Stack Development', 'NLP Research', 'Project Management',
+              'Problem Solving', 'Team Leadership', 'Innovation Strategy'
+            ].map((skill) => (
+              <div class="px-4 py-2 bg-dark-200/50 backdrop-blur-sm rounded-full border border-primary/20 
+                          hover:border-primary/40 hover:bg-dark-200/70 transition-all duration-300">
+                <span class="text-white/70 text-sm">{skill}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

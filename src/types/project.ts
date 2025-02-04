@@ -14,6 +14,6 @@ export interface Project {
     solution: string;
     impact: string;
   };
-  images: string[];
+  images?: string[];
   featured: boolean;
 }

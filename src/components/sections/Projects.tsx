@@ -36,19 +36,26 @@ export default function Projects() {
 
   const displayedProjects = activeTab === 'github' ? githubProjects : projects;
 
+  const handlePrevious = () => {
+    const currentIndex = displayedProjects.findIndex(p => p.id === selectedProject);
+    const prevIndex = (currentIndex - 1 + displayedProjects.length) % displayedProjects.length;
+    setSelectedProject(displayedProjects[prevIndex].id);
+  };
+
+  const handleNext = () => {
+    const currentIndex = displayedProjects.findIndex(p => p.id === selectedProject);
+    const nextIndex = (currentIndex + 1) % displayedProjects.length;
+    setSelectedProject(displayedProjects[nextIndex].id);
+  };
+
   return (
-    <section id="projects" className="min-h-screen py-32 relative">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="container mx-auto px-4"
-      >
+    <div className="py-32 bg-dark-200 relative">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold mb-6 gradient-text">
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
             My Work
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-white/70 max-w-2xl mx-auto">
             Explore my projects, open-source contributions, and technical writings.
           </p>
 
@@ -62,8 +69,8 @@ export default function Projects() {
                 }}
                 className={`px-6 py-2 rounded-full transition-all ${
                   activeTab === tab
-                    ? 'bg-accent text-white'
-                    : 'bg-white/5 hover:bg-white/10'
+                    ? 'bg-primary text-white'
+                    : 'bg-dark-300/50 text-white/70 hover:bg-dark-300 hover:text-white'
                 }`}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -82,7 +89,7 @@ export default function Projects() {
               exit={{ opacity: 0 }}
               className="flex justify-center items-center min-h-[400px]"
             >
-              <div className="w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
             </motion.div>
           ) : activeTab === 'writings' ? (
             <motion.div
@@ -96,14 +103,16 @@ export default function Projects() {
                   key={writing.id}
                   layoutId={`writing-${writing.id}`}
                   onClick={() => setSelectedWriting(writing.id)}
-                  className="bg-white/5 rounded-lg p-6 cursor-pointer hover:bg-white/10 transition-all hover:-translate-y-2"
+                  className="bg-dark-300/50 backdrop-blur-sm rounded-lg p-6 cursor-pointer 
+                            hover:bg-dark-300 border border-primary/10 hover:border-primary/20 
+                            transition-all hover:-translate-y-2"
                   whileHover={{ y: -5 }}
                 >
-                  <h3 className="text-2xl font-bold mb-2">{writing.title}</h3>
-                  <p className="text-gray-400 mb-4">{writing.description}</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">{writing.title}</h3>
+                  <p className="text-white/70 mb-4">{writing.description}</p>
                   <div className="flex justify-between items-center">
-                    <span className="text-accent">{writing.category}</span>
-                    <span className="text-sm text-gray-500">{writing.date}</span>
+                    <span className="text-primary">{writing.category}</span>
+                    <span className="text-sm text-white/50">{writing.date}</span>
                   </div>
                 </motion.div>
               ))}
@@ -133,6 +142,8 @@ export default function Projects() {
               project={currentProject}
               onClose={() => setSelectedProject(null)}
               isGitHub={activeTab === 'github'}
+              onPrevious={handlePrevious}
+              onNext={handleNext}
             />
           )}
           {selectedWriting && currentWriting && (
@@ -142,7 +153,7 @@ export default function Projects() {
             />
           )}
         </AnimatePresence>
-      </motion.div>
-    </section>
+      </div>
+    </div>
   );
 }
