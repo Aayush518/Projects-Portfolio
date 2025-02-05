@@ -2,281 +2,131 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --accent: #ff1616;
-  --accent-gradient: linear-gradient(45deg, #9b111e, #ff1616 30%, white 60%);
-}
+@layer base {
+  :root {
+    --accent: theme('colors.accent.DEFAULT');
+    --primary: theme('colors.primary.DEFAULT');
+  }
 
-html {
-  scroll-behavior: smooth;
-  background: #0A0A0A;
-  color: #F5F5F5;
-}
-
-@media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto;
+    @apply scroll-smooth bg-dark text-white/90;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
-}
 
-body {
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-/* Smooth scrolling for Safari */
-@supports (-webkit-overflow-scrolling: touch) {
   body {
-    -webkit-overflow-scrolling: touch;
+    @apply font-sans antialiased;
   }
 }
 
-/* Custom scrollbar */
+@layer components {
+  /* Glass effect */
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-md border border-white/[0.05];
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-dark-200/50 backdrop-blur-md rounded-xl
+           border border-white/[0.05] overflow-hidden
+           transition-all duration-500 hover:border-white/[0.1]
+           hover:shadow-xl hover:shadow-primary/5;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-medium 
+           bg-gradient-to-r from-primary to-accent
+           hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5
+           active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary/50
+           transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 rounded-lg font-medium
+           border border-white/10 hover:border-white/20
+           hover:bg-white/5 hover:-translate-y-0.5
+           active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-white/10
+           transition-all duration-300;
+  }
+
+  /* Section styles */
+  .section {
+    @apply py-20 sm:py-32;
+  }
+
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Form elements */
+  .input {
+    @apply w-full px-4 py-3 rounded-lg bg-dark-300/50
+           border border-white/10 focus:border-primary/50
+           outline-none transition-all duration-300
+           focus:ring-2 focus:ring-primary/20;
+  }
+
+  /* Typography */
+  .heading-1 {
+    @apply text-4xl sm:text-5xl md:text-6xl font-display font-bold leading-tight;
+  }
+
+  .heading-2 {
+    @apply text-3xl sm:text-4xl font-display font-bold leading-tight;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+
+  /* Code block styling */
+  .code-block {
+    @apply font-mono text-sm bg-dark-300/50 rounded-lg p-4;
+  }
+}
+
+/* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
+  @apply w-1.5;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  @apply bg-dark-300/30;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #dc2626;
-  border-radius: 4px;
+  @apply bg-primary/20 rounded-full hover:bg-primary/30 transition-colors;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #b91c1c;
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(to right, #9b111e, #ff1616);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Enhanced animations */
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(10px, -10px) rotate(2deg); }
-  50% { transform: translate(0, -20px) rotate(0deg); }
-  75% { transform: translate(-10px, -10px) rotate(-2deg); }
-}
-
-@keyframes float-delayed {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(-10px, 10px) rotate(-2deg); }
-  50% { transform: translate(0, 20px) rotate(0deg); }
-  75% { transform: translate(10px, 10px) rotate(2deg); }
-}
-
+/* Animation utilities */
 .animate-float {
-  animation: float 8s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
+  will-change: transform;
 }
 
-.animate-float-delayed {
-  animation: float-delayed 8s ease-in-out infinite;
-  animation-delay: -4s;
-}
-
-/* Loading spinner */
-.loading-spinner {
-  @apply w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin;
-}
-
-/* Hover effects */
-.hover-glow {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hover-glow:hover {
-  box-shadow: 0 0 30px var(--accent);
-  transform: translateY(-3px);
-}
-
-/* Text gradient animation */
-.animate-gradient {
-  background: linear-gradient(
-    to right,
-    #3498db,
-    #e67e22,
-    #3498db
-  );
-  background-size: 200% auto;
-  animation: gradient 3s linear infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@keyframes gradient {
-  to {
-    background-position: 200% center;
-  }
-}
-
-/* Glass effect */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Smooth transitions */
-* {
-  transition: background-color 0.3s ease, 
-              border-color 0.3s ease, 
-              transform 0.3s ease,
-              opacity 0.3s ease;
-}
-
-/* Card hover effects */
-.hover-card {
-  @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
-}
-
-/* Glass morphism */
-.glass {
-  @apply bg-white/10 backdrop-blur-lg;
-}
-
-/* Custom animations */
-.slide-up {
-  animation: slideUp 0.5s ease-out forwards;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Fade in animation for sections */
-.fade-in-section {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.fade-in-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Optimized animations */
-@keyframes float-optimized {
-  0%, 100% { 
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    transition-timing-function: ease-in-out;
-  }
-  50% { 
-    transform: translate3d(0, -20px, 0) rotate(0deg);
-    transition-timing-function: ease-in-out;
-  }
-}
-
-@keyframes float-delayed-optimized {
-  0%, 100% { 
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    transition-timing-function: ease-in-out;
-  }
-  50% { 
-    transform: translate3d(0, 20px, 0) rotate(0deg);
-    transition-timing-function: ease-in-out;
-  }
-}
-
-.animate-float-optimized {
-  animation: float-optimized 6s infinite;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  perspective: 1000px;
-}
-
-.animate-float-delayed-optimized {
-  animation: float-delayed-optimized 6s infinite;
-  animation-delay: -3s;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  perspective: 1000px;
-}
-
-/* Optimize transitions */
-* {
-  transition: background-color 0.2s ease, 
-              border-color 0.2s ease, 
-              transform 0.2s ease,
-              opacity 0.2s ease !important;
-}
-
-/* Remove any transitions on page load */
-.preload * {
-  transition: none !important;
-}
-
-/* Optimize scroll animations */
-.fade-in-section {
-  opacity: 0;
-  transform: translateY(20px);
+/* Optimizations */
+.will-change {
   will-change: transform, opacity;
 }
 
-/* Remove animations for users who prefer reduced motion */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {
-    animation: none !important;
-    transition: none !important;
-  }
-
-  .fade-in-section {
-    opacity: 1;
-    transform: none;
+    @apply transition-none animate-none;
   }
 }
 
-/* Hardware acceleration for smoother animations */
-.will-change-transform {
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* Add these styles */
+.pdf-thumbnail {
+  @apply w-full h-full;
 }
 
-/* Custom Scrollbar */
-.scrollbar-thin {
-  scrollbar-width: thin;
+.pdf-thumbnail .react-pdf__Page {
+  @apply w-full h-full flex items-center justify-center;
 }
 
-.scrollbar-thumb-primary\/20 {
-  scrollbar-color: rgba(79, 70, 229, 0.2) transparent;
-}
-
-.scrollbar-track-dark-300\/20 {
-  scrollbar-track-color: rgba(17, 24, 39, 0.2);
-}
-
-.hover\:scrollbar-thumb-primary\/40:hover {
-  scrollbar-color: rgba(79, 70, 229, 0.4) transparent;
-}
-
-/* For Webkit browsers */
-.scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-}
-
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: rgba(17, 24, 39, 0.2);
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: rgba(79, 70, 229, 0.2);
-  border-radius: 3px;
-}
-
-.scrollbar-thin:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(79, 70, 229, 0.4);
+.pdf-thumbnail .react-pdf__Page__canvas {
+  @apply w-full h-full object-cover;
+  max-width: none !important;
+  max-height: none !important;
 }

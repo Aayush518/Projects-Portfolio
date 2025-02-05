@@ -1,112 +1,127 @@
 ---
+const technologies = [
+  'Natural Language Processing',
+  'Speech Recognition',
+  'React.js',
+  'Node.js',
+  'Python',
+  'TensorFlow',
+  'PyTorch',
+  'scikit-learn',
+  'NLTK',
+  'spaCy',
+  'LaTeX',
+  'Jira',
+  'Confluence',
+  'Agile Methodologies',
+  'TailwindCSS',
+  'TypeScript'
+];
 ---
-<section class="min-h-screen relative flex items-center py-12 sm:py-20 overflow-hidden">
+
+<section class="min-h-screen relative flex items-center section-padding overflow-hidden">
   {/* Background Elements */}
   <div class="absolute inset-0 bg-dark-100"></div>
-  <div class="absolute inset-0 bg-grid opacity-[0.02]"></div>
-  <div class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] 
-              bg-gradient-radial from-primary/20 via-primary/5 to-transparent blur-3xl"></div>
-  <div class="absolute bottom-0 left-0 w-48 sm:w-96 h-48 sm:h-96 bg-accent/5 rounded-full blur-3xl"></div>
+  <div class="absolute inset-0 bg-grid opacity-[0.03]"></div>
+  <div class="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent"></div>
 
-  <div class="container mx-auto px-4 relative">
+  <div class="container mx-auto container-padding relative">
     <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-        {/* Left Column - Content */}
-        <div class="space-y-6 sm:space-y-8 text-center lg:text-left">
-          {/* Badge */}
-          <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full 
-                      bg-accent/10 border border-accent/20 backdrop-blur-sm">
-            <span class="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-accent animate-pulse"></span>
-            <span class="text-accent/90 text-xs sm:text-sm">Available for Projects</span>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        {/* Content */}
+        <div class="space-y-8 text-center lg:text-left">
+          {/* Status Badge */}
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass">
+            <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+            <span class="text-success-light text-sm">Available for Projects</span>
           </div>
 
           {/* Main Content */}
-          <div class="space-y-4">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight sm:leading-tight md:leading-tight">
+          <div class="space-y-6">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-display font-bold leading-tight">
               Full Stack Developer <br />& Project Lead
             </h1>
-            <p class="text-base sm:text-lg text-white/70 max-w-xl mx-auto lg:mx-0">
+            <p class="text-lg text-white/70 max-w-xl mx-auto lg:mx-0">
               Building scalable solutions with modern technologies. Focused on creating impactful digital experiences.
             </p>
           </div>
 
           {/* CTA Buttons */}
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <a
-              href="#projects"
-              class="group relative px-8 py-4 bg-gradient-to-r from-[#9b111e] to-[#ff1616] text-white rounded-lg
-                     overflow-hidden shadow-xl shadow-[#9b111e]/20 hover:shadow-[#ff1616]/20
-                     transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
+            <a href="#projects" 
+              class="group relative px-6 py-3 bg-gradient-to-r from-[#9b111e] to-[#ff1616] text-white rounded-lg
+                     overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#ff1616]/20
+                     hover:-translate-y-0.5 active:translate-y-0 text-sm uppercase tracking-wide"
             >
-              <span class="relative z-10 flex items-center gap-2 font-medium">
+              <span class="relative z-10 flex items-center gap-2">
                 View My Work
-                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" 
-                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                <svg 
+                  class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" 
+                    stroke-width="2" 
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
               </span>
               <div class="absolute inset-0 bg-gradient-to-r from-[#ff1616] to-[#9b111e] opacity-0 
                           group-hover:opacity-100 transition-opacity duration-300" />
             </a>
-            <a
-              href="#contact"
-              class="group relative px-8 py-4 bg-dark-200/50 text-white rounded-lg
-                     overflow-hidden border-2 border-[#ff1616] shadow-xl hover:shadow-[#ff1616]/20
-                     transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
-              onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })"
+            <a href="#contact" 
+              class="group px-6 py-3 rounded-lg border border-white/10 text-white/80
+                     hover:bg-white/5 hover:-translate-y-0.5 active:translate-y-0
+                     transition-all duration-300 text-sm uppercase tracking-wide"
             >
-              <span class="relative z-10 flex items-center gap-2 font-medium">
-                Get in Touch
-                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" 
-                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                        d="M20 12h-9m3 3l-3-3 3-3" />
-                </svg>
-              </span>
-              <div class="absolute inset-0 bg-gradient-to-r from-[#9b111e] to-[#ff1616] opacity-0 
-                          group-hover:opacity-100 transition-opacity duration-300" />
+              Get in Touch
+              <svg 
+                class="w-4 h-4 ml-2 inline-block group-hover:translate-x-0.5 transition-transform" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="2" 
+                  d="M3 8l4-4m0 0l4 4m-4-4v12"
+                />
+              </svg>
             </a>
           </div>
 
           {/* Tech Stack */}
-          <div class="pt-8 sm:pt-12">
-            <h3 class="text-white/50 font-mono text-xs sm:text-sm uppercase tracking-wider 
-                      flex items-center gap-2 mb-4 sm:mb-6 justify-center lg:justify-start">
-              <span class="w-6 sm:w-8 h-[1px] bg-primary/40"></span>
+          <div class="pt-8">
+            <h3 class="text-white/50 font-mono text-sm uppercase tracking-wider mb-4">
               Tech Expertise
             </h3>
-            <div class="flex flex-wrap gap-2 sm:gap-3 justify-center lg:justify-start">
-              {[
-                'Full Stack Development', 'NLP Research', 'Project Management',
-                'Problem Solving', 'System Architecture', 'Cloud Solutions'
-              ].map((skill) => (
-                <div class="px-3 sm:px-4 py-1.5 sm:py-2 bg-dark-200/50 backdrop-blur-sm rounded-full 
-                            border border-primary/20 hover:border-primary/40 transition-all 
-                            duration-300 group">
-                  <span class="text-white/70 text-xs sm:text-sm group-hover:text-white/90 
-                             transition-colors">{skill}</span>
+            <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+              {technologies.map((tech) => (
+                <div class="px-4 py-2 rounded-full glass hover:bg-white/[0.05] transition-colors">
+                  <span class="text-white/70 text-sm">{tech}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Right Column - Code Editor */}
+        {/* Code Editor */}
         <div class="relative w-full max-w-2xl mx-auto lg:max-w-none">
-          <div class="relative backdrop-blur-xl rounded-xl overflow-hidden 
-                    border border-accent/10 shadow-2xl shadow-accent/5">
+          <div class="card backdrop-blur-lg">
             {/* Editor Header */}
-            <div class="bg-dark-200/90 p-3 sm:p-4 border-b border-accent/10">
+            <div class="bg-dark-300/50 p-4 border-b border-white/5">
               <div class="flex items-center">
-                <div class="flex gap-1.5 sm:gap-2">
-                  <div class="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-red-500/30"></div>
-                  <div class="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-yellow-500/30"></div>
-                  <div class="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-green-500/30"></div>
+                <div class="flex gap-2">
+                  <div class="w-3 h-3 rounded-full bg-red-500/30"></div>
+                  <div class="w-3 h-3 rounded-full bg-yellow-500/30"></div>
+                  <div class="w-3 h-3 rounded-full bg-green-500/30"></div>
                 </div>
                 <div class="flex-1 flex justify-center">
-                  <span class="text-white/50 text-xs sm:text-sm font-mono px-2 sm:px-3 py-0.5 sm:py-1 
-                             rounded-md bg-dark-300/50">
+                  <span class="text-white/50 text-sm font-mono px-3 py-1 rounded-md bg-dark-400/50">
                     philosophy.ts
                   </span>
                 </div>
@@ -114,11 +129,11 @@
             </div>
 
             {/* Editor Content */}
-            <div class="p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 lg:space-y-8 bg-dark-200/50">
+            <div class="p-6 space-y-4 font-mono text-sm">
               {/* Against Section */}
               <div class="space-y-4">
                 <div class="flex items-center gap-3">
-                  <span class="text-[#ff1616]/90 font-mono">// What I am againt is The "Hustle Culture" Trap</span>
+                  <span class="text-red-400/90 font-mono">// What I am against is The "Hustle Culture" Trap</span>
                   <span class="px-2 py-0.5 text-xs font-mono bg-red-500/10 text-red-400/90 rounded-full">
                     @deprecated
                   </span>
@@ -127,7 +142,7 @@
                   <div class="relative">
                     <div class="absolute -left-4 top-0 bottom-0 w-[2px] bg-red-400/20"></div>
                     <div class="space-y-2 text-red-400/70 font-mono leading-relaxed line-through opacity-70">
-                      <p>Sleep for 28 dayss,</p>
+                      <p>Sleep for 28 days,</p>
                       <p>grind for 48 hours,</p>
                       <p>cry about burnout.</p>
                       <p>Repeat.</p>
@@ -136,43 +151,50 @@
                 </div>
               </div>
 
-              {/* Beliefs Section */}
-              <div class="space-y-4">
+              {/* Current Philosophy Section */}
+              <div class="space-y-4 pt-6">
                 <div class="flex items-center gap-3">
-                  <span class="text-[#ff1616]/90 font-mono">// What I believe in is Sustainable Development Philosophy</span>
-                  <span class="px-2 py-0.5 text-xs font-mono bg-green-500/10 text-green-400/90 rounded-full">
+                  <span class="text-emerald-400/90 font-mono">// What I believe in is Sustainable Development Philosophy</span>
+                  <span class="px-2 py-0.5 text-xs font-mono bg-emerald-500/10 text-emerald-400/90 rounded-full">
                     @current
                   </span>
                 </div>
-                <div class="pl-6 relative">
-                  <div class="absolute -left-4 top-0 bottom-0 w-[2px] bg-green-400/20"></div>
-                  <div class="space-y-2 text-green-400/90 font-mono leading-relaxed">
-                    <p>Consistent daily progress</p>
-                    <p>15 minutes daily > 48 hours of burnout</p>
-                    <p>Sustainable development</p>
-                    <p>Work-life harmony</p>
+                <div class="pl-6 space-y-2">
+                  <div class="relative">
+                    <div class="absolute -left-4 top-0 bottom-0 w-[2px] bg-emerald-400/20"></div>
+                    <div class="space-y-2 text-emerald-400/90 font-mono leading-relaxed">
+                      <p>Consistent daily progress</p>
+                      <p>15 minutes daily > 48 hours of burnout</p>
+                      <p>Sustainable development</p>
+                      <p>Work-life harmony</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="h-6"></div>
-
-              <div class="text-[#ff1616]/70">const philosophy =</div>
-              <div class="text-white/70">
-                "Small steps daily > Giant leaps at deadline"
+              {/* Philosophy Constant */}
+              <div class="pt-6 space-y-2">
+                <div class="text-blue-400/90">const</div>
+                <div class="pl-4">
+                  <span class="text-green-400/90">philosophy</span>
+                  <span class="text-white/70"> = </span>
+                  <span class="text-yellow-300">"Small steps daily > Giant leaps at deadline"</span>
+                  <span class="text-white/70">;</span>
+                </div>
               </div>
 
-              <div class="h-6"></div>
-
-              <div class="text-[#ff1616]/70">
-                Want to discuss sustainable development practices? Let's grab coffee ☕
+              {/* Call to Action */}
+              <div class="pt-6 space-y-2">
+                <div class="text-purple-400/90 font-mono">// Let's Connect</div>
+                <div class="pl-4 space-y-1">
+                  <p class="text-white/70">Want to discuss sustainable development practices?</p>
+                  <p class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-medium">
+                    Let's grab coffee ☕
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-
-          {/* Floating Elements */}
-          <div class="absolute -top-8 -right-8 w-32 sm:w-40 h-32 sm:h-40 bg-primary/10 rounded-full blur-3xl"></div>
-          <div class="absolute -bottom-8 -left-8 w-32 sm:w-40 h-32 sm:h-40 bg-accent/10 rounded-full blur-3xl"></div>
         </div>
       </div>
     </div>

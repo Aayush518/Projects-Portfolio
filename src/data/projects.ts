@@ -4,7 +4,7 @@ export interface Project {
   description: string;
   thumbnail: string;
   category: string;
-  technologies: string[];
+  technologies?: string[];
   links: {
     live?: string;
     github?: string;
@@ -234,7 +234,6 @@ export const projects: Project[] = [
     "/images/coderun2.webp",
     "/images/coderun3.webp",
     "/images/coderun4.webp",
-    "/images/coderun5.webp"
   ],
   "featured": true
 },
