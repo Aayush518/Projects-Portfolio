@@ -10,15 +10,41 @@ export interface Project {
     github?: string;
   };
   details: {
-    challenge: string;
-    solution: string;
-    impact: string;
+    challenge?: string;
+    solution?: string;
+    impact?: string;
+    showDetails?: boolean;
   };
   images: string[];
   featured: boolean;
 }
 
 export const projects: Project[] = [
+  {
+    id: 'pursia-handbags',
+    title: 'Pursia Hand Bags',
+    description: 'A frontend design exploration inspired by various Dribbble designs, reimagined into a luxury handbag store interface. A practice project focusing on modern UI implementation and responsive design.',
+    thumbnail: '/images/bagstore1.webp',
+    category: 'Web Development',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS'],
+    links: {
+      live: 'https://pursia-hand-bags.vercel.app',
+    },
+    details: {
+      showDetails: false
+    },
+    images: [
+      '/images/bagstore1.webp',
+      '/images/bagstore2.webp',
+      '/images/bagstore3.webp',
+      '/images/bagstore4.webp',
+      '/images/bagstore5.webp',
+      '/images/bagstore6.webp',
+      '/images/bagstore7.webp',
+      '/images/bagstore8.webp'
+    ],
+    featured: true
+  },
   {
     id: 'research-gpt',
     title: 'ResearchGPT',
@@ -33,7 +59,8 @@ export const projects: Project[] = [
     details: {
       challenge: 'Creating a platform for generating structured, high-quality academic research papers with advanced AI models, customizable configurations, and support for multiple citation styles.',
       solution: 'Developed a user-friendly React-based interface with TypeScript, integrating advanced AI models such as DeepSeek R1 and Gemini 2.0 for generating research content. Implemented features like real-time progress updates, multi-page previews, PDF export, and customizable academic configurations (word count, references, citation styles, etc.).',
-      impact: 'Empowered students, researchers, and professionals to efficiently generate well-structured academic papers, reducing the time and effort required for content creation and academic formatting.'
+      impact: 'Empowered students, researchers, and professionals to efficiently generate well-structured academic papers, reducing the time and effort required for content creation and academic formatting.',
+      showDetails: true
     },
     images: [
       '/images/researchgpt.webp' 
@@ -53,7 +80,8 @@ export const projects: Project[] = [
     details: {
       challenge: 'Building a versatile content generation platform that can create multiple types of content with emotional intelligence while maintaining a modern, user-friendly interface.',
       solution: 'Implemented a modular architecture using React and TypeScript, integrating Google\'s Gemini AI for content generation across 10 different content types with 5 distinct emotional tones. Created a glass-morphic UI design with fluid animations for an enhanced user experience.',
-      impact: 'Streamlined the content creation process by enabling users to generate high-quality, emotionally-intelligent content across various formats with just a few clicks, making content creation accessible to everyone.'
+      impact: 'Streamlined the content creation process by enabling users to generate high-quality, emotionally-intelligent content across various formats with just a few clicks, making content creation accessible to everyone.',
+      showDetails: true
     },
     images: [
       'https://images.unsplash.com/photo-1677442136019-21780ecad995'
@@ -73,7 +101,8 @@ export const projects: Project[] = [
     details: {
       challenge: 'Developing a tool for converting Nepali text to Arpabet phonemes',
       solution: 'Developed a rule-based approach for converting Nepali text to Arpabet phonemes',
-      impact: 'Simplified the process of converting Nepali text to Arpabet phonemes'
+      impact: 'Simplified the process of converting Nepali text to Arpabet phonemes',
+      showDetails: true
     },
     images: [
       '/images/Nepali_Arpabet.webp',    ],
@@ -92,7 +121,8 @@ export const projects: Project[] = [
     details: {
       challenge: 'Developing a tool for creating professional resumes in minutes with smooth experience',
       solution: 'Developed a React app that allows users to create professional resumes in minutes',
-      impact: 'Simplified the process of creating professional resumes in minutes'
+      impact: 'Simplified the process of creating professional resumes in minutes',
+      showDetails: true
     },
     images: [
       '/images/Resume_maker.webp'
@@ -112,7 +142,8 @@ export const projects: Project[] = [
     details: {
       challenge: 'Developing a local music browser for immersive listening experience',
       solution: 'Developed a local music browser for immersive listening experience',
-      impact: 'Simplified the process of listening to music'
+      impact: 'Simplified the process of listening to music',
+      showDetails: true
     },
     images: [
       '/images/music-1.webp',
@@ -134,7 +165,8 @@ export const projects: Project[] = [
     details: {
       challenge: "Creating an efficient audio transcription verification and editing system",
       solution: "Developed a professional-grade transcription studio with audio playback and text editing capabilities",
-      impact: "Streamlined the transcription verification workflow by combining audio playback, text editing, and verification status tracking in one interface"
+      impact: "Streamlined the transcription verification workflow by combining audio playback, text editing, and verification status tracking in one interface",
+      showDetails: true
     },
     images: [
       '/images/audtrans1.webp',
@@ -157,7 +189,8 @@ export const projects: Project[] = [
     details: {
         challenge: 'Facilitating decentralized storytelling with collaborative tools, NFTs, and blockchain technology.',
         solution: 'Developed a UI for a decentralized storytelling platform where stories, characters, and universes are tokenized as NFTs, enabling authors to collaborate, monetize, and govern their creations.',
-        impact: 'Empowered authors with true ownership of their work, introduced innovative revenue-sharing models, and created a community-driven storytelling ecosystem.'
+        impact: 'Empowered authors with true ownership of their work, introduced innovative revenue-sharing models, and created a community-driven storytelling ecosystem.',
+        showDetails: true
     },
     images: [
         '/images/storyverse1.webp', 
@@ -196,7 +229,8 @@ export const projects: Project[] = [
   details: {
     challenge: 'Creating an immersive and interactive 3D portfolio template that showcases modern web development capabilities',
     solution: 'Developed a 3D portfolio using Three.js and React with custom shaders and animations for a unique user experience',
-    impact: 'Demonstrated the potential of modern web technologies for creating visually stunning and interactive experiences'
+    impact: 'Demonstrated the potential of modern web technologies for creating visually stunning and interactive experiences',
+    showDetails: true
   },
   images: [
     '/images/portfolio1.webp',
@@ -227,7 +261,8 @@ export const projects: Project[] = [
   "details": {
     "challenge": "Creating a secure and efficient web-based Python code execution environment with complexity analysis",
     "solution": "Developed a Flask-based backend with input sanitization, time complexity analysis, and memory tracking, combined with a responsive frontend interface",
-    "impact": "Provides developers with a tool for testing Python code snippets with complexity analysis and input handling"
+    "impact": "Provides developers with a tool for testing Python code snippets with complexity analysis and input handling",
+    showDetails: true
   },
   "images": [
     "/images/coderun1.webp",
@@ -250,7 +285,8 @@ export const projects: Project[] = [
   "details": {
     "challenge": "Creating a user-friendly interface for managing audio datasets and transcriptions with real-time recording and editing capabilities",
     "solution": "Developed a Flask-based backend with audio file handling, transcription management, and conversion features, combined with a responsive frontend interface using TailwindCSS",
-    "impact": "Provides researchers and developers with a tool for efficiently managing and transcribing audio datasets, suitable for machine learning and data processing tasks"
+    "impact": "Provides researchers and developers with a tool for efficiently managing and transcribing audio datasets, suitable for machine learning and data processing tasks",
+    showDetails: true
   },
   "images": [
     "/images/flaskaudiorecord.webp",
@@ -271,6 +307,7 @@ export const projects: Project[] = [
     "challenge": "Creating a user-friendly and efficient BitTorrent client with real-time tracking and modern interface",
     "solution": "Developed a custom BitTorrent protocol implementation with Node.js backend and React frontend, featuring real-time progress tracking, peer management, and detailed statistics",
     "impact": "Provides an educational and practical tool for understanding and working with the BitTorrent protocol, suitable for both learning and personal use",
+    showDetails: true
   },
   "images": [
     "/images/Tclient.webp"
@@ -291,7 +328,8 @@ export const projects: Project[] = [
   "details": {
     "challenge": "Creating a comprehensive platform that combines restaurant discovery, personal dining history tracking, and social connectivity while ensuring real-time data accuracy and user engagement",
     "solution": "Developed a full-stack application using Flask and PostgreSQL, implementing features like email OTP verification, interactive maps for dining history, and real-time restaurant data scraping",
-    "impact": "Provides food enthusiasts in Pokhara Valley with a complete platform to discover, track, and share their dining experiences while building a community of food lovers"
+    "impact": "Provides food enthusiasts in Pokhara Valley with a complete platform to discover, track, and share their dining experiences while building a community of food lovers",
+    showDetails: true
   },
   "images": [
     "/images/mithomitho.webp"
@@ -311,7 +349,8 @@ export const projects: Project[] = [
   "details": {
     "challenge": "Developing an efficient solver for cryptarithmetic puzzles with support for unique constraints like non-zero leading digits and ensuring all letters map to distinct digits.",
     "solution": "Built a full-stack web application using Flask for the backend and Google OR-Tools for solving the puzzles. Implemented a dynamic input system to handle different types of puzzles, including standard and extended equations, with real-time feedback.",
-    "impact": "Provides a powerful tool for solving and learning cryptarithmetic puzzles, making it accessible to students, educators, and puzzle enthusiasts worldwide."
+    "impact": "Provides a powerful tool for solving and learning cryptarithmetic puzzles, making it accessible to students, educators, and puzzle enthusiasts worldwide.",
+    showDetails: true
   },
   "images": [
     "/images/crypt1.webp",
@@ -332,7 +371,8 @@ export const projects: Project[] = [
   "details": {
     "challenge": "Developing a high-quality text-to-speech system for Nepali, an under-resourced language, with limited availability of large speech datasets and handling Nepali-specific phonemes and pronunciations.",
     "solution": "Implemented a two-phase approach using Tacotron2 for melspectrogram generation and HiFi-GAN for vocoding. Fine-tuned pre-trained models on Nepali datasets and employed incremental learning to continually update the model with new data.",
-    "impact": "Achieved a Mean Opinion Score of 4.03 for naturalness, the highest among all previous Nepali Text-to-Speech tasks, providing a valuable tool for Nepali language technology and accessibility."
+    "impact": "Achieved a Mean Opinion Score of 4.03 for naturalness, the highest among all previous Nepali Text-to-Speech tasks, providing a valuable tool for Nepali language technology and accessibility.",
+    showDetails: true
   },
   "images": [
     "/images/tts.jpg",
@@ -352,7 +392,8 @@ export const projects: Project[] = [
   "details": {
     "challenge": "Developing an efficient and accurate system to analyze large volumes of resumes, extract relevant information, and rank candidates based on job-specific criteria while eliminating bias in the screening process.",
     "solution": "Implemented a multi-stage pipeline using NLP for text extraction, machine learning for feature engineering, and a ranking algorithm based on semantic similarity. Integrated with ATS systems for seamless data flow and user-friendly interface for recruiters.",
-    "impact": "Significantly reduced time spent on resume screening, improved candidate-job matching accuracy, and provided data-driven insights for hiring decisions, enhancing overall recruitment efficiency."
+    "impact": "Significantly reduced time spent on resume screening, improved candidate-job matching accuracy, and provided data-driven insights for hiring decisions, enhancing overall recruitment efficiency.",
+    showDetails: true
   },
   "images": [
     "/images/resumea1.webp",
@@ -377,7 +418,8 @@ export const projects: Project[] = [
   "details": {
     "challenge": "Creating a secure and scalable budget tracking solution tailored for students, with features like authentication, expense tracking, and interactive dashboards while ensuring a seamless user experience.",
     "solution": "Developed a full-stack application using Next.js for the frontend and backend, Prisma for database management, and Next-Auth for secure authentication. Implemented robust form validation with Zod and provided a responsive UI with Tailwind CSS. The dashboard features interactive charts and visualizations powered by Recharts.",
-    "impact": "Empowers students to take control of their finances by providing a centralized platform for budget management, leading to better financial habits and reduced overspending."
+    "impact": "Empowers students to take control of their finances by providing a centralized platform for budget management, leading to better financial habits and reduced overspending.",
+    showDetails: true
   },
   "images": [
     "/images/hive1.webp",
@@ -406,7 +448,8 @@ export const projects: Project[] = [
   "details": {
     "challenge": "Developing an accurate speech recognition system for Nepali language keywords with limited data availability, requiring robust feature extraction and handling of diverse acoustic conditions.",
     "solution": "Implemented an Autoregressive Predictive Coding model with comprehensive data augmentation, MFCC feature extraction, and multi-stage evaluation framework for accurate keyword recognition in Nepali speech.",
-    "impact": "Successfully recognized over 65 Nepali keywords with high accuracy, expanded the training dataset 30x through augmentation, and enabled robust speech processing capabilities for the Nepali language."
+    "impact": "Successfully recognized over 65 Nepali keywords with high accuracy, expanded the training dataset 30x through augmentation, and enabled robust speech processing capabilities for the Nepali language.",
+    showDetails: true
   },
   "images": [
     "/images/tts.jpg",
@@ -426,7 +469,8 @@ export const projects: Project[] = [
 "details": {
   "challenge": "Creating engaging and informative blog posts on a wide range of topics and technologies.",
   "solution": "Developed and published blog posts on a diverse range of topics, including web development, machine learning, and personal growth.", 
-  "impact": "Provided valuable insights and knowledge to readers, fostering a deeper understanding of various topics and technologies." 
+  "impact": "Provided valuable insights and knowledge to readers, fostering a deeper understanding of various topics and technologies.",
+  showDetails: true
 },  
 "images": [
   "/images/blogs1.webp",
@@ -451,7 +495,8 @@ export const projects: Project[] = [
   details: {
     challenge: 'Creating a music playlist for relaxation and focus',
     solution: 'Curated a collection of calming and inspiring music tracks for relaxation and focus',
-    impact: 'Provides a soothing and immersive listening experience for personal reflection and creativity'
+    impact: 'Provides a soothing and immersive listening experience for personal reflection and creativity',
+    showDetails: true
   },
   images: [    '/images/music1.webp',
     '/images/music2 copy.webp',
@@ -471,14 +516,15 @@ export const projects: Project[] = [
   details: {
     challenge: 'Creating a robust and accurate grapheme-to-phoneme conversion model for an under-resourced language like Nepali.',
     solution: 'Developed an LSTM-based encoder-decoder sequence-to-sequence model trained on 10,000 Nepali transcriptions, achieving a Word Error Rate (WER) of 0.0184.',
-    impact: 'Demonstrated the potential of deep learning in addressing linguistic challenges for low-resource languages, aiding advancements in TTS and ASR systems for Nepali.'
+    impact: 'Demonstrated the potential of deep learning in addressing linguistic challenges for low-resource languages, aiding advancements in TTS and ASR systems for Nepali.',
+    showDetails: true
   },
   images: [
     '/images/neural-g2p-nepali-model-architecture.png',
     '/images/neural-g2p-training-loss.png'
   ],
   featured: true
-},
+}
 ];  
 
 

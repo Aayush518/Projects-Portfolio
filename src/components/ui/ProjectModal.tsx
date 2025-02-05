@@ -221,7 +221,7 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
               </div>
 
               {/* Challenge & Solution Section */}
-              {project.details && (
+              {project.details?.showDetails && (
                 <div className="space-y-6 pt-4">
                   <h3 className="text-sm font-mono text-white/50 uppercase tracking-wider">Development Journey</h3>
                   <div className="grid md:grid-cols-2 gap-8">
@@ -254,7 +254,7 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
               )}
 
               {/* Impact Section */}
-              {project.details?.impact && (
+              {project.details?.showDetails && project.details?.impact && (
                 <div className="space-y-4 pt-4">
                   <div className="flex items-center gap-2">
                     <span className="p-1.5 rounded-full bg-green-500/20">
