@@ -11,21 +11,21 @@ export default {
           200: '#1E1F3A',         // Navy space
           300: '#2A2C4C',         // Midnight purple
         },
-        // Accent colors
+        // New primary and accent colors
         primary: {
-          DEFAULT: '#4F46E5',     // Indigo
-          light: '#818CF8',       // Light indigo
-          dark: '#3730A3',        // Dark indigo
+          DEFAULT: '#ef4444',     // Red
+          light: '#f87171',       // Light red
+          dark: '#dc2626',        // Dark red
         },
         accent: {
-          DEFAULT: '#10B981',     // Emerald
-          light: '#34D399',       // Light emerald
-          dark: '#059669',        // Dark emerald
+          DEFAULT: '#ff1616',     // Fire red
+          light: '#ff3939',       // Light fire red
+          dark: '#9b111e',        // Ruby red
         },
         highlight: {
-          DEFAULT: '#F43F5E',     // Rose
-          light: '#FB7185',       // Light rose
-          dark: '#E11D48',        // Dark rose
+          DEFAULT: '#f43f5e',     // Rose red
+          light: '#fb7185',       // Light rose
+          dark: '#e11d48',        // Dark rose
         }
       },
       fontFamily: {

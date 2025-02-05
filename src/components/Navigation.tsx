@@ -78,11 +78,11 @@ export default function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="bg-gradient-to-r from-accent to-purple-500 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-[#9b111e] to-[#ff1616] text-transparent bg-clip-text">
                 Aayush518
               </span>
               <motion.span
-                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"
+                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#ff1616] group-hover:w-full transition-all duration-300"
                 whileHover={{ width: '100%' }}
               />
             </motion.a>
@@ -94,7 +94,7 @@ export default function Navigation() {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`relative px-4 py-2 group ${
-                    activeSection === item.id ? 'text-accent' : 'text-gray-300'
+                    activeSection === item.id ? 'text-[#ff1616]' : 'text-gray-300'
                   }`}
                   whileHover={{ y: -2 }}
                 >
@@ -102,7 +102,7 @@ export default function Navigation() {
                   {activeSection === item.id && (
                     <motion.span
                       layoutId="activeSection"
-                      className="absolute inset-0 bg-accent/10 rounded-lg"
+                      className="absolute inset-0 bg-[#ff1616]/10 rounded-lg"
                       initial={false}
                       transition={{
                         type: "spring",
@@ -112,7 +112,7 @@ export default function Navigation() {
                     />
                   )}
                   <motion.span
-                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"
+                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#ff1616] group-hover:w-full transition-all duration-300"
                     whileHover={{ width: '100%' }}
                   />
                 </motion.button>
@@ -170,7 +170,7 @@ export default function Navigation() {
                     onClick={() => scrollToSection(item.id)}
                     className={`p-4 rounded-lg text-left ${
                       activeSection === item.id
-                        ? 'bg-accent text-white'
+                        ? 'bg-gradient-to-r from-[#9b111e] to-[#ff1616] text-white'
                         : 'hover:bg-white/10'
                     }`}
                     whileHover={{ x: 10 }}

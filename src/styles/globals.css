@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --accent: #FF3366;
-  --accent-gradient: linear-gradient(45deg, var(--accent), #9f2fff 30%, white 60%);
+  --accent: #ff1616;
+  --accent-gradient: linear-gradient(45deg, #9b111e, #ff1616 30%, white 60%);
 }
 
 html {
@@ -40,17 +40,17 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent);
+  background: #dc2626;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff1f4d;
+  background: #b91c1c;
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(to right, var(--accent), #9f2fff);
+  background: linear-gradient(to right, #9b111e, #ff1616);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -99,9 +99,9 @@ body {
 .animate-gradient {
   background: linear-gradient(
     to right,
-    var(--accent),
-    #9f2fff,
-    var(--accent)
+    #3498db,
+    #e67e22,
+    #3498db
   );
   background-size: 200% auto;
   animation: gradient 3s linear infinite;

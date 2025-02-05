@@ -15,7 +15,7 @@ export default function ProjectCard({ project, onClick, index }: ProjectCardProp
       transition={{ delay: index * 0.1 }}
       onClick={onClick}
       className="group bg-dark-300/50 backdrop-blur-sm rounded-xl overflow-hidden cursor-pointer 
-                 border border-primary/10 hover:border-primary/20 transition-all duration-300"
+                 border border-[#ff1616]/10 hover:border-[#ff1616]/20 transition-all duration-300"
       whileHover={{ y: -5 }}
     >
       <div className="relative aspect-video overflow-hidden">
@@ -28,7 +28,7 @@ export default function ProjectCard({ project, onClick, index }: ProjectCardProp
       </div>
 
       <div className="p-6 space-y-4">
-        <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
+        <h3 className="text-xl font-bold text-white group-hover:text-[#ff1616] transition-colors">
           {project.title}
         </h3>
         <p className="text-white/70 text-sm line-clamp-2">
@@ -38,7 +38,7 @@ export default function ProjectCard({ project, onClick, index }: ProjectCardProp
           {project.technologies?.map((tech) => (
             <span
               key={tech}
-              className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary/90"
+              className="text-xs px-3 py-1 rounded-full bg-[#ff1616]/10 text-[#ff1616]/90"
             >
               {tech}
             </span>

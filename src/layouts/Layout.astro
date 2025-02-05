@@ -24,17 +24,17 @@ const { title } = Astro.props;
     {/* Dynamic Background */}
     <div class="fixed inset-0 -z-10 will-change-transform">
       <div class="absolute inset-0 bg-[#0A0B1E]"></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-accent/5"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-highlight/5"></div>
       <div class="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
       
       {/* Animated Orbs - Optimized */}
       <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl will-change-transform animate-float-optimized"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl will-change-transform animate-float-delayed-optimized"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-highlight/20 rounded-full blur-3xl will-change-transform animate-float-delayed-optimized"></div>
       
       {/* Static Background Elements */}
       <div class="absolute inset-0">
-        <div class="absolute top-20 right-32 w-64 h-64 bg-blue-500/10 rounded-full blur-2xl"></div>
-        <div class="absolute bottom-40 left-20 w-72 h-72 bg-purple-500/10 rounded-full blur-2xl"></div>
+        <div class="absolute top-20 right-32 w-64 h-64 bg-accent/10 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-40 left-20 w-72 h-72 bg-highlight/10 rounded-full blur-2xl"></div>
       </div>
     </div>
 
