@@ -1,56 +1,48 @@
 ---
 ---
-<section class="min-h-screen relative flex items-center py-20 overflow-hidden">
+<section class="min-h-screen relative flex items-center py-12 sm:py-20 overflow-hidden">
   {/* Background Elements */}
   <div class="absolute inset-0 bg-dark-100"></div>
   <div class="absolute inset-0 bg-grid opacity-[0.02]"></div>
-  <div class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[500px] h-[500px] 
+  <div class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] 
               bg-gradient-radial from-primary/20 via-primary/5 to-transparent blur-3xl"></div>
-  <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-48 sm:w-96 h-48 sm:h-96 bg-accent/5 rounded-full blur-3xl"></div>
 
   <div class="container mx-auto px-4 relative">
     <div class="max-w-6xl mx-auto">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Left Column - Content */}
-        <div class="space-y-8">
+        <div class="space-y-6 sm:space-y-8 text-center lg:text-left">
           {/* Badge */}
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 
+          <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 
                       border border-primary/20 backdrop-blur-sm">
-            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            <span class="text-primary/90 text-sm">Available for Projects</span>
+            <span class="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-primary animate-pulse"></span>
+            <span class="text-primary/90 text-xs sm:text-sm">Available for Projects</span>
           </div>
 
-          {/* Main Heading */}
+          {/* Main Content */}
           <div class="space-y-4">
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-display font-bold">
-              <span class="text-white">Hi, I'm</span>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                Aayush
-              </span>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight sm:leading-tight md:leading-tight">
+              Full Stack Developer <br />& Project Lead
             </h1>
-            <h2 class="text-3xl md:text-4xl font-display text-white/80">
-              Problem Solver & Full Stack Developer
-            </h2>
+            <p class="text-base sm:text-lg text-white/70 max-w-xl mx-auto lg:mx-0">
+              Building scalable solutions with modern technologies. Focused on creating impactful digital experiences.
+            </p>
           </div>
-
-          {/* Description */}
-          <p class="text-xl text-white/70 leading-relaxed max-w-2xl">
-            Transforming complex challenges into elegant solutions through code and creativity. 
-            Specializing in full-stack development, NLP research, and disciplined project execution.
-          </p>
 
           {/* CTA Buttons */}
-          <div class="flex flex-wrap gap-4 pt-4">
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <a
               href="#projects"
-              class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-accent 
-                     text-white rounded-lg transition-all duration-300 hover:-translate-y-1 
-                     hover:shadow-lg hover:shadow-primary/20 group"
+              class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 
+                     bg-gradient-to-r from-primary to-accent text-white rounded-lg 
+                     transition-all duration-300 hover:-translate-y-1 hover:shadow-lg 
+                     hover:shadow-primary/20 group text-sm sm:text-base w-full sm:w-auto"
               onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })"
             >
               View My Work
               <svg 
-                class="w-5 h-5 group-hover:translate-x-1 transition-transform" 
+                class="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
@@ -61,13 +53,15 @@
             </a>
             <a
               href="#contact"
-              class="inline-flex items-center gap-2 px-8 py-4 border-2 border-primary text-primary 
-                     hover:text-white rounded-lg transition-all duration-300 relative overflow-hidden group"
+              class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 
+                     border-2 border-primary text-primary hover:text-white rounded-lg 
+                     transition-all duration-300 relative overflow-hidden group 
+                     text-sm sm:text-base w-full sm:w-auto"
               onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })"
             >
               <span class="relative z-10">Get in Touch</span>
               <svg 
-                class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" 
+                class="w-4 h-4 sm:w-5 sm:h-5 relative z-10 group-hover:translate-x-1 transition-transform" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
@@ -81,19 +75,22 @@
           </div>
 
           {/* Tech Stack */}
-          <div class="pt-12">
-            <h3 class="text-white/50 font-mono text-sm uppercase tracking-wider flex items-center gap-2 mb-6">
-              <span class="w-8 h-[1px] bg-primary/40"></span>
+          <div class="pt-8 sm:pt-12">
+            <h3 class="text-white/50 font-mono text-xs sm:text-sm uppercase tracking-wider 
+                      flex items-center gap-2 mb-4 sm:mb-6 justify-center lg:justify-start">
+              <span class="w-6 sm:w-8 h-[1px] bg-primary/40"></span>
               Tech Expertise
             </h3>
-            <div class="flex flex-wrap gap-3">
+            <div class="flex flex-wrap gap-2 sm:gap-3 justify-center lg:justify-start">
               {[
                 'Full Stack Development', 'NLP Research', 'Project Management',
                 'Problem Solving', 'System Architecture', 'Cloud Solutions'
               ].map((skill) => (
-                <div class="px-4 py-2 bg-dark-200/50 backdrop-blur-sm rounded-full border border-primary/20 
-                            hover:border-primary/40 hover:bg-dark-200/70 transition-all duration-300 group">
-                  <span class="text-white/70 text-sm group-hover:text-white/90 transition-colors">{skill}</span>
+                <div class="px-3 sm:px-4 py-1.5 sm:py-2 bg-dark-200/50 backdrop-blur-sm rounded-full 
+                            border border-primary/20 hover:border-primary/40 transition-all 
+                            duration-300 group">
+                  <span class="text-white/70 text-xs sm:text-sm group-hover:text-white/90 
+                             transition-colors">{skill}</span>
                 </div>
               ))}
             </div>
@@ -101,19 +98,20 @@
         </div>
 
         {/* Right Column - Code Editor */}
-        <div class="relative hidden lg:block">
+        <div class="relative w-full max-w-2xl mx-auto lg:max-w-none">
           <div class="relative backdrop-blur-xl rounded-xl overflow-hidden border border-primary/10 
                       shadow-2xl shadow-primary/5 transform hover:-translate-y-1 transition-transform duration-300">
             {/* Editor Header */}
-            <div class="bg-dark-200/90 p-4 border-b border-primary/10">
+            <div class="bg-dark-200/90 p-3 sm:p-4 border-b border-primary/10">
               <div class="flex items-center">
-                <div class="flex gap-2">
-                  <div class="w-3 h-3 rounded-full bg-red-500/30"></div>
-                  <div class="w-3 h-3 rounded-full bg-yellow-500/30"></div>
-                  <div class="w-3 h-3 rounded-full bg-green-500/30"></div>
+                <div class="flex gap-1.5 sm:gap-2">
+                  <div class="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-red-500/30"></div>
+                  <div class="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-yellow-500/30"></div>
+                  <div class="w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-green-500/30"></div>
                 </div>
                 <div class="flex-1 flex justify-center">
-                  <span class="text-white/50 text-sm font-mono px-3 py-1 rounded-md bg-dark-300/50">
+                  <span class="text-white/50 text-xs sm:text-sm font-mono px-2 sm:px-3 py-0.5 sm:py-1 
+                             rounded-md bg-dark-300/50">
                     philosophy.ts
                   </span>
                 </div>
@@ -121,7 +119,7 @@
             </div>
 
             {/* Editor Content */}
-            <div class="p-8 space-y-8 bg-dark-200/50">
+            <div class="p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 lg:space-y-8 bg-dark-200/50">
               {/* Against Section */}
               <div class="space-y-4">
                 <div class="flex items-center gap-3">
@@ -187,20 +185,20 @@
           </div>
 
           {/* Floating Elements */}
-          <div class="absolute -top-8 -right-8 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
-          <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-accent/10 rounded-full blur-3xl"></div>
+          <div class="absolute -top-8 -right-8 w-32 sm:w-40 h-32 sm:h-40 bg-primary/10 rounded-full blur-3xl"></div>
+          <div class="absolute -bottom-8 -left-8 w-32 sm:w-40 h-32 sm:h-40 bg-accent/10 rounded-full blur-3xl"></div>
         </div>
       </div>
     </div>
   </div>
 
   {/* Scroll Indicator */}
-  <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 
-              opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
+  <div class="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center 
+              gap-2 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
        onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' })">
-    <span class="text-white/50 text-sm font-mono tracking-wide">Scroll to Explore</span>
-    <div class="w-6 h-10 border-2 border-white/20 rounded-full p-1">
-      <div class="w-1.5 h-1.5 bg-white/50 rounded-full mx-auto animate-scroll-down"></div>
+    <span class="text-white/50 text-xs sm:text-sm font-mono tracking-wide">Scroll to Explore</span>
+    <div class="w-5 sm:w-6 h-8 sm:h-10 border-2 border-white/20 rounded-full p-1">
+      <div class="w-1 sm:w-1.5 h-1 sm:h-1.5 bg-white/50 rounded-full mx-auto animate-scroll-down"></div>
     </div>
   </div>
 </section>
