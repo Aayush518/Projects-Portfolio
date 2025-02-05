@@ -45,7 +45,7 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
         exit={{ scale: 0.95, opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
         className="relative w-full max-w-7xl h-[90vh] bg-dark-200/90 rounded-xl 
-                   overflow-hidden border border-primary/10"
+                   overflow-hidden border border-[#ff1616]/10"
       >
         {/* Close Button */}
         <button
@@ -63,7 +63,7 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
           <div className="lg:w-3/5 h-full flex flex-col">
             {/* Image Gallery with Vertical Center */}
             <div className="relative flex-1 overflow-x-auto overflow-y-hidden scrollbar-thin 
-                          scrollbar-thumb-primary/20 scrollbar-track-dark-300/20">
+                          scrollbar-thumb-[#ff1616]/20 scrollbar-track-dark-300/20">
               <div className="flex snap-x snap-mandatory h-full">
                 {images.map((image, index) => (
                   <div key={index} className="flex-none w-full h-full snap-center">
@@ -91,9 +91,9 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
                       imageElements[nextIndex]?.scrollIntoView({ behavior: 'smooth' });
                     }}
                     className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full 
-                             bg-dark-300/50 hover:bg-primary/20 transition-colors group z-10"
+                             bg-dark-300/50 hover:bg-[#ff1616]/20 transition-colors group z-10"
                   >
-                    <svg className="w-6 h-6 text-white/70 group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-6 h-6 text-white/70 group-hover:text-[#ff1616]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                   </button>
@@ -106,9 +106,9 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
                       imageElements[nextIndex]?.scrollIntoView({ behavior: 'smooth' });
                     }}
                     className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full 
-                             bg-dark-300/50 hover:bg-primary/20 transition-colors group z-10"
+                             bg-dark-300/50 hover:bg-[#ff1616]/20 transition-colors group z-10"
                   >
-                    <svg className="w-6 h-6 text-white/70 group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-6 h-6 text-white/70 group-hover:text-[#ff1616]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
@@ -125,7 +125,7 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
             {/* Thumbnails */}
             {images.length > 1 && (
               <div className="flex-none h-20 overflow-x-auto flex gap-2 p-4 bg-dark-300/50 
-                            scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-dark-300/20">
+                            scrollbar-thin scrollbar-thumb-[#ff1616]/20 scrollbar-track-dark-300/20">
                 {images.map((image, index) => (
                   <button
                     key={index}
@@ -137,8 +137,8 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
                     className={`flex-none h-full aspect-video rounded-md overflow-hidden 
                               border-2 transition-colors ${
                                 index === currentImageIndex 
-                                  ? 'border-primary' 
-                                  : 'border-transparent hover:border-primary/50'
+                                  ? 'border-[#ff1616]' 
+                                  : 'border-transparent hover:border-[#ff1616]/50'
                               }`}
                   >
                     <img
@@ -153,14 +153,14 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
           </div>
 
           {/* Right Column - Content */}
-          <div className="lg:w-2/5 h-full overflow-y-auto scrollbar-thin scrollbar-thumb-primary/20 
-                         scrollbar-track-dark-300/20 hover:scrollbar-thumb-primary/40">
+          <div className="lg:w-2/5 h-full overflow-y-auto scrollbar-thin scrollbar-thumb-[#ff1616]/20 
+                         scrollbar-track-dark-300/20 hover:scrollbar-thumb-[#ff1616]/40">
             <div className="p-8 space-y-8">
               {/* Header */}
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <span className="px-4 py-1.5 text-sm rounded-full bg-primary/20 text-primary 
-                                 border border-primary/20 backdrop-blur-sm">
+                  <span className="px-4 py-1.5 text-sm rounded-full bg-[#ff1616]/20 text-[#ff1616] 
+                                 border border-[#ff1616]/20 backdrop-blur-sm">
                     {isGitHub ? 'GitHub Project' : project.category || 'Project'}
                   </span>
                   {project.details?.timeline && (
@@ -190,15 +190,15 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
                 {/* Project Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
                   <div className="space-y-2">
-                    <h4 className="text-xs font-mono text-white/40 uppercase">Project Type</h4>
+                    <h4 className="text-xs font-mono text-[#ff1616]/40 uppercase">Project Type</h4>
                     <p className="text-white/90">{project.category}</p>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="text-xs font-mono text-white/40 uppercase">Timeline</h4>
+                    <h4 className="text-xs font-mono text-[#ff1616]/40 uppercase">Timeline</h4>
                     <p className="text-white/90">{project.details.timeline || 'Ongoing'}</p>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="text-xs font-mono text-white/40 uppercase">Role</h4>
+                    <h4 className="text-xs font-mono text-[#ff1616]/40 uppercase">Role</h4>
                     <p className="text-white/90">{project.details.role || 'Lead Developer'}</p>
                   </div>
                 </div>
@@ -211,7 +211,7 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
                       <span
                         key={tech}
                         className="px-3 py-1 text-sm rounded-full bg-[#ff1616]/10 text-[#ff1616]/90 
-                                 border border-primary/20 hover:bg-primary/20 transition-colors"
+                                 border border-[#ff1616]/20 hover:bg-[#ff1616]/20 transition-colors"
                       >
                         {tech}
                       </span>
@@ -227,8 +227,8 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="space-y-4">
                       <div className="flex items-center gap-2">
-                        <span className="p-1.5 rounded-full bg-primary/20">
-                          <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <span className="p-1.5 rounded-full bg-[#ff1616]/20">
+                          <svg className="w-4 h-4 text-[#ff1616]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
                                   d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                           </svg>
@@ -297,8 +297,8 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary 
-                             text-primary hover:text-white rounded-lg transition-all duration-300 
+                    className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#ff1616] 
+                             text-[#ff1616] hover:text-white rounded-lg transition-all duration-300 
                              relative overflow-hidden group"
                   >
                     <span className="relative z-10">View Code</span>
