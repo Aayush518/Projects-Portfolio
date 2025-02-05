@@ -1,24 +1,21 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
       colors: {
+        primary: '#9b111e',
+        'primary-light': '#ff1616',
         dark: {
-          DEFAULT: '#0a0a0c',
-          100: '#121215',
-          200: '#1a1a1f',
-          300: '#24242b',
+          DEFAULT: '#0a0a0a',
+          '50': '#1a1a1a',
+          '100': '#262626',
+          '200': '#333333',
+          '300': '#404040',
+          '400': '#595959',
+          '500': '#737373',
         },
-        primary: {
-          DEFAULT: '#9b111e',
-          light: '#ff1616',
-        },
-        accent: {
-          DEFAULT: '#F43F5E',    // Rose accent
-          light: '#FB7185',
-          dark: '#E11D48',
-        },
+        accent: '#2a2a2a',
         success: {
           DEFAULT: '#10B981',    // Success green
           light: '#34D399',
@@ -35,15 +32,16 @@ module.exports = {
           dark: '#DC2626',
         }
       },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Clash Display', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
       animation: {
-        'float': 'float 6s ease-in-out infinite',
         'scroll-down': 'scroll-down 2s ease-in-out infinite',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translate3d(0, 0, 0) rotate(0deg)' },
-          '50%': { transform: 'translate3d(0, -10px, 0) rotate(1deg)' }
-        },
         'scroll-down': {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(10px)' },
@@ -55,15 +53,7 @@ module.exports = {
         'grid': `linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)`,
       },
-      fontFamily: {
-        sans: ['Inter var', 'sans-serif'],
-        display: ['Cal Sans', 'Inter var', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace']
-      },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('tailwindcss-animate'),
-  ],
+  plugins: [],
 }; 

@@ -26,6 +26,17 @@ const { title } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <!-- Preload critical fonts -->
+    <link
+      rel="preload"
+      href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&display=swap"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      as="style"
+    />
   </head>
   <body class="bg-dark text-light overflow-x-hidden">
     <PageTransition client:load />

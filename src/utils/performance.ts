@@ -41,4 +41,39 @@ export function optimizePerformance() {
   }
 
   requestAnimationFrame(raf);
-} 
+}
+
+export const measurePerformance = (metricName: string) => {
+  if (typeof window === 'undefined' || !window.performance) return;
+
+  const observer = new PerformanceObserver((list) => {
+    list.getEntries().forEach((entry) => {
+      console.log(`${metricName}:`, entry.startTime, entry.duration);
+      
+      // Send to analytics if needed
+      if (window.gtag) {
+        window.gtag('event', 'performance_metric', {
+          metric_name: metricName,
+          value: entry.duration,
+        });
+      }
+    });
+  });
+
+  observer.observe({ entryTypes: ['measure'] });
+
+  return () => observer.disconnect();
+};
+
+export const measureComponentPerformance = (componentName: string) => {
+  performance.mark(`${componentName}-start`);
+  
+  return () => {
+    performance.mark(`${componentName}-end`);
+    performance.measure(
+      `${componentName}-measure`,
+      `${componentName}-start`,
+      `${componentName}-end`
+    );
+  };
+}; 

@@ -1,0 +1,32 @@
+/* Add to your global CSS */
+.save-data {
+  /* Reduce animations */
+  --animation-duration: 0s;
+  --transition-duration: 0s;
+}
+
+.save-data * {
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}
+
+/* Optimize paint containment */
+.contain-paint {
+  contain: paint;
+}
+
+/* Optimize layout containment */
+.contain-layout {
+  contain: layout;
+}
+
+/* Optimize size containment */
+.contain-size {
+  contain: size;
+}
+
+/* Optimize content visibility */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+} 

@@ -14,16 +14,15 @@ export default function Navigation() {
   const throttledScrollY = useThrottledValue(scrollY, 100);
 
   const menuItems = [
-    { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'writings', label: 'Writings' }
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
       
       // Update active section with Intersection Observer
       const observer = new IntersectionObserver((entries) => {
@@ -43,7 +42,6 @@ export default function Navigation() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -62,136 +60,129 @@ export default function Navigation() {
     setIsMobileMenuOpen(false);
   };
 
-  const navVariants = {
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.3 }
-    },
-    hidden: {
-      y: -100,
-      opacity: 0,
-      transition: { duration: 0.3 }
-    }
+  const logoVariants = {
+    initial: { opacity: 0, y: -20 },
+    animate: { opacity: 1, y: 0 },
+    hover: { scale: 1.05, transition: { duration: 0.2 } }
+  };
+
+  const menuItemVariants = {
+    initial: { opacity: 0, y: -10 },
+    animate: { opacity: 1, y: 0 },
+    hover: { y: -2, transition: { duration: 0.2 } }
   };
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 bg-dark-200/50 backdrop-blur-lg border-b border-white/[0.02]"
-      variants={navVariants}
-      animate={throttledScrollY > 100 ? "hidden" : "visible"}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? 'py-4 bg-dark/80 backdrop-blur-lg border-b border-white/5' : 'py-6'
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
     >
-      <div className="container mx-auto px-4 sm:px-6 py-4">
+      <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
-          {/* Logo */}
           <motion.a
             href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('home');
-            }}
-            className="text-xl font-bold relative group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="relative group"
+            variants={logoVariants}
+            initial="initial"
+            animate="animate"
+            whileHover="hover"
           >
-            <span className="bg-gradient-to-r from-[#9b111e] to-[#ff1616] text-transparent bg-clip-text">
-              Aayush<span className="text-primary">518</span>
+            <span className="text-2xl font-display font-bold bg-gradient-to-r from-primary to-primary-light text-transparent bg-clip-text">
+              Aayush
+              <span className="text-primary">518</span>
             </span>
-            <motion.span
-              className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#ff1616] group-hover:w-full transition-all duration-300"
-              whileHover={{ width: '100%' }}
+            <motion.div
+              className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-primary-light group-hover:w-full"
+              transition={{ duration: 0.3 }}
             />
           </motion.a>
 
+          <div className="hidden md:flex items-center gap-8">
+            {menuItems.map((item, index) => (
+              <motion.a
+                key={item.id}
+                href={`#${item.id}`}
+                className="relative group text-sm font-medium text-white/70 hover:text-white transition-colors"
+                variants={menuItemVariants}
+                initial="initial"
+                animate="animate"
+                whileHover="hover"
+                transition={{ delay: index * 0.1 }}
+              >
+                {item.label}
+                <motion.div
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full"
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.a>
+            ))}
+
+            <motion.a
+              href="#contact"
+              className="btn-primary px-6 py-2 rounded-lg text-sm font-medium"
+              variants={menuItemVariants}
+              initial="initial"
+              animate="animate"
+              whileHover={{ y: -2, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Get in Touch
+            </motion.a>
+          </div>
+
           {/* Mobile Menu Button */}
           <motion.button
-            className="lg:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 hover:bg-white/5 rounded-lg"
             whileTap={{ scale: 0.95 }}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <div className="w-6 h-6 flex flex-col justify-center gap-1.5">
-              <motion.span
-                className="w-full h-0.5 bg-white/90 block"
-                animate={isMobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-              />
-              <motion.span
-                className="w-full h-0.5 bg-white/90 block"
-                animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-              />
-              <motion.span
-                className="w-full h-0.5 bg-white/90 block"
-                animate={isMobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-              />
+              <motion.span className="w-full h-0.5 bg-white/90 block" />
+              <motion.span className="w-full h-0.5 bg-white/90 block" />
+              <motion.span className="w-full h-0.5 bg-white/90 block" />
             </div>
           </motion.button>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-8">
-            {menuItems.map((item) => (
-              <motion.button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`relative px-4 py-2 group ${
-                  activeSection === item.id ? 'text-[#ff1616]' : 'text-gray-300'
-                }`}
-                whileHover={{ y: -2 }}
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                className="absolute top-full left-0 right-0 bg-dark/95 backdrop-blur-lg border-t border-white/5"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
               >
-                <span className="relative z-10">{item.label}</span>
-                {activeSection === item.id && (
-                  <motion.span
-                    layoutId="activeSection"
-                    className="absolute inset-0 bg-[#ff1616]/10 rounded-lg"
-                    initial={false}
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 30
-                    }}
-                  />
-                )}
-                <motion.span
-                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#ff1616] group-hover:w-full transition-all duration-300"
-                  whileHover={{ width: '100%' }}
-                />
-              </motion.button>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="lg:hidden overflow-hidden bg-dark-200/95 backdrop-blur-lg
-                        absolute top-full left-0 right-0 border-t border-white/[0.02]"
-            >
-              <div className="flex flex-col p-4 space-y-2">
-                {menuItems.map((item) => (
-                  <motion.button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`p-4 rounded-lg text-left ${
-                      activeSection === item.id
-                        ? 'bg-gradient-to-r from-[#9b111e] to-[#ff1616] text-white'
-                        : 'hover:bg-white/5'
-                    }`}
-                    whileHover={{ x: 10 }}
+                <div className="container px-6 py-4 flex flex-col gap-4">
+                  {menuItems.map((item) => (
+                    <motion.a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      className="text-white/70 hover:text-white py-2"
+                      whileHover={{ x: 10 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </motion.a>
+                  ))}
+                  <motion.a
+                    href="#contact"
+                    className="btn-primary text-center py-3 rounded-lg"
                     whileTap={{ scale: 0.98 }}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {item.label}
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                    Get in Touch
+                  </motion.a>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </motion.nav>
   );
