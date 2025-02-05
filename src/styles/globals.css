@@ -4,8 +4,7 @@
 
 @layer base {
   :root {
-    --accent: theme('colors.accent.DEFAULT');
-    --primary: theme('colors.primary.DEFAULT');
+    /* No changes to :root */
   }
 
   html {
@@ -14,48 +13,46 @@
   }
 
   body {
-    @apply font-sans antialiased;
+    @apply font-sans antialiased tracking-wide;
   }
 }
 
 @layer components {
   /* Glass effect */
   .glass {
-    @apply bg-white/[0.03] backdrop-blur-md border border-white/[0.05];
+    @apply bg-white/[0.02] backdrop-blur-lg border border-white/[0.03] shadow-xl;
   }
 
   /* Card styles */
   .card {
-    @apply bg-dark-200/50 backdrop-blur-md rounded-xl
-           border border-white/[0.05] overflow-hidden
-           transition-all duration-500 hover:border-white/[0.1]
-           hover:shadow-xl hover:shadow-primary/5;
+    @apply bg-dark-200/50 backdrop-blur-lg border border-white/[0.03] rounded-xl 
+           shadow-lg shadow-black/5 hover:shadow-xl hover:shadow-black/10 
+           transition-all duration-500;
   }
 
   /* Button styles */
   .btn-primary {
-    @apply px-6 py-3 rounded-lg font-medium 
-           bg-gradient-to-r from-primary to-accent
-           hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5
-           active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary/50
-           transition-all duration-300;
+    @apply group relative px-6 py-3 bg-gradient-to-r from-primary to-primary-light 
+           text-white rounded-lg overflow-hidden shadow-lg shadow-[var(--primary)]/20 
+           hover:shadow-xl hover:shadow-[var(--primary-light)]/20
+           transition-all duration-500 hover:-translate-y-0.5 active:translate-y-0 
+           text-sm uppercase tracking-wide font-medium;
   }
 
   .btn-outline {
-    @apply px-6 py-3 rounded-lg font-medium
-           border border-white/10 hover:border-white/20
-           hover:bg-white/5 hover:-translate-y-0.5
-           active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-white/10
-           transition-all duration-300;
+    @apply group px-6 py-3 rounded-lg border border-white/10 text-white/90
+           hover:bg-white/[0.02] hover:-translate-y-0.5 active:translate-y-0
+           transition-all duration-500 text-sm uppercase tracking-wide 
+           backdrop-blur-sm shadow-lg hover:shadow-xl;
   }
 
   /* Section styles */
   .section {
-    @apply py-20 sm:py-32;
+    @apply py-24 sm:py-36;
   }
 
   .container-custom {
-    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+    @apply container mx-auto px-6 sm:px-8;
   }
 
   /* Form elements */
@@ -72,7 +69,7 @@
   }
 
   .heading-2 {
-    @apply text-3xl sm:text-4xl font-display font-bold leading-tight;
+    @apply text-4xl md:text-5xl font-display font-bold tracking-tight;
   }
 
   .gradient-text {
@@ -82,6 +79,14 @@
   /* Code block styling */
   .code-block {
     @apply font-mono text-sm bg-dark-300/50 rounded-lg p-4;
+  }
+
+  /* Grid background */
+  .bg-grid {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   }
 }
 

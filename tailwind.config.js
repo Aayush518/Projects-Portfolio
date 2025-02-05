@@ -5,16 +5,14 @@ module.exports = {
     extend: {
       colors: {
         dark: {
-          DEFAULT: '#0A0A0B',    // Base background
-          100: '#121214',        // Subtle elevation
-          200: '#18181B',        // Card background
-          300: '#1F1F23',        // Higher elevation
-          400: '#27272A',        // Highest elevation
+          DEFAULT: '#0a0a0c',
+          100: '#121215',
+          200: '#1a1a1f',
+          300: '#24242b',
         },
         primary: {
-          DEFAULT: '#0EA5E9',    // Primary blue
-          light: '#38BDF8',      
-          dark: '#0284C7',
+          DEFAULT: '#9b111e',
+          light: '#ff1616',
         },
         accent: {
           DEFAULT: '#F43F5E',    // Rose accent
@@ -39,7 +37,7 @@ module.exports = {
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
-        'scroll-down': 'scroll-down 2s cubic-bezier(0.65, 0, 0.35, 1) infinite',
+        'scroll-down': 'scroll-down 2s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -47,10 +45,9 @@ module.exports = {
           '50%': { transform: 'translate3d(0, -10px, 0) rotate(1deg)' }
         },
         'scroll-down': {
-          '0%': { transform: 'translateY(0)', opacity: '1' },
-          '75%': { transform: 'translateY(20px)', opacity: '0' },
-          '76%, 100%': { transform: 'translateY(0)', opacity: '0' }
-        }
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(10px)' },
+        },
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -59,8 +56,8 @@ module.exports = {
                 linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)`,
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Clash Display', 'sans-serif'],
+        sans: ['Inter var', 'sans-serif'],
+        display: ['Cal Sans', 'Inter var', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace']
       },
     },
