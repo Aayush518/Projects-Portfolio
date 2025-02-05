@@ -1,6 +1,10 @@
 ---
 import '../styles/globals.css';
 import Navigation from '../components/Navigation';
+import { initializeMouseTracking } from '../utils/mouseTracker';
+import PageTransition from '../components/PageTransition';
+import CustomCursor from '../components/CustomCursor';
+import ScrollProgress from '../components/ScrollProgress';
 
 interface Props {
   title: string;
@@ -21,6 +25,10 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="bg-dark text-light overflow-x-hidden">
+    <PageTransition client:load />
+    <CustomCursor client:load />
+    <ScrollProgress client:load />
+
     {/* Dynamic Background */}
     <div class="fixed inset-0 -z-10 will-change-transform">
       <div class="absolute inset-0 bg-[#0A0B1E]"></div>
@@ -75,6 +83,9 @@ const { title } = Astro.props;
       window.addEventListener('load', () => {
         document.documentElement.classList.remove('preload');
       });
+
+      // Initialize mouse tracking
+      initializeMouseTracking();
     </script>
   </body>
 </html>

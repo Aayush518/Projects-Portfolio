@@ -18,32 +18,263 @@
 }
 
 @layer components {
-  /* Glass effect */
+  /* Enhanced Glass effect with better depth */
   .glass {
-    @apply bg-white/[0.02] backdrop-blur-lg border border-white/[0.03] shadow-xl;
+    @apply bg-white/[0.02] backdrop-blur-lg border border-white/[0.03];
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.36),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 0 32px rgba(255, 255, 255, 0.01);
   }
 
-  /* Card styles */
+  /* Advanced Card Effect */
   .card {
-    @apply bg-dark-200/50 backdrop-blur-lg border border-white/[0.03] rounded-xl 
-           shadow-lg shadow-black/5 hover:shadow-xl hover:shadow-black/10 
-           transition-all duration-500;
+    @apply bg-dark-200/50 backdrop-blur-lg rounded-xl relative overflow-hidden
+           transition-all duration-500 hover:translate-y-[-2px];
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.03),
+      0 8px 20px rgba(0, 0, 0, 0.3),
+      0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card::after {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.06),
+      transparent 40%
+    );
   }
 
-  /* Button styles */
+  .card:hover::after {
+    @apply opacity-100;
+  }
+
+  /* Cyberpunk Button with Light Effect */
   .btn-primary {
-    @apply group relative px-6 py-3 bg-gradient-to-r from-primary to-primary-light 
-           text-white rounded-lg overflow-hidden shadow-lg shadow-[var(--primary)]/20 
-           hover:shadow-xl hover:shadow-[var(--primary-light)]/20
-           transition-all duration-500 hover:-translate-y-0.5 active:translate-y-0 
-           text-sm uppercase tracking-wide font-medium;
+    @apply relative px-6 py-3 bg-gradient-to-r from-primary to-primary-light 
+           text-white rounded-lg overflow-hidden text-sm uppercase tracking-wide font-medium
+           transition-all duration-500 hover:-translate-y-0.5 active:translate-y-0;
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 8px 20px rgba(155, 17, 30, 0.2),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 -8px 16px rgba(0, 0, 0, 0.2);
   }
 
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-all duration-500;
+    background: linear-gradient(
+      45deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 75%
+    );
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+  }
+
+  .btn-primary:hover::before {
+    @apply opacity-100;
+    background-position: 100% 100%;
+  }
+
+  /* Neo-Brutalism Card Style */
+  .neo-brutal {
+    @apply bg-dark-200 rounded-lg relative transition-all duration-300
+           hover:translate-x-[-2px] hover:translate-y-[-2px];
+    box-shadow: 
+      4px 4px 0 rgba(255, 22, 22, 0.3),
+      8px 8px 0 rgba(155, 17, 30, 0.2);
+  }
+
+  /* Gradient Mesh Background */
+  .mesh-gradient {
+    @apply absolute inset-0 opacity-30;
+    background: radial-gradient(
+      circle at 0% 0%,
+      rgba(255, 22, 22, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(155, 17, 30, 0.1) 0%,
+      transparent 50%
+    );
+    filter: blur(60px);
+  }
+
+  /* Animated Gradient Border */
+  .gradient-border-animated {
+    @apply relative rounded-xl p-[1px] overflow-hidden;
+    background: linear-gradient(
+      var(--border-angle, 0deg),
+      #9b111e33,
+      #ff161633,
+      #9b111e33
+    );
+    animation: borderRotate 4s linear infinite;
+  }
+
+  @property --border-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  @keyframes borderRotate {
+    100% {
+      --border-angle: 360deg;
+    }
+  }
+
+  /* Shimmering Text Effect */
+  .shimmer-text {
+    @apply relative text-transparent bg-clip-text;
+    background-image: linear-gradient(
+      90deg,
+      #9b111e 0%,
+      #ff1616 50%,
+      #9b111e 100%
+    );
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes shimmer {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  /* Frosted Glass Input */
+  .input-frosted {
+    @apply bg-white/[0.03] backdrop-blur-lg border border-white/[0.05] rounded-lg px-4 py-3
+           focus:ring-2 ring-primary/20 transition-all duration-300;
+    box-shadow: 
+      inset 0 2px 4px rgba(0, 0, 0, 0.1),
+      0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Hover Lift Effect */
+  .hover-lift {
+    @apply transition-all duration-300;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px) rotateX(2deg) rotateY(-2deg);
+    box-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.2),
+      0 5px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Neon Card Effect */
+  .card {
+    @apply bg-dark-200/50 backdrop-blur-lg rounded-xl relative overflow-hidden
+           transition-all duration-500;
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.03),
+      0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary/20 to-primary-light/20 opacity-0 
+           transition-opacity duration-500 group-hover:opacity-100;
+    filter: blur(20px);
+    z-index: -1;
+  }
+
+  /* Futuristic Outline Button */
   .btn-outline {
-    @apply group px-6 py-3 rounded-lg border border-white/10 text-white/90
-           hover:bg-white/[0.02] hover:-translate-y-0.5 active:translate-y-0
-           transition-all duration-500 text-sm uppercase tracking-wide 
-           backdrop-blur-sm shadow-lg hover:shadow-xl;
+    @apply relative px-6 py-3 rounded-lg text-white/90 uppercase tracking-wide text-sm
+           transition-all duration-500 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden;
+    background: linear-gradient(to right, transparent, transparent) padding-box,
+                linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.05)) border-box;
+    border: 1px solid transparent;
+  }
+
+  .btn-outline::before {
+    content: '';
+    @apply absolute inset-0 bg-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500;
+  }
+
+  .btn-outline::after {
+    content: '';
+    @apply absolute top-0 -right-full w-full h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent
+           group-hover:right-full transition-all duration-1000;
+  }
+
+  /* Hover Card Effect */
+  .hover-card {
+    @apply relative overflow-hidden rounded-xl transition-all duration-500;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.03), transparent);
+  }
+
+  .hover-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-primary/10 to-primary-light/10 opacity-0
+           transition-opacity duration-500 hover:opacity-100;
+    filter: blur(15px);
+  }
+
+  /* Glowing Text */
+  .glow-text {
+    @apply relative text-transparent bg-clip-text;
+    background-image: linear-gradient(to right, #9b111e, #ff1616);
+    text-shadow: 0 0 20px rgba(255, 22, 22, 0.3);
+  }
+
+  /* Animated Border */
+  .border-glow {
+    @apply relative rounded-xl p-[1px] overflow-hidden;
+    background: linear-gradient(90deg, #9b111e, #ff1616, #9b111e);
+    background-size: 200% 100%;
+    animation: borderMove 3s linear infinite;
+  }
+
+  @keyframes borderMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+  }
+
+  /* Floating Element */
+  .float {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  @keyframes floating {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
+
+  /* Noise Texture */
+  .noise {
+    @apply relative overflow-hidden;
+  }
+
+  .noise::before {
+    content: '';
+    @apply absolute inset-0 opacity-[0.02];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* Gradient Border Card */
+  .gradient-border {
+    @apply relative rounded-xl p-[1px] bg-dark-200/50 overflow-hidden;
+    background-clip: padding-box;
+  }
+
+  .gradient-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.1), transparent);
+    margin: -1px;
+    z-index: -1;
   }
 
   /* Section styles */

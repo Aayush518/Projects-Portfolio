@@ -16,7 +16,7 @@
     "@react-pdf/renderer": "^4.1.6",
     "@react-three/drei": "^9.102.3",
     "@react-three/fiber": "^8.15.19",
-    "@studio-freight/lenis": "^1.0.39",
+    "@studio-freight/lenis": "^1.0.27",
     "@tailwindcss/typography": "^0.5.16",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
