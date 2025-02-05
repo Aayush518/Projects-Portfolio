@@ -2,12 +2,16 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import { FiMenu, FiX } from 'react-icons/fi'; // Import Icons
+import { useThrottledValue } from '../hooks/useThrottledValue';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const isDesktop = useMediaQuery('(min-width: 768px)');
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  const [scrollY, setScrollY] = useState(0);
+  const throttledScrollY = useThrottledValue(scrollY, 100);
 
   const menuItems = [
     { id: 'home', label: 'Home' },
@@ -18,6 +22,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
+      setScrollY(window.scrollY);
       setIsScrolled(window.scrollY > 20);
       
       // Update active section with Intersection Observer
@@ -37,7 +42,7 @@ export default function Navigation() {
       return () => observer.disconnect();
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -57,113 +62,114 @@ export default function Navigation() {
     setIsMobileMenuOpen(false);
   };
 
+  const navVariants = {
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.3 }
+    },
+    hidden: {
+      y: -100,
+      opacity: 0,
+      transition: { duration: 0.3 }
+    }
+  };
+
   return (
-    <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-black/80 backdrop-blur-xl shadow-lg' : 'bg-transparent'
-        }`}
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
-            <motion.a
-              href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('home');
-              }}
-              className="text-2xl font-bold relative group"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="bg-gradient-to-r from-[#9b111e] to-[#ff1616] text-transparent bg-clip-text">
-                Aayush518
-              </span>
+    <motion.nav
+      className="fixed top-0 left-0 right-0 z-50 bg-dark-200/50 backdrop-blur-lg border-b border-white/[0.02]"
+      variants={navVariants}
+      animate={throttledScrollY > 100 ? "hidden" : "visible"}
+    >
+      <div className="container mx-auto px-4 sm:px-6 py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <motion.a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('home');
+            }}
+            className="text-xl font-bold relative group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="bg-gradient-to-r from-[#9b111e] to-[#ff1616] text-transparent bg-clip-text">
+              Aayush<span className="text-primary">518</span>
+            </span>
+            <motion.span
+              className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#ff1616] group-hover:w-full transition-all duration-300"
+              whileHover={{ width: '100%' }}
+            />
+          </motion.a>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="lg:hidden p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="w-6 h-6 flex flex-col justify-center gap-1.5">
               <motion.span
-                className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#ff1616] group-hover:w-full transition-all duration-300"
-                whileHover={{ width: '100%' }}
+                className="w-full h-0.5 bg-white/90 block"
+                animate={isMobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
               />
-            </motion.a>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-1">
-              {menuItems.map((item) => (
-                <motion.button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`relative px-4 py-2 group ${
-                    activeSection === item.id ? 'text-[#ff1616]' : 'text-gray-300'
-                  }`}
-                  whileHover={{ y: -2 }}
-                >
-                  <span className="relative z-10">{item.label}</span>
-                  {activeSection === item.id && (
-                    <motion.span
-                      layoutId="activeSection"
-                      className="absolute inset-0 bg-[#ff1616]/10 rounded-lg"
-                      initial={false}
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 30
-                      }}
-                    />
-                  )}
-                  <motion.span
-                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#ff1616] group-hover:w-full transition-all duration-300"
-                    whileHover={{ width: '100%' }}
-                  />
-                </motion.button>
-              ))}
+              <motion.span
+                className="w-full h-0.5 bg-white/90 block"
+                animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+              />
+              <motion.span
+                className="w-full h-0.5 bg-white/90 block"
+                animate={isMobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+              />
             </div>
+          </motion.button>
 
-            {/* Mobile Menu Button */}
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10"
-            >
-                {isMobileMenuOpen ? (
-                    <motion.div
-                      key="close"
-                      initial={{ opacity: 0, rotate: -180 }}
-                      animate={{ opacity: 1, rotate: 0 }}
-                      exit={{ opacity: 0, rotate: 180 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-white text-2xl"
-                    >
-                      <FiX />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                        key="open"
-                        initial={{ opacity: 0, rotate: 180 }}
-                        animate={{ opacity: 1, rotate: 0 }}
-                        exit={{ opacity: 0, rotate: -180 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-white text-2xl"
-                    >
-                        <FiMenu />
-                    </motion.div>
-                  )}
-            </motion.button>
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center gap-8">
+            {menuItems.map((item) => (
+              <motion.button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`relative px-4 py-2 group ${
+                  activeSection === item.id ? 'text-[#ff1616]' : 'text-gray-300'
+                }`}
+                whileHover={{ y: -2 }}
+              >
+                <span className="relative z-10">{item.label}</span>
+                {activeSection === item.id && (
+                  <motion.span
+                    layoutId="activeSection"
+                    className="absolute inset-0 bg-[#ff1616]/10 rounded-lg"
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 30
+                    }}
+                  />
+                )}
+                <motion.span
+                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#ff1616] group-hover:w-full transition-all duration-300"
+                  whileHover={{ width: '100%' }}
+                />
+              </motion.button>
+            ))}
           </div>
         </div>
-      </motion.nav>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 md:hidden pt-20 bg-black/95 backdrop-blur-xl"
-          >
-            <div className="container mx-auto px-4 py-8">
-              <div className="flex flex-col space-y-4">
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="lg:hidden overflow-hidden bg-dark-200/95 backdrop-blur-lg
+                        absolute top-full left-0 right-0 border-t border-white/[0.02]"
+            >
+              <div className="flex flex-col p-4 space-y-2">
                 {menuItems.map((item) => (
                   <motion.button
                     key={item.id}
@@ -171,19 +177,22 @@ export default function Navigation() {
                     className={`p-4 rounded-lg text-left ${
                       activeSection === item.id
                         ? 'bg-gradient-to-r from-[#9b111e] to-[#ff1616] text-white'
-                        : 'hover:bg-white/10'
+                        : 'hover:bg-white/5'
                     }`}
                     whileHover={{ x: 10 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ scale: 0.98 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
                   >
                     {item.label}
                   </motion.button>
                 ))}
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.nav>
   );
 }

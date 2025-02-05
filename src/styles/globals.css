@@ -51,21 +51,56 @@
     @apply opacity-100;
   }
 
-  /* Cyberpunk Button with Light Effect */
+  /* Button Base Styles */
+  .btn-base {
+    @apply relative overflow-hidden
+           inline-flex items-center justify-center w-full sm:w-auto
+           font-medium tracking-wide
+           transition-all duration-300
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Primary Button */
   .btn-primary {
-    @apply relative px-6 py-3 bg-gradient-to-r from-primary to-primary-light 
-           text-white rounded-lg overflow-hidden text-sm uppercase tracking-wide font-medium
-           transition-all duration-500 hover:-translate-y-0.5 active:translate-y-0;
+    @apply btn-base bg-gradient-to-r from-primary to-primary-light text-white;
     box-shadow: 
       0 0 0 1px rgba(255, 255, 255, 0.05),
       0 8px 20px rgba(155, 17, 30, 0.2),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-      inset 0 -8px 16px rgba(0, 0, 0, 0.2);
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   }
 
+  /* Outline Button */
+  .btn-outline {
+    @apply btn-base border border-white/10 bg-white/[0.03]
+           text-white/90 hover:border-white/20 hover:bg-white/[0.05];
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Button Content Wrapper */
+  .btn-primary span,
+  .btn-outline span {
+    @apply inline-flex items-center justify-center w-full;
+  }
+
+  /* Inner content wrapper for buttons with icons */
+  .btn-outline span span,
+  .btn-primary span span {
+    @apply inline-flex items-center justify-center gap-2;
+  }
+
+  /* Button Hover & Active States */
+  .btn-primary:active,
+  .btn-outline:active {
+    transform: translateY(1px);
+    @apply shadow-none;
+  }
+
+  /* Button Shimmer Effect */
   .btn-primary::before {
     content: '';
-    @apply absolute inset-0 opacity-0 transition-all duration-500;
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
     background: linear-gradient(
       45deg,
       transparent 25%,
@@ -73,12 +108,11 @@
       transparent 75%
     );
     background-size: 200% 200%;
-    background-position: 0% 0%;
   }
 
   .btn-primary:hover::before {
     @apply opacity-100;
-    background-position: 100% 100%;
+    animation: shimmer 2s infinite;
   }
 
   /* Neo-Brutalism Card Style */
@@ -191,22 +225,32 @@
 
   /* Futuristic Outline Button */
   .btn-outline {
-    @apply relative px-6 py-3 rounded-lg text-white/90 uppercase tracking-wide text-sm
-           transition-all duration-500 hover:-translate-y-0.5 active:translate-y-0 overflow-hidden;
-    background: linear-gradient(to right, transparent, transparent) padding-box,
-                linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.05)) border-box;
-    border: 1px solid transparent;
+    @apply relative transition-all duration-300
+           border border-white/10 bg-white/[0.03]
+           hover:border-white/20 hover:bg-white/[0.05];
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 8px 20px rgba(0, 0, 0, 0.2);
   }
 
   .btn-outline::before {
     content: '';
-    @apply absolute inset-0 bg-white/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500;
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300
+           bg-gradient-to-r from-primary/10 to-primary-light/10;
   }
 
-  .btn-outline::after {
-    content: '';
-    @apply absolute top-0 -right-full w-full h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent
-           group-hover:right-full transition-all duration-1000;
+  .btn-outline:hover::before {
+    @apply opacity-100;
+  }
+
+  .btn-outline:active {
+    transform: translateY(1px);
+    @apply shadow-none;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
   }
 
   /* Hover Card Effect */
