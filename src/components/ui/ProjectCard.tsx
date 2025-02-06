@@ -12,19 +12,23 @@ export default function ProjectCard({ project, onClick, index }: ProjectCardProp
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
+      transition={{ 
+        delay: Math.min(index * 0.1, 0.3),
+        duration: 0.3 
+      }}
       onClick={onClick}
       className="group bg-dark-300/50 backdrop-blur-sm rounded-xl overflow-hidden cursor-pointer 
                  border border-[#ff1616]/10 hover:border-[#ff1616]/20 transition-all duration-300
-                 touch-pan-y"
-      whileHover={{ y: -5 }}
+                 touch-action-pan-y"
       whileTap={{ scale: 0.98 }}
     >
       <div className="relative aspect-video overflow-hidden">
         <img
           src={project.thumbnail}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-300 
+                     sm:group-hover:scale-110"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-dark-300 to-transparent opacity-60" />
       </div>

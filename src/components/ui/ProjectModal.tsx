@@ -35,27 +35,25 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
     return () => clearInterval(interval);
   }, [currentImageIndex, isAutoPlaying]);
 
+  // Optimize touch handling
   const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length > 1) return; // Ignore multi-touch
     setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStart) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const distance = touchStart - touchEndX;
 
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe) {
-      handleNextImage();
-    } else if (isRightSwipe) {
-      handlePrevImage();
+    if (Math.abs(distance) > 50) {
+      if (distance > 0) {
+        handleNextImage();
+      } else {
+        handlePrevImage();
+      }
     }
     setTouchStart(0);
-    setTouchEnd(0);
   };
 
   // Update image navigation functions
@@ -120,8 +118,10 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 project-modal"
-      onClick={onClose}
+      transition={{ duration: 0.2 }} // Faster transition
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-sm"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Background layers */}
       <div className="absolute inset-0 bg-[#0A0B1E]/95" />
@@ -158,7 +158,7 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
               className="relative flex-1 overflow-x-auto overflow-y-hidden scrollbar-thin 
                         scrollbar-thumb-[#ff1616]/20 scrollbar-track-dark-300/20"
               onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
+              onTouchMove={handleTouchEnd}
               onTouchEnd={handleTouchEnd}
               onMouseEnter={() => setIsAutoPlaying(false)}
               onMouseLeave={() => setIsAutoPlaying(true)}

@@ -16,7 +16,8 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.05,
+      delayChildren: 0.1
     }
   }
 };
@@ -93,9 +94,10 @@ export default function Projects() {
 
   return (
     <section className="section relative overflow-hidden bg-gradient-to-b from-dark to-dark-100">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-grid opacity-[0.03]" />
-      <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent" />
+      {/* Reduce background effects on mobile */}
+      <div className="absolute inset-0 bg-grid opacity-[0.02] sm:opacity-[0.03]" />
+      <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent 
+                      hidden sm:block" /> {/* Hide radial gradient on mobile */}
 
       <div className="container-custom relative">
         {/* Section Header */}
@@ -123,132 +125,33 @@ export default function Projects() {
         </div>
 
         {/* Category Filter - Make it horizontally scrollable on mobile */}
-        <div className="overflow-x-auto scrollbar-none mb-8 sm:mb-12 px-4">
-          <div className="flex flex-nowrap justify-start sm:justify-center gap-3 min-w-min">
+        <div className="overflow-x-auto scrollbar-none -mx-6 px-6 mb-8">
+          <div className="flex flex-nowrap gap-2 min-w-min">
             {categories.map((category) => (
-              <motion.button
+              <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm whitespace-nowrap transition-all duration-300 ${
-                  activeCategory === category
-                    ? 'bg-primary text-white shadow-lg shadow-primary/20'
-                    : 'bg-dark-200/50 text-white/60 hover:bg-dark-200 hover:text-white'
-                }`}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
+                className={`whitespace-nowrap px-4 py-2 rounded-full text-sm transition-colors
+                           ${activeCategory === category 
+                             ? 'bg-primary text-white' 
+                             : 'bg-dark-200/50 text-white/60'}`}
               >
                 {category}
-              </motion.button>
+              </button>
             ))}
           </div>
         </div>
 
-        {/* Projects Grid - Improve mobile layout */}
-        <div className="px-4 sm:px-6">
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
-          >
-            {isLoading ? (
-              <div className="col-span-full flex flex-col items-center justify-center py-20 gap-6">
-                <LoadingSpinner />
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-white/60 text-sm"
-                >
-                  Loading amazing projects...
-                </motion.p>
-              </div>
-            ) : (
-              filteredProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  variants={itemVariants}
-                  layout
-                  viewport={{ once: true }}
-                >
-                  <TiltCard
-                    glareEffect={true}
-                    tiltAmount={15}
-                    perspective={1200}
-                  >
-                    <div 
-                      className="card group cursor-pointer h-full flex flex-col"
-                      onClick={() => setSelectedProject(project.id)}
-                    >
-                      {/* Project Image */}
-                      <div className="relative aspect-video overflow-hidden rounded-t-xl">
-                        <img 
-                          src={project.thumbnail} 
-                          alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-dark-200/90 to-transparent opacity-60" />
-                        
-                        {/* Category Badge */}
-                        <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2">
-                          <span className="px-3 py-1 text-xs rounded-full glass text-primary/90 backdrop-blur-md">
-                            {project.category}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Project Content */}
-                      <div className="flex-1 p-6 space-y-4">
-                        <h3 className="text-lg sm:text-xl font-bold group-hover:text-primary transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="text-white/60 text-xs sm:text-sm line-clamp-2">
-                          {project.description}
-                        </p>
-
-                        {/* Tech Stack */}
-                        <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-4">
-                          {project.technologies?.map((tech) => (
-                            <span 
-                              key={tech}
-                              className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-dark-300/50 text-white/50"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Project Links */}
-                      <div className="p-6 pt-0 flex gap-3">
-                        {project.links.live && (
-                          <a 
-                            href={project.links.live}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-primary hover:text-primary-light transition-colors"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            View Live →
-                          </a>
-                        )}
-                        {project.links.github && (
-                          <a 
-                            href={project.links.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-white/60 hover:text-white transition-colors"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            View Code →
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </TiltCard>
-                </motion.div>
-              ))
-            )}
-          </motion.div>
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {getFilteredProjects().map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onClick={() => setSelectedProject(project.id)}
+              index={index}
+            />
+          ))}
         </div>
       </div>
 

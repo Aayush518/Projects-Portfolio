@@ -467,3 +467,46 @@ body {
     overflow-x: hidden;
   }
 }
+
+/* Add these mobile optimizations */
+@media (max-width: 768px) {
+  /* Improve touch scrolling */
+  .section {
+    @apply overflow-x-hidden;
+    touch-action: pan-y pinch-zoom;
+  }
+  
+  /* Disable hover effects on mobile */
+  .group:hover {
+    transform: none !important;
+  }
+  
+  /* Optimize animations */
+  * {
+    @apply motion-reduce:transform-none motion-reduce:transition-none;
+  }
+  
+  /* Better scroll performance */
+  .container-custom {
+    @apply overflow-x-hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+  
+  /* Reduce animation complexity */
+  .animate-float {
+    animation: none;
+  }
+}
+
+/* Add smooth scrolling but disable for reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Add overscroll behavior */
+html, body {
+  overscroll-behavior-y: contain;
+}
