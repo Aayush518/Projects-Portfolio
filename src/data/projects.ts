@@ -22,7 +22,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'wellness-landing-page',
-    title: 'Welless Landing Page',
+    title: 'Wellness Landing Page',
     description: 'A frontend design exploration for a visually stunning and highly interactive landing page for a wellness brand. Designed with modern UI/UX practices, it leverages React, TypeScript, and Tailwind CSS for a seamless user experience.',
     thumbnail: '/images/wellness.webp',
     category: 'Web Development',
