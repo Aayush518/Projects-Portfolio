@@ -10,6 +10,28 @@ import PDFThumbnail from '../ui/PDFThumbnail';
 import TiltCard from '../ui/TiltCard';
 import LoadingSpinner from '../ui/LoadingSpinner';
 
+// Define animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
+    }
+  }
+};
+
 // Update categories to be more focused on projects only
 const categories = [
   'All',
@@ -121,8 +143,10 @@ export default function Projects() {
 
         {/* Projects Grid */}
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-          layout
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 touch-pan-y"
         >
           {isLoading ? (
             <div className="col-span-full flex flex-col items-center justify-center py-20 gap-6">
@@ -139,11 +163,9 @@ export default function Projects() {
             filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
+                variants={itemVariants}
                 layout
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
               >
                 <TiltCard
                   glareEffect={true}

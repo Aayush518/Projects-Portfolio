@@ -8,6 +8,7 @@ import ScrollProgress from '../components/ScrollProgress';
 import NavIndicator from '../components/NavIndicator';
 import DynamicBackground from '../components/DynamicBackground';
 import { useSmoothScroll } from '../hooks/useSmoothScroll';
+import ScrollToTop from '../components/ScrollToTop';
 
 interface Props {
   title: string;
@@ -64,6 +65,7 @@ const { title } = Astro.props;
 
     <Navigation client:load />
     <slot />
+    <ScrollToTop client:load />
 
     <script>
       import 'gsap';

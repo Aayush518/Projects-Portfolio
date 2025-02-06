@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { Project } from '../../types/project';
+import { FiLoader } from 'react-icons/fi';
 
 interface ProjectModalProps {
   project: Project;
@@ -13,15 +14,71 @@ interface ProjectModalProps {
 export default function ProjectModal({ project, onClose, isGitHub, onPrevious, onNext }: ProjectModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = project.images || [project.thumbnail];
+  const [imageLoading, setImageLoading] = useState(true);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  const handlePrevImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  // Add ref for scroll container
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Add touch handling for mobile
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  // Auto slideshow
+  useEffect(() => {
+    if (!isAutoPlaying || images.length <= 1) return;
+    
+    const interval = setInterval(() => {
+      handleNextImage();
+    }, 3000); // Change slide every 3 seconds
+    
+    return () => clearInterval(interval);
+  }, [currentImageIndex, isAutoPlaying]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const handleNextImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      handleNextImage();
+    } else if (isRightSwipe) {
+      handlePrevImage();
+    }
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
+  // Update image navigation functions
+  const handlePrevImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    const nextIndex = (currentImageIndex - 1 + images.length) % images.length;
+    setCurrentImageIndex(nextIndex);
+    scrollContainerRef.current?.querySelector(`[data-index="${nextIndex}"]`)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'start'
+    });
+  };
+
+  const handleNextImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    const nextIndex = (currentImageIndex + 1) % images.length;
+    setCurrentImageIndex(nextIndex);
+    scrollContainerRef.current?.querySelector(`[data-index="${nextIndex}"]`)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'start'
+    });
   };
 
   return (
@@ -62,16 +119,35 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
           {/* Left Column - Images Gallery */}
           <div className="lg:w-3/5 h-full flex flex-col">
             {/* Image Gallery with Vertical Center */}
-            <div className="relative flex-1 overflow-x-auto overflow-y-hidden scrollbar-thin 
-                          scrollbar-thumb-[#ff1616]/20 scrollbar-track-dark-300/20">
+            <div 
+              ref={scrollContainerRef}
+              className="relative flex-1 overflow-x-auto overflow-y-hidden scrollbar-thin 
+                        scrollbar-thumb-[#ff1616]/20 scrollbar-track-dark-300/20"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onMouseEnter={() => setIsAutoPlaying(false)}
+              onMouseLeave={() => setIsAutoPlaying(true)}
+            >
               <div className="flex snap-x snap-mandatory h-full">
                 {images.map((image, index) => (
-                  <div key={index} className="flex-none w-full h-full snap-center">
+                  <div 
+                    key={index} 
+                    data-index={index}
+                    className="flex-none w-full h-full snap-center"
+                  >
                     <div className="relative h-full flex items-center justify-center">
+                      {imageLoading && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-dark-300/50">
+                          <FiLoader className="w-8 h-8 text-primary animate-spin" />
+                        </div>
+                      )}
                       <img
                         src={image}
                         alt={`${project.title} - Image ${index + 1}`}
-                        className="max-h-full max-w-full object-contain"
+                        className="max-h-full max-w-full object-contain transition-opacity duration-300"
+                        style={{ opacity: imageLoading ? 0 : 1 }}
+                        onLoad={() => setImageLoading(false)}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-dark-200 via-transparent to-transparent opacity-60" />
                     </div>
@@ -115,6 +191,29 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
                 </>
               )}
 
+              {/* Add play/pause button */}
+              {images.length > 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsAutoPlaying(!isAutoPlaying);
+                  }}
+                  className="absolute bottom-4 left-4 p-2 rounded-full bg-dark-300/50 
+                            hover:bg-[#ff1616]/20 transition-colors z-10"
+                >
+                  {isAutoPlaying ? (
+                    <svg className="w-5 h-5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  )}
+                </button>
+              )}
+
               {/* Image Counter */}
               <div className="absolute bottom-4 right-4 px-4 py-2 rounded-full bg-dark-300/50 
                             text-white/70 text-sm backdrop-blur-sm">
@@ -131,8 +230,11 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
                     key={index}
                     onClick={() => {
                       setCurrentImageIndex(index);
-                      const imageElements = document.querySelectorAll('.snap-center');
-                      imageElements[index]?.scrollIntoView({ behavior: 'smooth' });
+                      scrollContainerRef.current?.querySelector(`[data-index="${index}"]`)?.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'start'
+                      });
                     }}
                     className={`flex-none h-full aspect-video rounded-md overflow-hidden 
                               border-2 transition-colors ${
@@ -298,7 +400,7 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#ff1616] 
-                             text-[#ff1616] hover:text-white rounded-lg transition-all duration-300 
+                             text-[#ff1616] hover:text-white rounded-lg transition-all duration-100 
                              relative overflow-hidden group"
                   >
                     <span className="relative z-10">View Code</span>

@@ -1,14 +1,19 @@
 import { motion } from 'framer-motion';
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+  
   return (
     <footer className="bg-dark-200/50 border-t border-white/5">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="space-y-4">
-            <h3 className="text-xl font-display font-bold">Portfolio</h3>
+            <h3 className="text-xl font-display font-bold bg-gradient-to-r from-primary to-primary-light text-transparent bg-clip-text">
+              Aayush Adhikari
+            </h3>
             <p className="text-white/70 text-sm leading-relaxed">
-              Building innovative solutions through code, from speech technology to web applications.
+              Full Stack Developer specializing in innovative solutions through modern web technologies and AI integration.
             </p>
           </div>
 
@@ -19,9 +24,10 @@ export default function Footer() {
                 <motion.a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className="text-white/70 hover:text-white text-sm transition-colors"
+                  className="text-white/70 hover:text-primary transition-colors flex items-center gap-2"
                   whileHover={{ x: 4 }}
                 >
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/60"></span>
                   {item}
                 </motion.a>
               ))}
@@ -31,13 +37,35 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-xl font-display font-bold">Connect</h3>
             <div className="flex gap-4">
-              {/* Add your social media links here */}
+              <a 
+                href="https://github.com/aayush518" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-dark-300/50 hover:bg-dark-300 transition-colors"
+              >
+                <FiGithub className="w-5 h-5 text-white/70 hover:text-primary" />
+              </a>
+              <a 
+                href="https://linkedin.com/in/aayush518" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-dark-300/50 hover:bg-dark-300 transition-colors"
+              >
+                <FiLinkedin className="w-5 h-5 text-white/70 hover:text-primary" />
+              </a>
+              <a 
+                href="mailto:aayushadhikari518@gmail.com"
+                className="p-2 rounded-lg bg-dark-300/50 hover:bg-dark-300 transition-colors"
+              >
+                <FiMail className="w-5 h-5 text-white/70 hover:text-primary" />
+              </a>
             </div>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/5 text-center text-sm text-white/50">
-          © {new Date().getFullYear()} Your Name. All rights reserved.
+          <p>© {currentYear} Aayush Adhikari. All rights reserved.</p>
+          <p className="mt-2">Built with Astro, React, and Tailwind CSS</p>
         </div>
       </div>
     </footer>
