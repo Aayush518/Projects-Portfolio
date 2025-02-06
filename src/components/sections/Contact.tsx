@@ -60,7 +60,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-medium">Email</p>
-                  <p className="text-sm text-white/60">aayushadhikari518@gmail.com</p>
+                  <p className="text-sm text-white/60">aayushadhikari37@gmail.com</p>
                 </div>
               </a>
               <div className="flex items-center gap-4 p-4 rounded-lg bg-dark-300">
@@ -69,7 +69,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="font-medium">Location</p>
-                  <p className="text-sm text-white/60">Kathmandu, Nepal</p>
+                  <p className="text-sm text-white/60">Pokhara, Nepal</p>
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function Contact() {
                   <input 
                     type="text" 
                     className="w-full px-4 py-3 bg-dark-200 rounded-md border border-dark-400 focus:border-primary outline-none"
-                    placeholder="John Doe" 
+                    placeholder="Aayush Adhikari" 
                     required 
                   />
                 </div>
@@ -98,7 +98,7 @@ export default function Contact() {
                   <input 
                     type="email" 
                     className="w-full px-4 py-3 bg-dark-200 rounded-md border border-dark-400 focus:border-primary outline-none"
-                    placeholder="john@example.com" 
+                    placeholder="aayush@example.com" 
                     required 
                   />
                 </div>
