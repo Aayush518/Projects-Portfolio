@@ -21,6 +21,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 'wellness-landing-page',
+    title: 'Welless Landing Page',
+    description: 'A frontend design exploration for a visually stunning and highly interactive landing page for a wellness brand. Designed with modern UI/UX practices, it leverages React, TypeScript, and Tailwind CSS for a seamless user experience.',
+    thumbnail: '/images/wellness.webp',
+    category: 'Web Development',
+    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    links: {
+      live: 'https://willlingness.netlify.app',
+    },
+    details: {
+      showDetails: false
+    },
+    images: [
+      '/images/wellness.webp',
+    ],
+    featured: true
+  },
+  {
     id: 'pursia-handbags',
     title: 'Pursia Hand Bags',
     description: 'A frontend design exploration inspired by various Dribbble designs, reimagined into a luxury handbag store interface. A practice project focusing on modern UI implementation and responsive design.',

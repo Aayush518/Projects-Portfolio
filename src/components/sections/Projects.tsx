@@ -99,7 +99,7 @@ export default function Projects() {
 
       <div className="container-custom relative">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-16 px-4">
           <motion.h2 
             className="heading-2 mb-6"
             initial={{ opacity: 0, y: 20 }}
@@ -120,14 +120,16 @@ export default function Projects() {
             A curated collection of projects showcasing expertise in speech technology, 
             web development, and artificial intelligence.
           </motion.p>
+        </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {/* Category Filter - Make it horizontally scrollable on mobile */}
+        <div className="overflow-x-auto scrollbar-none mb-8 sm:mb-12 px-4">
+          <div className="flex flex-nowrap justify-start sm:justify-center gap-3 min-w-min">
             {categories.map((category) => (
               <motion.button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm transition-all duration-300 ${
+                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm whitespace-nowrap transition-all duration-300 ${
                   activeCategory === category
                     ? 'bg-primary text-white shadow-lg shadow-primary/20'
                     : 'bg-dark-200/50 text-white/60 hover:bg-dark-200 hover:text-white'
@@ -141,111 +143,113 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 touch-pan-y"
-        >
-          {isLoading ? (
-            <div className="col-span-full flex flex-col items-center justify-center py-20 gap-6">
-              <LoadingSpinner />
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-white/60 text-sm"
-              >
-                Loading amazing projects...
-              </motion.p>
-            </div>
-          ) : (
-            filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                variants={itemVariants}
-                layout
-                viewport={{ once: true }}
-              >
-                <TiltCard
-                  glareEffect={true}
-                  tiltAmount={15}
-                  perspective={1200}
+        {/* Projects Grid - Improve mobile layout */}
+        <div className="px-4 sm:px-6">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
+          >
+            {isLoading ? (
+              <div className="col-span-full flex flex-col items-center justify-center py-20 gap-6">
+                <LoadingSpinner />
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-white/60 text-sm"
                 >
-                  <div 
-                    className="card group cursor-pointer h-full flex flex-col"
-                    onClick={() => setSelectedProject(project.id)}
+                  Loading amazing projects...
+                </motion.p>
+              </div>
+            ) : (
+              filteredProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  variants={itemVariants}
+                  layout
+                  viewport={{ once: true }}
+                >
+                  <TiltCard
+                    glareEffect={true}
+                    tiltAmount={15}
+                    perspective={1200}
                   >
-                    {/* Project Image */}
-                    <div className="relative aspect-video overflow-hidden rounded-t-xl">
-                      <img 
-                        src={project.thumbnail} 
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark-200/90 to-transparent opacity-60" />
-                      
-                      {/* Category Badge */}
-                      <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2">
-                        <span className="px-3 py-1 text-xs rounded-full glass text-primary/90 backdrop-blur-md">
-                          {project.category}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Project Content */}
-                    <div className="flex-1 p-6 space-y-4">
-                      <h3 className="text-lg sm:text-xl font-bold group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-white/60 text-xs sm:text-sm line-clamp-2">
-                        {project.description}
-                      </p>
-
-                      {/* Tech Stack */}
-                      <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-4">
-                        {project.technologies?.map((tech) => (
-                          <span 
-                            key={tech}
-                            className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-dark-300/50 text-white/50"
-                          >
-                            {tech}
+                    <div 
+                      className="card group cursor-pointer h-full flex flex-col"
+                      onClick={() => setSelectedProject(project.id)}
+                    >
+                      {/* Project Image */}
+                      <div className="relative aspect-video overflow-hidden rounded-t-xl">
+                        <img 
+                          src={project.thumbnail} 
+                          alt={project.title}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-dark-200/90 to-transparent opacity-60" />
+                        
+                        {/* Category Badge */}
+                        <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2">
+                          <span className="px-3 py-1 text-xs rounded-full glass text-primary/90 backdrop-blur-md">
+                            {project.category}
                           </span>
-                        ))}
+                        </div>
+                      </div>
+
+                      {/* Project Content */}
+                      <div className="flex-1 p-6 space-y-4">
+                        <h3 className="text-lg sm:text-xl font-bold group-hover:text-primary transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-white/60 text-xs sm:text-sm line-clamp-2">
+                          {project.description}
+                        </p>
+
+                        {/* Tech Stack */}
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-4">
+                          {project.technologies?.map((tech) => (
+                            <span 
+                              key={tech}
+                              className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-dark-300/50 text-white/50"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Project Links */}
+                      <div className="p-6 pt-0 flex gap-3">
+                        {project.links.live && (
+                          <a 
+                            href={project.links.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-primary hover:text-primary-light transition-colors"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            View Live →
+                          </a>
+                        )}
+                        {project.links.github && (
+                          <a 
+                            href={project.links.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-white/60 hover:text-white transition-colors"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            View Code →
+                          </a>
+                        )}
                       </div>
                     </div>
-
-                    {/* Project Links */}
-                    <div className="p-6 pt-0 flex gap-3">
-                      {project.links.live && (
-                        <a 
-                          href={project.links.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm text-primary hover:text-primary-light transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          View Live →
-                        </a>
-                      )}
-                      {project.links.github && (
-                        <a 
-                          href={project.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm text-white/60 hover:text-white transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          View Code →
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </TiltCard>
-              </motion.div>
-            ))
-          )}
-        </motion.div>
+                  </TiltCard>
+                </motion.div>
+              ))
+            )}
+          </motion.div>
+        </div>
       </div>
 
       {/* Project Modal */}

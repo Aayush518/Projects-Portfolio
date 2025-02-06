@@ -81,12 +81,46 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
     });
   };
 
+  // Add touch event handling for mobile
+  useEffect(() => {
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.touches[0].clientX;
+    };
+    
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].clientX;
+      const difference = touchStartX - touchEndX;
+      
+      if (Math.abs(difference) > 50) { // Minimum swipe distance
+        if (difference > 0) {
+          handleNextImage();
+        } else {
+          handlePrevImage();
+        }
+      }
+    };
+    
+    const modalElement = document.querySelector('.project-modal');
+    if (modalElement) {
+      modalElement.addEventListener('touchstart', handleTouchStart);
+      modalElement.addEventListener('touchend', handleTouchEnd);
+      
+      return () => {
+        modalElement.removeEventListener('touchstart', handleTouchStart);
+        modalElement.removeEventListener('touchend', handleTouchEnd);
+      };
+    }
+  }, [handleNextImage, handlePrevImage]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 project-modal"
       onClick={onClose}
     >
       {/* Background layers */}

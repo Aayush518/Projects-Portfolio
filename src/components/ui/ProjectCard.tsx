@@ -15,8 +15,10 @@ export default function ProjectCard({ project, onClick, index }: ProjectCardProp
       transition={{ delay: index * 0.1 }}
       onClick={onClick}
       className="group bg-dark-300/50 backdrop-blur-sm rounded-xl overflow-hidden cursor-pointer 
-                 border border-[#ff1616]/10 hover:border-[#ff1616]/20 transition-all duration-300"
+                 border border-[#ff1616]/10 hover:border-[#ff1616]/20 transition-all duration-300
+                 touch-pan-y"
       whileHover={{ y: -5 }}
+      whileTap={{ scale: 0.98 }}
     >
       <div className="relative aspect-video overflow-hidden">
         <img
