@@ -21,6 +21,25 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    "id": "chrono-frontend",
+    "title": "Chrono Frontend",
+    "description": "A sleek and modern frontend application designed for a luxury watch brand. This project showcases a visually striking landing page with smooth animations, interactive components, and a focus on user experience, utilizing React, TypeScript, and Tailwind CSS.",
+    "thumbnail": "/images/watch.webp",
+    "category": "Web Development",
+    "technologies": ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Lucide React"],
+    "links": {
+        "live": "https://chronowatch1.netlify.app"
+    },
+    "details": {
+        "showDetails": true
+    },
+    "images": [
+        "/images/watch.webp",
+ 
+    ],
+    "featured": true
+},
+  {
     id: 'wellness-landing-page',
     title: 'Wellness Landing Page',
     description: 'A frontend design exploration for a visually stunning and highly interactive landing page for a wellness brand. Designed with modern UI/UX practices, it leverages React, TypeScript, and Tailwind CSS for a seamless user experience.',
