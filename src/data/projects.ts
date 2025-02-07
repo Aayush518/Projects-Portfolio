@@ -350,7 +350,25 @@ export const projects: Project[] = [
     showDetails: true
   },
   "images": [
-    "/images/mithomitho.webp"
+    "/images/mithomitho.webp",
+    "/images/se1.webp",
+    "/images/se2.webp",
+    "/images/se3.webp",
+    "/images/se4.webp",
+    "/images/se5.webp",
+    "/images/se6.webp",
+    "/images/se7.webp",
+    "/images/se8.webp",
+    "/images/se9.webp",
+    "/images/se10.webp",
+    "/images/se11.webp",
+    "/images/se12.webp",
+    "/images/se13.webp",
+    "/images/se14.webp",
+    "/images/se15.webp",
+    "/images/se16.webp",
+    "/images/se17.webp",
+    "/images/se18.webp",
   ],
   "featured": true
 },
