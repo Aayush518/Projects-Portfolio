@@ -135,7 +135,7 @@ export default function ProjectModal({ project, onClose, isGitHub, onPrevious, o
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-7xl h-[90vh] bg-dark-200/90 rounded-xl 
+        className="absolute inset-0 m-auto h-[90vh] bg-dark-200/90 rounded-xl 
                    overflow-hidden border border-[#ff1616]/10"
       >
         {/* Close Button */}
