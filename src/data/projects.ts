@@ -21,6 +21,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    "id": "code-pal-landingpage",
+    "title": "Code Pal Landing Page",
+    "description": "A dynamic landing page for Code Pal, featuring a modern design with smooth animations and interactive components. This project highlights user engagement through its various sections, utilizing React, TypeScript, and Tailwind CSS.",
+    "thumbnail": "/images/codepal.webp",
+    "category": "Web Development",
+    "technologies": ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Lucide React", "Radix UI"],
+    "links": {
+        "live": "https://codepallandingpage.netlify.app"
+    },
+    "details": {
+        "showDetails": false
+    },
+    "images": [
+        "/images/codepal.webp",
+    ],
+    "featured": true
+},
+  {
     "id": "chrono-frontend",
     "title": "Chrono Frontend",
     "description": "A sleek and modern frontend application designed for a luxury watch brand. This project showcases a visually striking landing page with smooth animations, interactive components, and a focus on user experience, utilizing React, TypeScript, and Tailwind CSS.",
@@ -31,7 +49,7 @@ export const projects: Project[] = [
         "live": "https://chronowatch1.netlify.app"
     },
     "details": {
-        "showDetails": true
+        "showDetails": false
     },
     "images": [
         "/images/watch.webp",
