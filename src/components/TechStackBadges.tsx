@@ -23,10 +23,10 @@ export default function TechStackBadges() {
             className="px-4 py-2 rounded-full bg-dark-200/50 backdrop-blur-sm border border-white/5
                      shadow-lg shadow-black/5"
           >
-            <span className="text-white/70 text-sm whitespace-nowrap">{tech}</span>
+            <span className="text-white text-sm whitespace-nowrap">{tech}</span>
           </motion.div>
         ))}
       </div>
     </motion.div>
   );
-} 
+}
