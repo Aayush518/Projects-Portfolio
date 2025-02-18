@@ -21,6 +21,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    "id": "chrono-task-frontend",
+    "title": "ChronoTask Frontend",
+    "description": "A task management dashboard featuring components for task lists, calendars, reminders, and integrations. Built with React, TypeScript, and Tailwind CSS, it emphasizes modular design and user-friendly interfaces.",
+    "thumbnail": "/images/chronofrontend.webp",
+    "category": "Web Development",
+    "technologies": ["React", "TypeScript", "Tailwind CSS", "Lucide React"],
+    "links": {
+        "live": "https://chrono-task-frontend.vercel.app/"
+    },
+    "details": {
+        "showDetails": false
+    },
+    "images": [
+        "/images/chronfrontend.webp"
+    ],
+    "featured": true
+},
+  {
     "id": "code-pal-landingpage",
     "title": "Code Pal Landing Page",
     "description": "A dynamic landing page for Code Pal, featuring a modern design with smooth animations and interactive components. This project highlights user engagement through its various sections, utilizing React, TypeScript, and Tailwind CSS.",
