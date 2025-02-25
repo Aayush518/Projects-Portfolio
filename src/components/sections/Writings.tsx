@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { writings } from '../../data/writings';
 import PDFViewer from '../ui/PDFViewer';
@@ -11,6 +11,105 @@ const categories = [
   'Stories',
   'Thoughts'
 ] as const;
+
+const WritingCard = ({ writing }: { writing: Writing }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  return (
+    <div className="bg-dark-200/50 rounded-xl overflow-hidden backdrop-blur-sm border border-accent/10 hover:border-accent/20 transition-colors">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-t-xl">
+        <div className="absolute inset-0 bg-gradient-to-br from-dark-300 to-dark-200 p-6 flex flex-col justify-center items-center">
+          <div className="absolute top-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl transform group-hover:translate-x-2 transition-transform duration-700" />
+          <div className="absolute bottom-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl transform group-hover:-translate-x-2 transition-transform duration-700" />
+          <div className="mb-6">
+            <span className="px-3 py-1 rounded-full text-xs bg-white/5 backdrop-blur-sm border border-white/10">
+              {writing.category}
+            </span>
+          </div>
+          <h3 className="text-xl font-bold text-center mb-4 px-4">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#9b111e] via-[#ff1616] to-[#ff1616]">
+              {writing.title}
+            </span>
+          </h3>
+          <div className="flex items-center gap-4 text-sm text-white/50">
+            <div className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{writing.readingTime}</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>{writing.date}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="p-6 space-y-4">
+        <h3 className="text-xl font-bold text-white">{writing.title}</h3>
+        <p className="text-white/70">{writing.description}</p>
+        
+        {writing.audioUrl && (
+          <div className="mt-4 flex items-center gap-4">
+            <button
+              onClick={togglePlay}
+              className="flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 
+                       rounded-lg transition-all duration-300 group"
+            >
+              <span className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                {isPlaying ? (
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <rect x="6" y="4" width="4" height="16" />
+                    <rect x="14" y="4" width="4" height="16" />
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                )}
+              </span>
+              <span className="text-white font-medium">
+                {isPlaying ? 'Pause Audio' : 'Play Audio'}
+              </span>
+            </button>
+            <audio 
+              ref={audioRef}
+              src={writing.audioUrl}
+              onEnded={() => setIsPlaying(false)}
+              className="hidden"
+            />
+          </div>
+        )}
+        
+        <div className="flex flex-wrap gap-2">
+          {writing.tags.map((tag) => (
+            <span 
+              key={tag}
+              className="text-xs px-2 py-1 rounded-full bg-dark-300/50 text-white/50"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function Writings() {
   const [selectedWriting, setSelectedWriting] = useState<string | null>(null);
@@ -87,65 +186,7 @@ export default function Writings() {
                 className="card group cursor-pointer h-full flex flex-col"
                 onClick={() => setSelectedWriting(writing.id)}
               >
-                {/* Writing Card Content */}
-                <div className="relative aspect-[4/3] overflow-hidden rounded-t-xl">
-                  <div className="absolute inset-0 bg-gradient-to-br from-dark-300 to-dark-200 p-6 flex flex-col justify-center items-center">
-                    {/* Decorative Elements */}
-                    <div className="absolute top-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-3xl transform group-hover:translate-x-2 transition-transform duration-700" />
-                    <div className="absolute bottom-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl transform group-hover:-translate-x-2 transition-transform duration-700" />
-                    
-                    {/* Writing Type Badge */}
-                    <div className="mb-6">
-                      <span className="px-3 py-1 rounded-full text-xs bg-white/5 backdrop-blur-sm border border-white/10">
-                        {writing.category}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-center mb-4 px-4">
-                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#9b111e] via-[#ff1616] to-[#ff1616]">
-                        {writing.title}
-                      </span>
-                    </h3>
-
-                    {/* Metadata */}
-                    <div className="flex items-center gap-4 text-sm text-white/50">
-                      <div className="flex items-center gap-1.5">
-                        <svg className="w-4 h-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span>{writing.readingTime}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <svg className="w-4 h-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        <span>{writing.date}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <div className="p-6">
-                  <p className="text-white/60 text-sm line-clamp-3">
-                    {writing.description}
-                  </p>
-                </div>
-
-                {/* Tags */}
-                <div className="px-6 pb-6 mt-auto">
-                  <div className="flex flex-wrap gap-2">
-                    {writing.tags.map((tag) => (
-                      <span 
-                        key={tag}
-                        className="text-xs px-2 py-1 rounded-full bg-dark-300/50 text-white/50"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <WritingCard writing={writing} />
               </div>
             </motion.div>
           ))}

@@ -9,6 +9,7 @@ export interface Writing {
   author?: string;
   readingTime?: string;
   coverImage?: string;
+  audioUrl?: string;
 }
 
 export const writings: Writing[] = [
@@ -17,6 +18,7 @@ export const writings: Writing[] = [
     title: 'The Labrynth of dreams',
     description: 'This story is a psychological drama with elements of magical realism, exploring themes of reality, dreams, trauma, and identity.',
     pdfUrl: '/images/pdfs/The_Labrynth_of_dreams.pdf', // Replace with actual PDF URL
+    audioUrl: '/audios/The Labyrinth of Dreams.mp3',
     date: '2024-01-15',
     category: 'Story',
     tags: ['psychology', 'dreams', 'fiction'],
