@@ -21,6 +21,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    "id": "cellar-beverage",
+    "title": "Cellar Beverage",
+    "description": "An e-commerce platform for premium beverages, featuring product showcases, detailed product information, cart functionality and user authentication. Built with React, TypeScript, Tailwind CSS, and Framer Motion to deliver a smooth user experience.",
+    "thumbnail": "/images/wine.webp",
+    "category": "Web Development",
+    "technologies": ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    "links": {
+        "live": "https://cellar-beverage.vercel.app/"
+    },
+    "details": {
+        "showDetails": false
+    },
+    "images": [
+        "/images/wine.webp",
+    ],
+    "featured": true
+},
+  {
     "id": "chrono-task-frontend",
     "title": "ChronoTask Frontend",
     "description": "A task management dashboard featuring components for task lists, calendars, reminders, and integrations. Built with React, TypeScript, and Tailwind CSS, it emphasizes modular design and user-friendly interfaces.",
