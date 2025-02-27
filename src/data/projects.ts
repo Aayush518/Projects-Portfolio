@@ -363,7 +363,7 @@ export const projects: Project[] = [
     "/images/terminalport.webp", 
   ],
   "featured": true
-},,
+},
 {
   id: 'Immersive-3D-Portfolio template',
   title: 'Immersive 3D Portfolio template',
