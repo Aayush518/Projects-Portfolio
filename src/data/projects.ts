@@ -21,6 +21,27 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    "id": "nike-shoes-showcase",
+    "title": "Nike Shoes Showcase",
+    "description": "An interactive React-based web application showcasing Nike shoe products with animations, and a modern responsive design",
+    "thumbnail": "/images/nike.webp",
+    "category": "Web Development, 3D Visualization",
+    "technologies": ["React", "TypeScript", "Three.js", "Framer Motion", "TailwindCSS", "Vite"],
+    "links": {
+      "github": "https://nike-tan-one.vercel.app"
+    },
+    "details": {
+      "challenge": "Creating an immersive, visually appealing showcase for Nike products with 3D visualization and smooth animations while maintaining performance",
+      "solution": "Developed a modern React application with Three.js for 3D model rendering, Framer Motion for smooth animations, and a responsive design using TailwindCSS",
+      "impact": "Delivers an engaging product showcase experience that highlights Nike shoes with interactive elements and modern design principles",
+      "showDetails": false
+    },
+    "images": [
+      "/images/nike.webp"
+    ],
+    "featured": true
+  },
+  {
     "id": "cellar-beverage",
     "title": "Cellar Beverage",
     "description": "An e-commerce platform for premium beverages, featuring product showcases, detailed product information, cart functionality and user authentication. Built with React, TypeScript, Tailwind CSS, and Framer Motion to deliver a smooth user experience.",
