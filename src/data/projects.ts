@@ -56,6 +56,24 @@ export const projects: Project[] = [
     ],
     "featured": true
 },
+{
+  "id": "bagstore",
+  "title": "Bagstore",
+  "description": "An e-commerce application for bags of all kinds, featuring product browsing, shopping cart management, and checkout functionality. Built with React to provide a seamless shopping experience.",
+  "thumbnail": "/images/ecom-react.webp",
+  "category": "Web Development",
+  "technologies": ["React"],
+  "links": {
+      "live": "https://bagstore-topaz.vercel.app"
+  },
+  "details": {
+      "showDetails": false
+  },
+  "images": [
+      "/images/ecom-react.webp"
+  ],
+  "featured": true
+},
   {
     "id": "code-pal-landingpage",
     "title": "Code Pal Landing Page",
