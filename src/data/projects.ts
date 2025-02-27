@@ -155,6 +155,24 @@ export const projects: Project[] = [
     featured: true
   },
   {
+    "id": "poketoy",
+    "title": "Poketoy",
+    "description": "An interactive e-commerce application for Pokemon-themed toys, featuring product browsing, category filtering, animations, and a showcase of legendary Pokemon. Built with React, TypeScript, and Tailwind CSS for a dynamic and visually stunning user experience.",
+    "thumbnail": "/images/poketoy.webp",
+    "category": "Web Development",
+    "technologies": ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
+    "links": {
+        "live": "https://poketoy.vercel.app"
+    },
+    "details": {
+        "showDetails": false
+    },
+    "images": [
+        "/images/poketoy.webp"
+    ],
+    "featured": true
+  },
+  {
     id: 'research-gpt',
     title: 'ResearchGPT',
     description: 'An advanced AI-powered research paper generation platform built with React, TypeScript, and Tailwind CSS, enabling users to create high-quality academic papers with customizable configurations.',
