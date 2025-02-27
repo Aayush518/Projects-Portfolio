@@ -344,6 +344,27 @@ export const projects: Project[] = [
     featured: true
 },
 {
+  "id": "terminal-portTemplate",
+  "title": "Terminal Portfolio Template",
+  "description": "A modern and customizable portfolio template built with React, TypeScript, and Tailwind CSS, designed to showcase projects in a sleek, terminal-inspired interface.",
+  "thumbnail": "/images/terminalport.webp",
+  "category": "Web Development, Templates",
+  "technologies": ["React", "TypeScript", "Tailwind CSS", "Vite", "Lucide React"],
+  "links": {
+    "live": "https://resplendent-alfajores-cdfd98.netlify.app/" 
+  },
+  "details": {
+    "challenge": "Creating a unique and engaging portfolio template that stands out from typical designs while remaining highly customizable and easy to use.",
+    "solution": "Developed a React application with TypeScript and Tailwind CSS, featuring a terminal-inspired design, reusable components, and a data-driven approach for easy project integration. Utilized Lucide React for consistent and customizable icons.",
+    "impact": "Provides developers with a readily available template to create a stunning online portfolio, highlighting their skills and projects in a distinctive and memorable way.",
+    showDetails: false
+  },
+  "images": [
+    "/images/terminalport.webp", 
+  ],
+  "featured": true
+},,
+{
   id: 'Immersive-3D-Portfolio template',
   title: 'Immersive 3D Portfolio template',
   description: 'Interactive 3D portfolio template built with Three.js and React, featuring custom shaders and animations',
