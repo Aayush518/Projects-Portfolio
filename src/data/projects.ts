@@ -21,6 +21,25 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    "id": "CampusWebsiteTrial",
+    "title": "Campus Website Trial",
+    "description": "A trial website for a campus featuring a modern design with smooth animations and interactive elements. This project showcases a responsive layout with a focus on user experience and visual appeal.",
+    "thumbnail": "/images/campus.webp",
+    "category": "Web Development",
+    "technologies": ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    "links": {
+      "live": "https://campus-website-trial.vercel.app"
+    },
+    "details": {
+      "showDetails": false
+    },
+    "images": [
+      "/images/campus.webp"
+    ],
+    "featured": true
+
+  },
+  {
     "id": "nike-shoes-showcase",
     "title": "Nike Shoes Showcase",
     "description": "An interactive React-based web application showcasing Nike shoe products with animations, and a modern responsive design",
