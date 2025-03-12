@@ -29,4 +29,79 @@
 .content-visibility-auto {
   content-visibility: auto;
   contain-intrinsic-size: 0 500px;
-} 
+}
+
+/* Core performance CSS that should load immediately */
+
+/* Apply these critical styles based on HTML class */
+.optimize-performance {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 5000px;
+  text-rendering: optimizeSpeed;
+}
+
+/* Forcefully disable animations during initial load */
+.disable-animations *,
+.disable-animations *::before,
+.disable-animations *::after {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+/* Low-end device optimizations */
+.low-end-device img {
+  image-rendering: auto;
+}
+
+.low-end-device {
+  content-visibility: auto;
+}
+
+.low-end-device .animate-float,
+.low-end-device .animate-float-optimized,
+.low-end-device .parallax-element,
+.low-end-device .animate-pulse {
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Critical visibility to ensure nothing is hidden */
+html, body {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Better GPU acceleration with contain property */
+.gpu-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+  contain: paint;
+}
+
+/* Optimized layout containment for major sections */
+header, main, footer, section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+  contain: content;
+}
+
+/* Optimize painting on interactive elements */
+a, button, input, select, textarea {
+  contain: paint;
+}
+
+/* Disable animations on mobile and reduce component complexity */
+@media (max-width: 768px) {
+  .animate-float, 
+  .animate-float-optimized,
+  .parallax-element,
+  .animate-pulse {
+    animation: none !important;
+  }
+
+  .hover-effect:hover {
+    transform: none !important;
+  }
+}

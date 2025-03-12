@@ -1,55 +1,79 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 
 export default function CustomCursor() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
+  // Skip on SSR or mobile devices
+  if (typeof window === 'undefined' || 
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent || '') ||
+      window.matchMedia?.('(max-width: 768px)').matches) {
+    return null;
+  }
+  
+  // Use refs for all values to prevent re-renders
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const positionRef = useRef({ x: 0, y: 0 });
+  const visibleRef = useRef(false);
+  const rafRef = useRef<number | null>(null);
 
+  // Set up cursor only once after component mounts
   useEffect(() => {
+    // Only update DOM when needed
+    const updateCursorPosition = () => {
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = 
+          `translate3d(${positionRef.current.x}px, ${positionRef.current.y}px, 0)`;
+      }
+      rafRef.current = null;
+    };
+    
+    // Highly optimized throttled mouse move handler
+    let lastMove = 0;
+    const THROTTLE = 16; // ~60fps
+    
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      const now = performance.now();
+      
+      // Show cursor on first movement
+      if (!visibleRef.current && cursorRef.current) {
+        cursorRef.current.style.opacity = '1';
+        visibleRef.current = true;
+      }
+      
+      // Update position immediately
+      positionRef.current = { x: e.clientX, y: e.clientY };
+      
+      // Throttle rendering
+      if (now - lastMove < THROTTLE) {
+        if (!rafRef.current) {
+          rafRef.current = requestAnimationFrame(updateCursorPosition);
+        }
+        return;
+      }
+      
+      lastMove = now;
+      
+      // Apply position directly for smoother cursor on high-performance devices
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(updateCursorPosition);
     };
 
-    const handleHoverStart = () => setIsHovering(true);
-    const handleHoverEnd = () => setIsHovering(false);
-
-    document.addEventListener('mousemove', handleMouseMove);
+    // Use passive listener for better performance
+    document.addEventListener('mousemove', handleMouseMove, { passive: true });
     
-    const interactiveElements = document.querySelectorAll('a, button, .card');
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', handleHoverStart);
-      el.addEventListener('mouseleave', handleHoverEnd);
-    });
-
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      interactiveElements.forEach(el => {
-        el.removeEventListener('mouseenter', handleHoverStart);
-        el.removeEventListener('mouseleave', handleHoverEnd);
-      });
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
   return (
-    <>
-      <motion.div
-        className="fixed top-0 left-0 w-4 h-4 rounded-full bg-primary/50 pointer-events-none z-50 mix-blend-difference"
-        animate={{
-          x: mousePos.x - 8,
-          y: mousePos.y - 8,
-          scale: isHovering ? 2 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 500, damping: 28 }}
-      />
-      <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary/30 pointer-events-none z-50"
-        animate={{
-          x: mousePos.x - 16,
-          y: mousePos.y - 16,
-          scale: isHovering ? 1.5 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 250, damping: 20 }}
-      />
-    </>
+    <div 
+      ref={cursorRef}
+      className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 opacity-0"
+      style={{ 
+        transform: 'translate3d(-100px, -100px, 0)',
+        willChange: 'transform', 
+        transition: 'opacity 0.2s',
+      }}
+    />
   );
-} 
+}
