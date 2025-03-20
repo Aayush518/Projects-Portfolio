@@ -1,5 +1,0 @@
-This directory contains font files for the portfolio website.
-
-Required fonts:
-- Inter-Regular.woff2
-- ClashDisplay-Medium.woff2

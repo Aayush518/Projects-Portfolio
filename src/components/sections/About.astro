@@ -123,104 +123,57 @@
           </div>
         </div>
 
-        {/* Right Column - Enhanced Professional Image Display with Advanced Blending */}
-        <div class="relative">
-          <div class="relative overflow-hidden rounded-xl shadow-2xl">
-            {/* Advanced placeholder for smoother transition */}
-            <div class="absolute inset-0 bg-dark-200/80 backdrop-blur-sm"
-                 style="opacity: 1;" id="image-placeholder"></div>
-            
-            {/* Main image with improved aspect ratio and blending */}
-            <div class="aspect-[3/4] w-full">
+        <div class="relative group">
+          {/* Main Image Container */}
+          <div class="relative z-10 rounded-2xl overflow-hidden transform group-hover:scale-[0.98] transition-transform duration-500">
+            <div class="relative h-[500px] md:h-[600px] lg:h-[700px]"> {/* Adjust height for different screen sizes */}
               <img 
                 src="/images/mypic1.png" 
                 alt="Aayush518" 
-                class="w-full h-full object-cover"
-                style="opacity: 0; filter: saturate(0.92) contrast(1.03) brightness(0.97);"
-                onload="this.style.opacity = 1; document.getElementById('image-placeholder').style.opacity = 0;"
-                loading="lazy"
-                decoding="async"
+                class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+                style="object-position: center 30%;"
               />
+              {/* Gradient Overlay */}
+              <div class="absolute inset-0 bg-gradient-to-tr from-[#9b111e]/30 via-transparent to-[#ff1616]/20" />
               
-              {/* Enhanced multi-layered gradient overlays for seamless blending */}
-              <div class="absolute inset-0 bg-gradient-to-t from-dark-200/90 via-dark-200/10 to-transparent"></div>
-              <div class="absolute inset-0 bg-gradient-to-r from-dark-200/60 via-transparent to-dark-200/60"></div>
-              <div class="absolute inset-0 bg-gradient-to-br from-dark-200/40 via-transparent to-transparent"></div>
-              
-              {/* Subtle color tint to match site theme */}
-              <div class="absolute inset-0 bg-[#9b111e]/5 mix-blend-color"></div>
-              
-              {/* Improved vignette effect */}
-              <div class="absolute inset-0 bg-radial-gradient"></div>
-              
-              {/* Subtle noise texture overlay for film-like quality */}
-              <div class="absolute inset-0 bg-noise opacity-[0.03]"></div>
+              {/* Subtle Pattern Overlay */}
+              <div class="absolute inset-0 bg-grid opacity-[0.02] mix-blend-overlay" />
             </div>
           </div>
-          
-          {/* Enhanced glow effect */}
-          <div class="absolute -z-10 -inset-4 bg-gradient-to-br from-primary/10 to-dark-200/5 rounded-xl blur-3xl opacity-60"></div>
+        
+          {/* Decorative Elements */}
+          <div class="absolute -inset-4 z-0">
+            {/* Animated Border Frame */}
+            <div class="absolute inset-0 border-2 border-[#ff1616]/20 rounded-2xl transform -rotate-1 group-hover:rotate-0 transition-transform duration-500" />
+            <div class="absolute inset-0 border-2 border-[#9b111e]/20 rounded-2xl transform rotate-1 group-hover:rotate-0 transition-transform duration-500" />
+            
+            {/* Glowing Corner Accents */}
+            <div class="absolute -top-8 -right-8 w-32 h-32">
+              <div class="absolute inset-0 bg-gradient-to-br from-[#ff1616]/20 to-transparent blur-2xl transform group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-700" />
+            </div>
+            <div class="absolute -bottom-8 -left-8 w-32 h-32">
+              <div class="absolute inset-0 bg-gradient-to-tr from-[#9b111e]/20 to-transparent blur-2xl transform group-hover:-translate-x-2 group-hover:translate-y-2 transition-transform duration-700" />
+            </div>
+          </div>
+        
+          {/* Floating Tech Icons with Enhanced Design */}
+          <div class="absolute -right-6 top-1/4 w-14 h-14 bg-dark-200/90 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 
+                      flex items-center justify-center transform hover:scale-110 transition-all duration-300
+                      hover:border-[#ff1616]/30 hover:shadow-[#ff1616]/20 group-hover:translate-x-2">
+            <span class="text-2xl">🚀</span>
+          </div>
+          <div class="absolute -left-6 bottom-1/4 w-14 h-14 bg-dark-200/90 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 
+                      flex items-center justify-center transform hover:scale-110 transition-all duration-300
+                      hover:border-[#ff1616]/30 hover:shadow-[#ff1616]/20 group-hover:-translate-x-2">
+            <span class="text-2xl">💡</span>
+          </div>
+        
+          {/* Interactive Glow Effect */}
+          <div class="absolute inset-0 bg-gradient-to-r from-[#ff1616]/0 via-[#ff1616]/10 to-[#9b111e]/0 opacity-0 
+                      group-hover:opacity-100 blur-2xl transition-opacity duration-700" />
         </div>
 
       </div>
     </div>
   </div>
 </section>
-
-<style>
-  /* Enhanced radial gradient for improved vignette effect */
-  .bg-radial-gradient {
-    background: radial-gradient(circle at center, 
-      transparent 30%, 
-      rgba(10, 11, 30, 0.2) 70%, 
-      rgba(10, 11, 30, 0.5) 100%
-    );
-  }
-
-  /* Optimize image transition */
-  img {
-    transition: opacity 0.8s ease-in-out;
-    transform: translateZ(0);
-    will-change: opacity;
-  }
-
-  /* Progressive image loading effect */
-  #image-placeholder {
-    transition: opacity 0.5s ease-out;
-  }
-  
-  /* Subtle noise texture for image */
-  .bg-noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-size: 200px 200px;
-    mix-blend-mode: soft-light;
-  }
-
-  /* Ensuring container doesn't distort on hover */
-  .image-container:hover img {
-    transform: scale(1.03);
-  }
-
-  /* Ensure consistent aspect ratio cross-browser */
-  .aspect-\[3\/4\] {
-    aspect-ratio: 3/4;
-  }
-
-  @supports not (aspect-ratio: 3/4) {
-    .aspect-\[3\/4\] {
-      position: relative;
-    }
-    .aspect-\[3\/4\]::before {
-      content: '';
-      display: block;
-      padding-top: 133.33%;
-    }
-    .aspect-\[3\/4\] > * {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-    }
-  }
-</style>

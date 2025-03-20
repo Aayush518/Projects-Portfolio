@@ -1,66 +1,85 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useSmoothScroll } from '../hooks/useSmoothScroll';
+import { measurePerformance } from '../utils/performance';
+import { ResourcePreloader } from '../utils/resourcePreloader';
+import ResourceHints from '../components/ResourceHints';
 
 export default function Layout({ children }) {
-  const hasMounted = useRef(false);
+  const preloader = ResourcePreloader.getInstance();
 
   useEffect(() => {
-    // Only run once
-    if (hasMounted.current) return;
-    hasMounted.current = true;
-    
-    // Make sure body is visible
-    document.body.style.opacity = "1";
-    document.documentElement.style.opacity = "1";
-    
-    // Apply browser optimizations
-    document.documentElement.classList.add('optimize-performance');
-    
-    // Disable animations during initial load
-    document.documentElement.classList.add('disable-animations');
-    setTimeout(() => {
-      document.documentElement.classList.remove('disable-animations');
-    }, 300);
-    
-    // Detect low-end devices
-    const isLowEndDevice = 
-      ('deviceMemory' in navigator && (navigator as any).deviceMemory < 4) ||
-      ('hardwareConcurrency' in navigator && navigator.hardwareConcurrency < 4) ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      
-    if (isLowEndDevice) {
-      document.documentElement.classList.add('low-end-device');
+    // Performance monitoring
+    measurePerformance('FCP');
+    measurePerformance('LCP');
+    measurePerformance('CLS');
+    measurePerformance('FID');
+
+    // Preload critical fonts
+    preloader.preloadFont('Inter', '400');
+    preloader.preloadFont('Inter', '600');
+    preloader.preloadFont('Clash Display', '600');
+    preloader.preloadFont('JetBrains Mono', '400');
+
+    // Optimize resource loading
+    if ('connection' in navigator) {
+      const connection = (navigator as any).connection;
+      if (connection.saveData || connection.effectiveType === '2g') {
+        document.body.classList.add('save-data');
+        // Disable non-critical animations
+        document.body.style.setProperty('--animation-duration', '0s');
+      }
     }
+
+    // Optimize paint operations
+    document.documentElement.style.setProperty('content-visibility', 'auto');
+    document.documentElement.style.setProperty('contain', 'paint');
     
-    // Set up basic intersection observer for lazy-loaded content
-    const lazyLoadObserver = new IntersectionObserver(
+    // Add intersection observer for lazy loading
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
-            lazyLoadObserver.unobserve(entry.target);
+            observer.unobserve(entry.target);
+            // Prefetch linked resources
+            const links = entry.target.querySelectorAll('a[href]');
+            links.forEach(link => {
+              if (link instanceof HTMLAnchorElement) {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('/')) {
+                  const prefetchLink = document.createElement('link');
+                  prefetchLink.rel = 'prefetch';
+                  prefetchLink.href = href;
+                  document.head.appendChild(prefetchLink);
+                }
+              }
+            });
           }
         });
       },
-      { threshold: 0.1, rootMargin: '100px' }
+      { 
+        threshold: 0.1,
+        rootMargin: '50px 0px',
+      }
     );
-    
-    document.querySelectorAll('.lazy-section').forEach(el => 
-      lazyLoadObserver.observe(el)
+
+    document.querySelectorAll('.lazy-load').forEach(
+      el => observer.observe(el)
     );
-    
-    return () => {
-      lazyLoadObserver.disconnect();
-    };
+
+    return () => observer.disconnect();
   }, []);
 
   useSmoothScroll();
 
   return (
     <div className="bg-dark text-white">
-      <div className="content-wrapper">
+      <ResourceHints />
+      <div className="contents" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 500px' }}>
+        <EnhancedCursor />
+        <ScrollProgress />
         {children}
       </div>
     </div>
   );
-}
+} 

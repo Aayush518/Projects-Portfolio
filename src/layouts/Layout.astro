@@ -1,10 +1,13 @@
 ---
-import '../styles/performance.css';
 import '../styles/globals.css';
 import Navigation from '../components/Navigation';
+import { initializeMouseTracking } from '../utils/mouseTracker';
 import PageTransition from '../components/PageTransition';
 import CustomCursor from '../components/CustomCursor';
 import ScrollProgress from '../components/ScrollProgress';
+import NavIndicator from '../components/NavIndicator';
+import DynamicBackground from '../components/DynamicBackground';
+import { useSmoothScroll } from '../hooks/useSmoothScroll';
 import ScrollToTop from '../components/ScrollToTop';
 
 interface Props {
@@ -12,111 +15,105 @@ interface Props {
 }
 
 const { title } = Astro.props;
-
-// Generate critical CSS inline
-const criticalCss = `
-  html, body {
-    background-color: #0A0B1E;
-    margin: 0;
-    padding: 0;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  .fixed-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -10;
-    background-color: #0A0B1E;
-  }
-`;
 ---
 
 <!doctype html>
-<html lang="en" class="optimize-performance disable-animations">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Aayush518's Portfolio - Full Stack Developer & Project Lead" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="theme-color" content="#0A0B1E">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    
-    <!-- Font display swap for better performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Critical CSS inline for faster rendering -->
-    <style set:html={criticalCss}></style>
-
-    <!-- Preload critical fonts with high fetchpriority -->
-    <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
-    <link rel="preload" href="/fonts/ClashDisplay-Medium.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
+    <!-- Preload critical fonts -->
+    <link
+      rel="preload"
+      href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500&display=swap"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      as="style"
+    />
   </head>
-  <body>
-    <!-- Immediately visible static background -->
-    <div class="fixed-bg"></div>
-
-    <!-- Main content first for better FCP -->
-    <main class="relative z-10">
-      <slot />
-    </main>
-    
-    <!-- Navigation visible early -->
-    <Navigation client:load />
-    
-    <!-- Defer non-critical elements -->
-    <CustomCursor client:idle />
-    <ScrollProgress client:idle />
+  <body class="bg-dark text-light overflow-x-hidden">
     <PageTransition client:load />
-    <ScrollToTop client:idle />
+    <CustomCursor client:load />
+    <ScrollProgress client:load />
+    <NavIndicator client:load />
+    <DynamicBackground client:load />
+
+    {/* Dynamic Background */}
+    <div class="fixed inset-0 -z-10 will-change-transform">
+      <div class="absolute inset-0 bg-[#0A0B1E]"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-highlight/5"></div>
+      <div class="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
+      
+      {/* Animated Orbs - Optimized */}
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl will-change-transform animate-float-optimized"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-highlight/20 rounded-full blur-3xl will-change-transform animate-float-delayed-optimized"></div>
+      
+      {/* Static Background Elements */}
+      <div class="absolute inset-0">
+        <div class="absolute top-20 right-32 w-64 h-64 bg-accent/10 rounded-full blur-2xl"></div>
+        <div class="absolute bottom-40 left-20 w-72 h-72 bg-highlight/10 rounded-full blur-2xl"></div>
+      </div>
+    </div>
+
+    <Navigation client:load />
+    <slot />
+    <ScrollToTop client:load />
 
     <script>
-      // Performance optimization script
-      document.addEventListener('DOMContentLoaded', () => {
-        // Basic feature detection
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const isLowEndDevice = 
-          (('deviceMemory' in navigator) && (navigator as any).deviceMemory < 4) ||
-          (('hardwareConcurrency' in navigator) && navigator.hardwareConcurrency < 4);
-        
-        // Apply appropriate classes
-        if (prefersReducedMotion || isLowEndDevice) {
-          document.documentElement.classList.add('low-end-device');
-        }
-        
-        // Optimize image loading strategy based on connection
-        if ('connection' in navigator && (navigator as any).connection?.effectiveType === 'slow-2g') {
-          document.documentElement.classList.add('save-data');
-        }
-        
-        // Remove animation blocker after initial render
-        setTimeout(() => {
-          document.documentElement.classList.remove('disable-animations');
-        }, 300);
-        
-        // Set up optimized IntersectionObserver for lazy sections
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.1, rootMargin: '100px' }
-        );
-        
-        // Observe lazy sections
-        document.querySelectorAll('.lazy-section, .animate-on-scroll').forEach(el => {
-          observer.observe(el);
+      import 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import { gsap } from 'gsap';
+
+      gsap.registerPlugin(ScrollTrigger);
+      useSmoothScroll();
+
+      // Optimized scroll animations with debouncing
+      const sections = gsap.utils.toArray('.fade-in-section');
+      let timeout;
+
+      sections.forEach((section: any) => {
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 80%',
+          onEnter: () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+              gsap.to(section, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'power2.out'
+              });
+            }, 50);
+          }
         });
       });
+
+      // Prevent transitions on page load
+      document.documentElement.classList.add('preload');
+      window.addEventListener('load', () => {
+        document.documentElement.classList.remove('preload');
+      });
+
+      // Initialize mouse tracking
+      initializeMouseTracking();
     </script>
   </body>
 </html>
+
+<style>
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+</style>
