@@ -1,169 +1,192 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { projects } from '../../data/projects';
-import { writings } from '../../data/writings';
 import ProjectCard from '../ui/ProjectCard';
 import ProjectModal from '../ui/ProjectModal';
-import PDFViewer from '../ui/PDFViewer';
-import { fetchGitHubProjects } from '../../utils/github';
-import PDFThumbnail from '../ui/PDFThumbnail';
-import TiltCard from '../ui/TiltCard';
-import LoadingSpinner from '../ui/LoadingSpinner';
-
-// Define animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-      delayChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
-
-// Update categories to be more focused on projects only
-const categories = [
-  'All',
-  'Research & AI',    // Speech, NLP, ML projects
-  'Development',      // Web & software development
-] as const;
-
-// Add a new type for technical content
-type TechnicalTip = {
-  id: string;
-  title: string;
-  description: string;
-  category: 'Technical Writing';
-  tags: string[];
-  readingTime: string;
-  publishedDate: string;
-  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
-  pdfUrl?: string;
-  link: string;
-};
+import { debounce, throttle } from '../../utils/debounce';
 
 export default function Projects() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
-  const [activeCategory, setActiveCategory] = useState<typeof categories[number]>('All');
-
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [currentProject, setCurrentProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isGitHub, setIsGitHub] = useState(false);
+  const categories = ['All', 'Web Development', 'NLP', 'Machine Learning', 'Data Science', 'AI'];
+  const projectsContainerRef = useRef<HTMLDivElement>(null);
+  
+  // Filter projects based on selected category and featured status
+  const filteredProjects = projects.filter(project => {
+    if (selectedCategory === 'All') return project.featured;
+    return project.category && project.category.includes(selectedCategory);
+  });
+  
+  // Handle scroll-based animations with debouncing
+  const handleScroll = useCallback(
+    debounce(() => {
+      if (!projectsContainerRef.current) return;
+      
+      const cards = projectsContainerRef.current.querySelectorAll('.project-card');
+      
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight - 100 && rect.bottom > 100;
+        
+        if (isVisible) {
+          card.classList.add('project-card-enter-active');
+        }
+      });
+    }, 50),
+    []
+  );
+  
   useEffect(() => {
-    // Simulate loading time
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Simplified filtering logic for projects only
-  const getFilteredProjects = () => {
-    if (activeCategory === 'All') {
-      return projects;
-    }
-
-    if (activeCategory === 'Research & AI') {
-      return projects.filter(project => 
-        project.category.toLowerCase().match(/research|ai|ml|speech|nlp/g) ||
-        project.technologies?.some(tech => 
-          tech.toLowerCase().match(/ai|ml|tensorflow|pytorch|nlp|speech/g)
-        )
-      );
-    }
-
-    return projects.filter(project => 
-      activeCategory === 'Development' 
-        ? project.category.toLowerCase().includes('development') ||
-          project.technologies?.some(tech => 
-            tech.toLowerCase().match(/react|node|typescript|javascript|web/g)
-          )
-        : project.category.includes(activeCategory)
-    );
+    window.addEventListener('scroll', handleScroll);
+    // Initial check to reveal visible projects
+    setTimeout(handleScroll, 100);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+  
+  // Modal opening function with improved logging and explicit onClick handling
+  const openProjectModal = (project, isGitHub = false) => {
+    console.log("Opening modal for project:", project.title);
+    // Ensure body has overflow hidden to prevent background scrolling
+    document.body.style.overflow = 'hidden';
+    setCurrentProject(project);
+    setIsGitHub(isGitHub);
+    setIsModalOpen(true);
   };
-
-  const filteredProjects = getFilteredProjects();
-
+  
+  // Close modal with improved cleanup
+  const closeProjectModal = () => {
+    console.log("Closing modal");
+    setIsModalOpen(false);
+    document.body.style.overflow = '';
+    // Don't reset currentProject immediately to allow animations to complete
+    setTimeout(() => {
+      if (!isModalOpen) {
+        setCurrentProject(null);
+      }
+    }, 300);
+  };
+  
+  // Navigate between projects with throttling to prevent rapid clicks
+  const handlePrevious = throttle(() => {
+    if (!currentProject) return;
+    
+    const currentIndex = filteredProjects.findIndex(p => p.id === currentProject.id);
+    const previousIndex = (currentIndex - 1 + filteredProjects.length) % filteredProjects.length;
+    setCurrentProject(filteredProjects[previousIndex]);
+  }, 300);
+  
+  const handleNext = throttle(() => {
+    if (!currentProject) return;
+    
+    const currentIndex = filteredProjects.findIndex(p => p.id === currentProject.id);
+    const nextIndex = (currentIndex + 1) % filteredProjects.length;
+    setCurrentProject(filteredProjects[nextIndex]);
+  }, 300);
+  
   return (
-    <section className="section relative overflow-hidden bg-gradient-to-b from-dark to-dark-100">
-      {/* Reduce background effects on mobile */}
-      <div className="absolute inset-0 bg-grid opacity-[0.02] sm:opacity-[0.03]" />
-      <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent 
-                      hidden sm:block" /> {/* Hide radial gradient on mobile */}
-
-      <div className="container-custom relative">
-        {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-16 px-4">
-          <motion.h2 
-            className="heading-2 mb-6"
+    <section className="py-20 sm:py-32 relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-dark-100"></div>
+      <div className="absolute inset-0 bg-grid opacity-[0.03]"></div>
+      <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent"></div>
+      
+      <div className="container mx-auto px-4 relative">
+        <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="text-4xl md:text-5xl font-display font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#9b111e] to-[#ff1616]"
+            >
+              Featured Projects
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="text-base sm:text-lg text-white/70 max-w-2xl mx-auto"
+            >
+              A showcase of my technical skills and creative projects
+            </motion.p>
+          </div>
+          
+          {/* Category Filters */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-wrap justify-center gap-4 mb-12"
           >
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#9b111e] to-[#ff1616]">
-              Projects
-            </span>
-          </motion.h2>
-          <motion.p 
-            className="text-lg text-white/60 mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            A curated collection of projects showcasing expertise in speech technology, 
-            web development, and artificial intelligence.
-          </motion.p>
-        </div>
-
-        {/* Category Filter - Make it horizontally scrollable on mobile */}
-        <div className="overflow-x-auto scrollbar-none -mx-6 px-6 mb-8">
-          <div className="flex flex-nowrap gap-2 min-w-min">
             {categories.map((category) => (
               <button
                 key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`whitespace-nowrap px-4 py-2 rounded-full text-sm transition-colors
-                           ${activeCategory === category 
-                             ? 'bg-primary text-white' 
-                             : 'bg-dark-200/50 text-white/60'}`}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-full transition-all duration-300 ${
+                  selectedCategory === category
+                    ? 'bg-primary text-white shadow-lg shadow-primary/20'
+                    : 'bg-dark-200/50 text-white/70 hover:bg-dark-200/80 hover:text-white/90'
+                }`}
               >
                 {category}
               </button>
             ))}
+          </motion.div>
+          
+          {/* Projects Grid */}
+          <div 
+            ref={projectsContainerRef}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          >
+            {filteredProjects.map((project, index) => (
+              <div 
+                key={project.id}
+                className="project-card project-card-enter"
+                style={{ transitionDelay: `${index * 50}ms` }}
+              >
+                <ProjectCard
+                  project={project}
+                  index={index}
+                  onView={() => {
+                    console.log("Project card clicked:", project.title);
+                    openProjectModal(project);
+                  }}
+                  onGitHub={(e) => {
+                    if (project.links?.github) {
+                      console.log("GitHub button clicked for:", project.title);
+                      // Prevent default and stop propagation
+                      e?.preventDefault();
+                      e?.stopPropagation();
+                      // Open in new tab directly for GitHub
+                      window.open(project.links.github, '_blank', 'noopener,noreferrer');
+                      // Or use the modal if you prefer
+                      // openProjectModal(project, true);
+                    }
+                  }}
+                />
+              </div>
+            ))}
           </div>
         </div>
-
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {getFilteredProjects().map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              onClick={() => setSelectedProject(project.id)}
-              index={index}
-            />
-          ))}
-        </div>
       </div>
-
+      
       {/* Project Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal 
-            project={projects.find(p => p.id === selectedProject)!}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
-      </AnimatePresence>
+      {isModalOpen && (
+        <ProjectModal 
+          project={currentProject}
+          isGitHub={isGitHub}
+          onClose={closeProjectModal}
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          isOpen={isModalOpen}
+        />
+      )}
     </section>
   );
 }

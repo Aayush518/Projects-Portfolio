@@ -75,27 +75,50 @@ const { title } = Astro.props;
       gsap.registerPlugin(ScrollTrigger);
       useSmoothScroll();
 
-      // Optimized scroll animations with debouncing
+      // Optimized scroll animations with improved debouncing
       const sections = gsap.utils.toArray('.fade-in-section');
       let timeout;
-
-      sections.forEach((section: any) => {
-        ScrollTrigger.create({
-          trigger: section,
-          start: 'top 80%',
-          onEnter: () => {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => {
-              gsap.to(section, {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                ease: 'power2.out'
-              });
-            }, 50);
+      let lastScrollTime = 0;
+      const SCROLL_DEBOUNCE_DELAY = 50; // ms
+      
+      // Debounce scroll handler for better performance
+      function debouncedScrollHandler() {
+        const now = Date.now();
+        if (now - lastScrollTime < SCROLL_DEBOUNCE_DELAY) {
+          clearTimeout(timeout);
+          timeout = setTimeout(debouncedScrollHandler, SCROLL_DEBOUNCE_DELAY);
+          return;
+        }
+        
+        lastScrollTime = now;
+        
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          const isInView = rect.top < window.innerHeight - 100 && rect.bottom > 0;
+          
+          if (isInView && !section.classList.contains('animated')) {
+            section.classList.add('animated');
+            gsap.to(section, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              overwrite: true
+            });
           }
         });
+      }
+      
+      // Set initial state
+      sections.forEach((section) => {
+        gsap.set(section, { opacity: 0, y: 30 });
       });
+      
+      // Add optimized event listener
+      window.addEventListener('scroll', debouncedScrollHandler, { passive: true });
+      
+      // Initial check
+      setTimeout(debouncedScrollHandler, 100);
 
       // Prevent transitions on page load
       document.documentElement.classList.add('preload');
