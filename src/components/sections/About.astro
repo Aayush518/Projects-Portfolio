@@ -1,5 +1,9 @@
+---
+// Import regular image tag instead of component to troubleshoot
+---
+
 <section id="about" class="py-20 sm:py-32 relative overflow-hidden">
-  {/* Background Elements */}
+  <!-- Background Elements -->
   <div class="absolute inset-0 bg-dark-100"></div>
   <div class="absolute inset-0 bg-grid opacity-[0.03]"></div>
   <div class="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent"></div>
@@ -8,7 +12,7 @@
 
   <div class="container mx-auto px-4 relative">
     <div class="max-w-6xl mx-auto">
-      {/* Section Header with enhanced animation */}
+      <!-- Section Header with enhanced animation -->
       <div class="text-center mb-20 relative">
         <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-40 h-40 bg-primary/5 rounded-full blur-3xl opacity-70"></div>
         <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-transparent bg-clip-text 
@@ -29,9 +33,9 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
-        {/* Left Column - Content with improved layout */}
+        <!-- Left Column - Content with improved layout -->
         <div class="space-y-8 sm:space-y-10 text-center lg:text-left">
-          {/* Personal Summary - Refined with improved typography */}
+          <!-- Personal Summary - Refined with improved typography -->
           <div class="space-y-4">
             <p class="text-base sm:text-lg text-white/80 max-w-xl mx-auto lg:mx-0 leading-relaxed">
               I'm a <span class="text-primary font-medium">passionate problem solver</span> and developer who transforms complex ideas into elegant solutions. My expertise in full-stack development combined with a background in NLP research allows me to build systems that bridge technical innovation and practical business needs.
@@ -41,7 +45,7 @@
             </p>
           </div>
 
-          {/* New: Professional Timeline / Journey Section */}
+          <!-- New: Professional Timeline / Journey Section -->
           <div class="relative border-l-2 border-primary/20 pl-8 py-2 hidden lg:block">
             <div class="space-y-6">
               <div class="relative">
@@ -62,9 +66,9 @@
             </div>
           </div>
 
-          {/* Skills Grid - Enhanced with better visual hierarchy */}
+          <!-- Skills Grid - Enhanced with better visual hierarchy -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7">
-            {/* Core Skills Card */}
+            <!-- Core Skills Card -->
             <div class="group p-5 rounded-xl bg-dark-200/60 backdrop-blur-sm 
                       border border-white/5 hover:border-primary/20 transition-all duration-300
                       hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5">
@@ -88,7 +92,7 @@
               </ul>
             </div>
 
-            {/* Tech Stack Card */}
+            <!-- Tech Stack Card -->
             <div class="group p-5 rounded-xl bg-dark-200/60 backdrop-blur-sm 
                       border border-white/5 hover:border-primary/20 transition-all duration-300
                       hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5">
@@ -111,9 +115,9 @@
             </div>
           </div>
 
-          {/* Vision Card - Improved design */}
+          <!-- Vision Card - Improved design -->
           <div class="relative group overflow-hidden">
-            {/* Animated Gradient Border */}
+            <!-- Animated Gradient Border -->
             <div class="absolute inset-0 rounded-xl border-gradient-animated opacity-30"></div>
             
             <div class="p-6 rounded-xl bg-dark-200/70 border border-primary/10 backdrop-blur-sm relative z-10">
@@ -127,14 +131,14 @@
                 in full-stack development and NLP research.
               </p>
               
-              {/* Little Quote/Tagline */}
+              <!-- Little Quote/Tagline -->
               <div class="mt-4 pt-4 border-t border-white/5">
                 <p class="italic text-sm text-white/50">"Not just building products, but crafting experiences that matter."</p>
               </div>
             </div>
           </div>
 
-          {/* Enhanced CTA Button */}
+          <!-- Enhanced CTA Button -->
           <div class="pt-4 flex justify-center lg:justify-start">
             <a
               href="#contact"
@@ -156,58 +160,44 @@
           </div>
         </div>
 
-        {/* Enhanced Image Section with better visual effects and fixed white lines */}
+        <!-- Enhanced Image Section with direct image tag instead of component -->
         <div class="relative group">
-          {/* Main Image Container */}
-          <div class="relative z-10 rounded-2xl overflow-hidden transform group-hover:scale-[0.98] transition-transform duration-700 ease-out-cubic shadow-xl shadow-dark-300/40">
+          <!-- Main Image Container -->
+          <div class="relative z-10 rounded-2xl overflow-hidden transform group-hover:scale-[0.98] transition-transform duration-700 shadow-xl shadow-dark-300/40">
             <div class="relative h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden"> 
-              {/* Apply solid background as a base layer to prevent white lines */}
-              <div class="absolute inset-0 bg-dark-200"></div>
-              
-              {/* Image wrapped in a container with specific blend mode */}
-              <div class="absolute inset-0 mix-blend-normal">
+              <!-- Direct image tag for troubleshooting -->
+              <div class="absolute inset-0">
                 <img 
                   src="/images/mypic1.png" 
-                  alt="Aayush518" 
-                  class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-1000 ease-out"
-                  style="object-position: center 30%;"
-                  onerror="this.onerror=null; this.style.display='none';"
-                  loading="eager"
+                  alt="Aayush Adhikari"
+                  class="absolute inset-0 w-full h-full object-cover"
+                  style="object-position: center;"
                 />
               </div>
               
-              {/* Multi-layered overlay system to hide white artifacts */}
-              <div class="absolute inset-0 bg-dark-200/50"></div>
-              <div class="absolute inset-0 bg-gradient-to-tr from-dark-200/80 via-dark-200/60 to-dark-200/40"></div>
-              <div class="absolute inset-0 bg-gradient-to-tr from-[#9b111e]/20 via-transparent to-[#ff1616]/15 opacity-70 mix-blend-color"></div>
-              <div class="absolute inset-0 bg-radial-dark opacity-70 mix-blend-multiply"></div>
-              
-              {/* Add a subtle noise texture layer for better blending */}
-              <div class="absolute inset-0 opacity-30 mix-blend-overlay bg-noise pointer-events-none"></div>
-              
-              {/* Extra shadow layer at edges to hide potential white lines */}
-              <div class="absolute inset-0 shadow-[inset_0_0_20px_10px_rgba(0,0,0,0.3)]"></div>
+              <!-- Subtle overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-dark-200/60 to-transparent opacity-50"></div>
             </div>
             
-            {/* Information Overlay */}
-            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark-200/90 to-transparent p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out-back">
+            <!-- Information Overlay with better readability -->
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark-200/95 to-transparent p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
               <div class="space-y-2">
                 <h3 class="text-xl font-medium text-white">Aayush Adhikari</h3>
                 <p class="text-white/70">Full Stack Developer & NLP Researcher</p>
                 <div class="flex gap-3 pt-2">
-                  <a href="https://github.com/yourusername" target="_blank" rel="noopener" 
+                  <a href="https://github.com/Aayush518" target="_blank" rel="noopener" 
                      class="p-2 rounded-full bg-dark-200/80 hover:bg-primary/20 transition-colors">
                     <svg class="w-5 h-5 text-white/80" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.837 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
                     </svg>
                   </a>
-                  <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" 
+                  <a href="https://linkedin.com/in/Aayush518" target="_blank" rel="noopener" 
                      class="p-2 rounded-full bg-dark-200/80 hover:bg-primary/20 transition-colors">
                     <svg class="w-5 h-5 text-white/80" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
                     </svg>
                   </a>
-                  <a href="https://twitter.com/yourusername" target="_blank" rel="noopener" 
+                  <a href="https://twitter.com/sursaladhikari1" target="_blank" rel="noopener" 
                      class="p-2 rounded-full bg-dark-200/80 hover:bg-primary/20 transition-colors">
                     <svg class="w-5 h-5 text-white/80" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
@@ -218,39 +208,39 @@
             </div>
           </div>
           
-          {/* Enhanced Decorative Elements */}
-          <div class="absolute -inset-4 z-0 transition-transform duration-700 ease-out">
-            {/* Animated Border Frame */}
-            <div class="absolute inset-0 border border-[#ff1616]/8 rounded-2xl transform -rotate-1 group-hover:rotate-0 transition-transform duration-700 ease-out"></div>
-            <div class="absolute inset-0 border border-[#9b111e]/8 rounded-2xl transform rotate-1 group-hover:rotate-0 transition-transform duration-700 ease-out"></div>
+          <!-- Enhanced Decorative Elements -->
+          <div class="absolute -inset-4 z-0 transition-transform duration-700">
+            <!-- Subtle Border Frame -->
+            <div class="absolute inset-0 border border-[#ff1616]/8 rounded-2xl transform -rotate-1 group-hover:rotate-0 transition-transform duration-700"></div>
+            <div class="absolute inset-0 border border-[#9b111e]/8 rounded-2xl transform rotate-1 group-hover:rotate-0 transition-transform duration-700"></div>
             
-            {/* Enhanced Glowing Corner Accents */}
+            <!-- Glowing Corner Accents -->
             <div class="absolute -top-8 -right-8 w-40 h-40">
-              <div class="absolute inset-0 bg-gradient-to-br from-[#ff1616]/20 to-transparent blur-3xl transform group-hover:translate-x-3 group-hover:-translate-y-3 transition-transform duration-1000 ease-out"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-[#ff1616]/20 to-transparent blur-3xl transform group-hover:translate-x-3 group-hover:-translate-y-3 transition-transform duration-1000"></div>
             </div>
             <div class="absolute -bottom-8 -left-8 w-40 h-40">
-              <div class="absolute inset-0 bg-gradient-to-tr from-[#9b111e]/20 to-transparent blur-3xl transform group-hover:-translate-x-3 group-hover:translate-y-3 transition-transform duration-1000 ease-out"></div>
+              <div class="absolute inset-0 bg-gradient-to-tr from-[#9b111e]/20 to-transparent blur-3xl transform group-hover:-translate-x-3 group-hover:translate-y-3 transition-transform duration-1000"></div>
             </div>
           </div>
         
-          {/* Improved Floating Tech Icons */}
+          <!-- Floating Tech Icons -->
           <div class="absolute -right-6 top-1/4 w-16 h-16 bg-dark-200/90 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 
-                      flex items-center justify-center transform hover:scale-110 transition-all duration-500 ease-out hover:rotate-6
-                      hover:border-[#ff1616]/30 hover:shadow-[#ff1616]/20 group-hover:translate-x-2 z-20">
+                    flex items-center justify-center transform hover:scale-110 transition-all duration-500 hover:rotate-6
+                    hover:border-[#ff1616]/30 hover:shadow-[#ff1616]/20 group-hover:translate-x-2 z-20">
             <span class="text-3xl">🚀</span>
           </div>
           <div class="absolute -left-6 bottom-1/4 w-16 h-16 bg-dark-200/90 rounded-xl shadow-lg backdrop-blur-sm border border-white/10 
-                      flex items-center justify-center transform hover:scale-110 transition-all duration-500 ease-out hover:rotate-6
-                      hover:border-[#ff1616]/30 hover:shadow-[#ff1616]/20 group-hover:-translate-x-2 z-20">
+                    flex items-center justify-center transform hover:scale-110 transition-all duration-500 hover:rotate-6
+                    hover:border-[#ff1616]/30 hover:shadow-[#ff1616]/20 group-hover:-translate-x-2 z-20">
             <span class="text-3xl">💡</span>
           </div>
           
-          {/* Floating Code Block - New Element */}
+          <!-- Floating Code Block -->
           <div class="absolute top-10 -right-4 w-40 max-w-full bg-dark-300/90 rounded-lg shadow-lg backdrop-blur-sm border border-primary/10
-                      p-3 transform hover:scale-105 transition-all duration-500 ease-out group-hover:translate-x-4
-                      group-hover:-translate-y-2 group-hover:rotate-2 z-10 hidden lg:block">
+                    p-3 transform hover:scale-105 transition-all duration-500 group-hover:translate-x-4
+                    group-hover:-translate-y-2 group-hover:rotate-2 z-10 hidden lg:block">
             <pre class="text-xs text-primary-light/90 font-mono">
-<code>{`function solve(problem) {
+              <code>{`function solve(problem) {
   return elegant.solution();
 }`}</code>
             </pre>
@@ -275,7 +265,7 @@
     animation: subtle-shift 8s ease-in-out infinite;
   }
   
-  /* Better easing function */
+  /* Better easing functions */
   .ease-out-cubic {
     transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
   }

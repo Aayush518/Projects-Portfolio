@@ -589,3 +589,50 @@ html, body {
 img {
   transform: translateZ(0);
 }
+
+/* Enhanced image quality settings */
+.image-quality-boost {
+  image-rendering: -webkit-optimize-contrast;
+  -webkit-backface-visibility: hidden;
+  -ms-transform: translateZ(0); /* IE 9 */
+  -webkit-transform: translateZ(0); /* Chrome, Safari, Opera */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Professional image treatment */
+.professional-image {
+  filter: contrast(1.03) saturate(1.05);
+  image-rendering: -webkit-optimize-contrast;
+  transform: translateZ(0);
+}
+
+/* Better image container for professional look */
+.image-container-pro {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+  isolation: isolate;
+}
+
+/* Professional radial shadow */
+.professional-vignette {
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+/* Fix any potential blurring */
+img {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Apply to the About Me image */
+.about-me-image {
+  filter: contrast(1.05);
+  image-rendering: -webkit-optimize-contrast;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
