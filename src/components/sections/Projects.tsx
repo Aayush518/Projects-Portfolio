@@ -10,14 +10,22 @@ export default function Projects() {
   const [currentProject, setCurrentProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isGitHub, setIsGitHub] = useState(false);
-  const categories = ['All', 'Web Development', 'NLP', 'Machine Learning', 'Data Science', 'AI'];
-  const projectsContainerRef = useRef<HTMLDivElement>(null);
   
-  // Filter projects based on selected category and featured status
+  // Extract unique categories from projects
+  const categories = ['All', ...new Set(projects.flatMap(project => {
+    const categories = project.category?.split(',').map(c => c.trim()) || [];
+    return categories;
+  }))].filter(Boolean);
+
+  // Improved filtering logic
   const filteredProjects = projects.filter(project => {
     if (selectedCategory === 'All') return project.featured;
-    return project.category && project.category.includes(selectedCategory);
+    
+    const projectCategories = project.category?.split(',').map(c => c.trim()) || [];
+    return projectCategories.includes(selectedCategory);
   });
+
+  const projectsContainerRef = useRef<HTMLDivElement>(null);
   
   // Handle scroll-based animations with debouncing
   const handleScroll = useCallback(
@@ -117,20 +125,20 @@ export default function Projects() {
             </motion.p>
           </div>
           
-          {/* Category Filters */}
+          {/* Updated Category Filters */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-wrap justify-center gap-4 mb-12"
+            className="flex flex-wrap justify-center gap-4 mb-12 px-4"
           >
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full transition-all duration-300 ${
+                className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
                   selectedCategory === category
-                    ? 'bg-primary text-white shadow-lg shadow-primary/20'
+                    ? 'bg-primary text-white shadow-lg shadow-primary/20 font-medium'
                     : 'bg-dark-200/50 text-white/70 hover:bg-dark-200/80 hover:text-white/90'
                 }`}
               >
@@ -139,39 +147,45 @@ export default function Projects() {
             ))}
           </motion.div>
           
-          {/* Projects Grid */}
+          {/* Projects Grid with Empty State */}
           <div 
             ref={projectsContainerRef}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           >
-            {filteredProjects.map((project, index) => (
-              <div 
-                key={project.id}
-                className="project-card project-card-enter"
-                style={{ transitionDelay: `${index * 50}ms` }}
-              >
-                <ProjectCard
-                  project={project}
-                  index={index}
-                  onView={() => {
-                    console.log("Project card clicked:", project.title);
-                    openProjectModal(project);
-                  }}
-                  onGitHub={(e) => {
-                    if (project.links?.github) {
-                      console.log("GitHub button clicked for:", project.title);
-                      // Prevent default and stop propagation
-                      e?.preventDefault();
-                      e?.stopPropagation();
-                      // Open in new tab directly for GitHub
-                      window.open(project.links.github, '_blank', 'noopener,noreferrer');
-                      // Or use the modal if you prefer
-                      // openProjectModal(project, true);
-                    }
-                  }}
-                />
+            {filteredProjects.length > 0 ? (
+              filteredProjects.map((project, index) => (
+                <div 
+                  key={project.id}
+                  className="project-card project-card-enter"
+                  style={{ transitionDelay: `${index * 50}ms` }}
+                >
+                  <ProjectCard
+                    project={project}
+                    index={index}
+                    onView={() => {
+                      console.log("Project card clicked:", project.title);
+                      openProjectModal(project);
+                    }}
+                    onGitHub={(e) => {
+                      if (project.links?.github) {
+                        console.log("GitHub button clicked for:", project.title);
+                        // Prevent default and stop propagation
+                        e?.preventDefault();
+                        e?.stopPropagation();
+                        // Open in new tab directly for GitHub
+                        window.open(project.links.github, '_blank', 'noopener,noreferrer');
+                        // Or use the modal if you prefer
+                        // openProjectModal(project, true);
+                      }
+                    }}
+                  />
+                </div>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-12">
+                <p className="text-white/70">No projects found in this category.</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
