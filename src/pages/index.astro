@@ -9,7 +9,7 @@ import Contact from '../components/sections/Contact.astro';
 
 <Layout title="Aayush518 - Frontend Developer">
   <main class="bg-dark">
-    <section id="home">
+    <section id="home" class="pt-16 sm:pt-20">
       <Hero />
     </section>
     <section id="about">
@@ -26,3 +26,11 @@ import Contact from '../components/sections/Contact.astro';
     </section>
   </main>
 </Layout>
+
+<style>
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style>

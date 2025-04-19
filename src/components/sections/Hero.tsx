@@ -18,7 +18,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen relative overflow-hidden flex flex-col justify-center">
+    <section className="min-h-screen pt-32 relative overflow-hidden flex flex-col justify-center">
       {/* Enhanced Background Elements */}
       <DynamicBackground />
       <motion.div 
@@ -56,8 +56,8 @@ export default function Hero() {
                 transition={{ delay: 0.2 }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-dark-200/50 backdrop-blur-sm border border-white/5"
               >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-emerald-400/90 text-sm">Available for Projects</span>
+                <span className="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse" />
+                <span className="text-[#FBBF24] text-sm">Portfolio Under Construction</span>
               </motion.div>
 
               {/* Title and Description */}

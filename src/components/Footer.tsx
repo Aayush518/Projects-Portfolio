@@ -66,6 +66,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-white/5 text-center text-sm text-white/50">
           <p>© {currentYear} Aayush Adhikari. All rights reserved.</p>
           <p className="mt-2">Built with Astro, React, and Tailwind CSS</p>
+          <p className="mt-1 text-[#FBBF24]">🚧 This portfolio is currently under development 🚧</p>
         </div>
       </div>
     </footer>
