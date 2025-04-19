@@ -69,7 +69,7 @@ export default function Hero() {
                     transition={{ delay: 0.3 }}
                     className="bg-gradient-to-r from-primary to-primary-light text-transparent bg-clip-text block"
                   >
-                    Full Stack Developer
+                    Frontend Developer
                   </motion.span>
                   <motion.span
                     initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ export default function Hero() {
                     transition={{ delay: 0.4 }}
                     className="text-white/90"
                   >
-                    & NLP Researcher
+                    & Project Manager
                   </motion.span>
                 </h1>
                 <motion.p 
@@ -86,10 +86,9 @@ export default function Hero() {
                   transition={{ delay: 0.5 }}
                   className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto"
                 >
-                  Passionate about bridging technology gaps through full-stack development 
-                  and advancing speech technologies for under-resourced languages. 
-                  Combining technical expertise with project management skills to deliver 
-                  impactful solutions that drive results.
+                  Passionate about creating beautiful, responsive user interfaces and leading 
+                  project teams to successfully deliver high-quality products. 
+                  Combining technical expertise with project management skills to drive results.
                 </motion.p>
               </div>
 
@@ -186,4 +185,4 @@ export default function Hero() {
       )}
     </section>
   );
-} 
+}

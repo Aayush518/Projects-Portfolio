@@ -13,7 +13,7 @@ export default function Footer() {
               Aayush Adhikari
             </h3>
             <p className="text-white/70 text-sm leading-relaxed">
-              Full Stack Developer specializing in innovative solutions through modern web technologies and AI integration.
+              Frontend Developer specializing in creating beautiful user interfaces and managing projects efficiently.
             </p>
           </div>
 
@@ -70,4 +70,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-} 
+}
