@@ -74,7 +74,7 @@ export default function Navigation() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-      isScrolled ? 'bg-dark-200/80 backdrop-blur-md shadow-lg' : 'bg-transparent' // Added shadow on scroll
+      isScrolled ? 'bg-dark-200 backdrop-blur-md shadow-lg' : 'bg-transparent' // Changed bg-dark-100 to bg-dark-200
     }`}>
       {/* Portfolio Under Construction Banner Integrated */}
       {/* Reduced vertical padding py-1 */}
@@ -182,7 +182,7 @@ export default function Navigation() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="md:hidden absolute top-full left-0 right-0 bg-dark-200/95 backdrop-blur-lg border-t border-white/10 shadow-lg"
+              className="md:hidden absolute top-full left-0 right-0 bg-dark-200 backdrop-blur-lg border-t border-white/10 shadow-lg" // Changed bg-dark-100 to bg-dark-200
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
