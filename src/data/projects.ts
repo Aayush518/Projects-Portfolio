@@ -65,7 +65,7 @@ export const projects: Project[] = [
       "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?q=80&w=1200&auto=format&fit=crop"
     ],
     "featured": true
-  }
+  },  // Added comma here, was missing
   {
     "id": "CampusWebsiteTrial",
     "title": "Campus Website Trial",
