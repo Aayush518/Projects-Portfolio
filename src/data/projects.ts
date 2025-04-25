@@ -21,6 +21,52 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    "id": "quesgen-ai",
+    "title": "QuesGenAI - Intelligent Question Paper Generator(Ongoing, Idea on early statges)",
+    "description": "An AI-powered web application that automatically generates university-level question papers from uploaded documents. The system analyzes document content using Google's Gemini AI, creates balanced question papers with customizable difficulty distributions, and provides professional formatting with LaTeX/PDF export options. Features include customizable templates, question banks, and answer key generation.",
+    "thumbnail": "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?q=80&w=1200&auto=format&fit=crop",
+    "category": "Education Technology, AI Content Generation",
+    "technologies": ["React", "TypeScript", "Google Gemini AI", "TailwindCSS", "Framer Motion", "Zustand", "LaTeX"],
+    "links": {
+      "live": "https://ques-gen-ai.vercel.app"
+    },
+    "details": {
+      "challenge": "Creating an intelligent system that can analyze academic content and generate balanced question papers with proper mark distribution, appropriate difficulty levels, and professionally formatted outputs suitable for university examinations.",
+      "solution": "Implemented a React-based web application with Google's Gemini AI integration that processes document content, extracts key concepts, and generates questions at configurable difficulty levels. Developed a sophisticated UI with mark distribution algorithms, template management, and multiple export options.",
+      "impact": "Helps educators save time in creating balanced examination papers while ensuring comprehensive coverage of course material. The system's question bank feature allows reuse of high-quality questions across multiple papers.",
+      "showDetails": false
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1594312915251-48db9280c8f1?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "featured": true
+  },
+  {
+    "id": "medical-conversation-analysis(Trying to do connect everything without fancy tools, ongoing)",
+    "title": "Medical Conversation Analysis System",
+    "description": "An AI-powered system that transcribes doctor-patient conversations, extracts key medical information, and routes the analysis to specialized medical AI agents for detailed consultation. The system uses Deepgram for transcription with speaker diarization, Google's Gemini AI for language processing, and deploys multiple specialized AI agents (cardiologists, neurologists, etc.) to analyze the medical content based on detected conditions.",
+    "thumbnail": "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?q=80&w=1200&auto=format&fit=crop",
+    "category": "Healthcare AI, Natural Language Processing",
+    "technologies": ["Python", "Deepgram API", "Google Gemini AI", "Natural Language Processing", "Audio Processing", "Pandas"],
+    "links": {
+      "github": "https://github.com/Aayush518/MedicalConversationAnalysis"
+    },
+    "details": {
+      "challenge": "Creating an end-to-end system that can accurately transcribe medical conversations, identify symptoms and conditions, and route to appropriate specialist AI agents while handling the complexity of medical terminology and conversation context.",
+      "solution": "Implemented a multi-stage pipeline with speaker diarization, grammar correction, medical information extraction, and a specialist routing system. Used a backoff strategy to handle API limitations and integrated a knowledge base for specialized medical domains.",
+      "impact": "Provides medical professionals with automated transcription and analysis of patient conversations, helping identify key symptoms, potential conditions, and specialist recommendations that might otherwise be missed.",
+      "showDetails": false
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "featured": true
+  }
+  {
     "id": "CampusWebsiteTrial",
     "title": "Campus Website Trial",
     "description": "A trial website for a campus featuring a modern design with smooth animations and interactive elements. This project showcases a responsive layout with a focus on user experience and visual appeal.",
@@ -730,8 +776,9 @@ export const projects: Project[] = [
     '/images/neural-g2p-training-loss.png'
   ],
   featured: true
-}
-];  
+},
+
+];
 
 
 
